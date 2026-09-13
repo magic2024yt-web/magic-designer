@@ -44,7 +44,7 @@
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* بک‌گراند ویدیویی */
+    /* بک‌گراند ویدیویی بهینه */
     .bg-video-wrapper {
       position: fixed;
       inset: 0;
@@ -59,18 +59,17 @@
       height: 100%;
       object-fit: cover;
       opacity: 0.35;
-      filter: blur(3px) contrast(120%) brightness(85%);
+      filter: blur(2px) contrast(120%) brightness(85%);
       transform: scale(1.05);
     }
 
-    /* خطوط تفکیک‌کننده بسیار ملایم */
+    /* خط جداکننده محو */
     .section-divider {
       height: 1px;
       width: 100%;
       background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
     }
 
-    /* انیمیشن اسلایدرهای معکوس */
     @keyframes marquee-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -90,7 +89,6 @@
       animation: marquee-right 48s linear infinite;
     }
 
-    /* رفع مشکل تاچ گوشی: فقط با هاور واقعی ماوس متوقف شود */
     @media (hover: hover) and (pointer: fine) {
       .pause-on-hover:hover .animate-marquee-left,
       .pause-on-hover:hover .animate-marquee-right {
@@ -102,7 +100,7 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند ویدیویی bg.mp4 ================= -->
+  <!-- ================= بک‌گراند ویدیویی ================= -->
   <div class="bg-video-wrapper">
     <video id="bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video-element">
       <source src="bg.mp4" type="video/mp4">
@@ -151,7 +149,7 @@
   </section>
 
   <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
-  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pause-on-hover" dir="ltr">
+  <section class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pause-on-hover" dir="ltr">
     <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
     <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
 
@@ -217,7 +215,7 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
         <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۵M</div>
-        <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">بازدید ثبت شده</div>
+        <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">ویو و بازدید ثبت شده</div>
       </div>
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
         <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۱۴٪</div>
@@ -228,7 +226,7 @@
         <div id="stat-3" class="text-xs sm:text-sm text-neutral-400">تامنیل طراحی شده</div>
       </div>
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
-        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">۲۴h</div>
+        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">۲۴H</div>
         <div id="stat-4" class="text-xs sm:text-sm text-neutral-400">تحویل سریع سفارش</div>
       </div>
     </div>
@@ -239,23 +237,23 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= بخش سبک‌های تامنیل و محصولات (دکمه‌های بزرگتر و پیش‌فرض بسته) ================= -->
+  <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
-    <!-- دکمه‌های بزرگتر با قابلیت باز و بسته شدن کلیکی -->
+    <!-- دکمه‌های باز و بسته شونده (فقط مخصوص زبان فارسی) -->
     <div id="main-tab-bar" class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
       <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
-        <span id="txt-tab-thumbs">تامنیل‌ها</span>
+        <span>تامنیل‌ها</span>
         <span id="arrow-thumbs" class="text-xs transition-transform duration-300">▼</span>
       </button>
 
       <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
-        <span id="txt-tab-prods">محصولات</span>
+        <span>محصولات</span>
         <span id="arrow-prods" class="text-xs transition-transform duration-300">▼</span>
       </button>
     </div>
 
-    <!-- بخش فیلتر تامنیل‌ها (پیش‌فرض بسته) -->
+    <!-- بخش تامنیل‌ها (همیشه در انگلیسی و عربی باز و در فارسی بر اساس کلیک) -->
     <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
       <div class="flex flex-wrap justify-center gap-3 sm:gap-5">
         <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white">
@@ -276,7 +274,7 @@
       </div>
     </div>
 
-    <!-- بخش محصولات (پیش‌فرض بسته و فقط در زبان فارسی) -->
+    <!-- بخش محصولات (۱۰۰٪ اختصاصی فقط زبان فارسی) -->
     <div id="content-products" class="hidden space-y-6 transition-all duration-500">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         
@@ -318,7 +316,7 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= پاپ‌آپ بلر شیشه‌ای محصولات ================= -->
+  <!-- ================= پاپ‌آپ بلر محصولات ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
       <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-lg">✕</button>
@@ -342,12 +340,11 @@
     </div>
   </div>
 
-  <!-- ================= بخش من؟ (عکس ۱۰۰٪ مربعی در تمام صفحات) ================= -->
+  <!-- ================= بخش من؟ ================= -->
   <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full">
     <div class="glass-card rounded-3xl p-6 sm:p-10 md:p-14 border border-white/20 glow-box-white">
       <div class="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12">
         
-        <!-- فریم عکس کاملاً مربعی (aspect-square) در همه دیوایس‌ها -->
         <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 aspect-square rounded-3xl overflow-hidden border-2 border-white/30 p-1 flex-shrink-0 glow-box-white shadow-2xl">
           <img src="me.jpg" alt="Ilia - Thumbnail Designer" class="w-full h-full object-cover rounded-2xl transition duration-500">
         </div>
@@ -407,7 +404,7 @@
 
   <!-- ================= جاوااسکریپت ================= -->
   <script>
-    // فعال‌سازی و تضمین پخش ویدیوی بک‌گراند در تمام مرورگرها
+    // تضمین اجرای ویدیو
     window.addEventListener('DOMContentLoaded', () => {
       const vid = document.getElementById('bg-video');
       if (vid) {
@@ -415,7 +412,6 @@
         const playPromise = vid.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // در صورت مسدود بودن اتوپلی در باتری سیور گوشی، با اولین لمس فعال شود
             const startVideo = () => {
               vid.play();
               document.removeEventListener('touchstart', startVideo);
@@ -428,7 +424,7 @@
       }
     });
 
-    // رفع گیر اسلایدر روی گوشی: با هر لمس در هر کجای صفحه اسلایدر فعال بماند
+    // رفع گیر اسلایدر روی تاچ گوشی
     document.addEventListener('touchstart', () => {
       const r1 = document.getElementById('marquee-row-1');
       const r2 = document.getElementById('marquee-row-2');
@@ -447,7 +443,7 @@
       }
     }, { passive: true });
 
-    // داده‌های دسته‌بندی ۵ تایی تامنیل‌ها
+    // داده‌های تامنیل‌ها
     const categoryThumbnails = {
       vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
       gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
@@ -473,7 +469,7 @@
 
     filterCategory('vlog');
 
-    // مدیریت باز و بسته شدن دکمه‌های بزرگ تامنیل‌ها / محصولات (پیش‌فرض بسته)
+    // مدیریت باز و بسته شدن تب‌ها در زبان فارسی
     let activeTab = null;
 
     function toggleMainTab(tab) {
@@ -485,7 +481,6 @@
       const arrowProds = document.getElementById('arrow-prods');
 
       if (activeTab === tab) {
-        // اگر روی تب باز دوباره کلیک شد، بسته شود
         activeTab = null;
         thumbsCont.classList.add('hidden');
         prodsCont.classList.add('hidden');
@@ -525,7 +520,7 @@
           <p class="font-bold text-white mb-2">یادگیری طراحی فوق‌حرفه‌ای تامنیل و ورود مستقیم به بازار کار کسب درآمد دلاری و ریالی فقط با یک گوشی موبایل!</p>
           <div class="space-y-1.5 pt-2">
             <p>🔹 <strong>فصل ۱:</strong> آشنایی کامل با محیط پیکس‌آرت (PicsArt)</p>
-            <p>🔹 <strong>فصل ۲:</strong> اصول، روانشناسی رنگ و تکنیک‌های طراحی</p>
+            <p>🔹 <strong>فصل ۲:</strong> اصول، روانشناسی رنگ و تکنیک‌های جذب نگاه</p>
             <p>🔹 <strong>فصل ۳:</strong> پیاده‌سازی گام‌به‌گام تامنیل‌های پرکلیک و ترند</p>
             <p>🔹 <strong>فصل ۴:</strong> نقشه راه کسب درآمد، جذب کارفرما و استقلال مالی</p>
           </div>
@@ -570,7 +565,7 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // تغییر زبان
+    // تغییر زبان هوشمند (حذف قطعی محصولات در انگلیسی و عربی)
     const translations = {
       fa: {
         dir: 'rtl',
@@ -580,7 +575,7 @@
         statNum2: '+۱۴٪',
         statNum3: '+۳۵۰',
         statNum4: '۲۴H',
-        stat1: 'بازدید ثبت شده',
+        stat1: 'ویو و بازدید ثبت شده',
         stat2: 'میانگین افزایش CTR',
         stat3: 'تامنیل طراحی شده',
         stat4: 'تحویل سریع سفارش',
@@ -678,15 +673,29 @@
       document.getElementById('lbl-challenge').innerText = t.challenge;
       document.getElementById('lbl-other').innerText = t.other;
 
-      // مخفی کردن دکمه محصولات در زبان‌های انگلیسی و عربی
-      const prodsBtn = document.getElementById('tab-btn-prods');
+      // مدیریت دقیق نمایش: در انگلیسی و عربی نوار دکمه‌ها حذف و تامنیل‌ها مستقیماً باز می‌مانند
+      const mainTabBar = document.getElementById('main-tab-bar');
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const prodsCont = document.getElementById('content-products');
+
       if (lang === 'fa') {
-        prodsBtn.classList.remove('hidden');
-      } else {
-        prodsBtn.classList.add('hidden');
+        mainTabBar.classList.remove('hidden');
+        // در فارسی به وضعیت انتخابی برگردد
         if (activeTab === 'products') {
-          toggleMainTab('products');
+          prodsCont.classList.remove('hidden');
+          thumbsCont.classList.add('hidden');
+        } else if (activeTab === 'thumbnails') {
+          thumbsCont.classList.remove('hidden');
+          prodsCont.classList.add('hidden');
+        } else {
+          thumbsCont.classList.add('hidden');
+          prodsCont.classList.add('hidden');
         }
+      } else {
+        // در انگلیسی و عربی: نوار دکمه‌های محصولات و تامنیل‌ها کلاً حذف می‌شود و تامنیل‌ها باز است
+        mainTabBar.classList.add('hidden');
+        prodsCont.classList.add('hidden');
+        thumbsCont.classList.remove('hidden');
       }
 
       document.getElementById('about-title').innerText = t.aboutTitle;
