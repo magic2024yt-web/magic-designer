@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Magic Designer | Ilia</title>
   
-  <!-- فونت‌ها: پیدا فارسی + Kalam انگلیسی + Aref Ruqaa عربی + Caveat برند + Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/css/peyda.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +15,7 @@
     body {
       font-family: 'Peyda', sans-serif;
       font-weight: 600;
-      background-color: #000000;
+      background-color: #050508;
     }
     html[lang="en"] body {
       font-family: 'Kalam', cursive;
@@ -36,17 +35,20 @@
     .glow-box-white {
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
     }
+    
+    /* استایل سبک و بهینه‌شده کارت‌ها برای روانی سایت */
     .glass-card {
-      background: rgba(14, 14, 18, 0.8);
-      backdrop-filter: blur(16px);
+      background: rgba(12, 12, 16, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .glass-card:hover {
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* استایل ویدیوی یوتیوب بک‌گراند */
-    .video-bg-container {
+    /* بک‌گراند ویدیویی واضح و پرنور با لود سریع و بدون کندی */
+    .bg-video-wrapper {
       position: fixed;
       inset: 0;
       width: 100vw;
@@ -55,55 +57,61 @@
       z-index: -20;
       pointer-events: none;
     }
-    .video-bg-iframe {
-      width: 100vw;
-      height: 56.25vw;
-      min-height: 100vh;
-      min-width: 177.77vh;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1.15);
-      filter: blur(2px) brightness(0.65) contrast(1.15);
+    .bg-video-element {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85; /* وضوح و شفافیت بالا مخصوص موبایل و دسکتاپ */
+      transform: scale(1.02);
     }
 
-    /* انیمیشن اسلایدرهای معکوس */
+    .section-divider {
+      height: 1px;
+      width: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
+    }
+
+    /* انیمیشن‌های شتاب‌یافته با پردازنده گرافیکی (GPU Accelerated) */
     @keyframes marquee-left {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
     }
     @keyframes marquee-right {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0%); }
+      0% { transform: translate3d(-50%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
     }
     .animate-marquee-left {
       display: flex;
       width: max-content;
-      animation: marquee-left 48s linear infinite;
+      will-change: transform;
+      animation: marquee-left 46s linear infinite;
     }
     .animate-marquee-right {
       display: flex;
       width: max-content;
-      animation: marquee-right 48s linear infinite;
+      will-change: transform;
+      animation: marquee-right 46s linear infinite;
     }
-    .pause-on-hover:hover .animate-marquee-left,
-    .pause-on-hover:hover .animate-marquee-right {
-      animation-play-state: paused;
+
+    @media (hover: hover) and (pointer: fine) {
+      .pause-on-hover:hover .animate-marquee-left,
+      .pause-on-hover:hover .animate-marquee-right {
+        animation-play-state: paused;
+      }
     }
   </style>
 </head>
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند ویدیوی یوتیوب ================= -->
-  <div class="video-bg-container">
-    <iframe class="video-bg-iframe" 
-      src="https://www.youtube-nocookie.com/embed/vU-XJ3Zcmz0?autoplay=1&mute=1&controls=0&loop=1&playlist=vU-XJ3Zcmz0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&playsinline=1&enablejsapi=1" 
-      frameborder="0" 
-      allow="autoplay; encrypted-media">
-    </iframe>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/85 to-black"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.85)_100%)]"></div>
+  <!-- ================= بک‌گراند ویدیویی واضح و شفاف ================= -->
+  <div class="bg-video-wrapper">
+    <video id="bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video-element">
+      <source src="bg.mp4" type="video/mp4">
+    </video>
+    <!-- لایه‌ی ملایم برای تضمین خوانایی متون بدون تاریک کردن ویدیو -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/55 to-black/85"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)]"></div>
   </div>
 
   <!-- ================= هدر ================= -->
@@ -111,7 +119,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
         <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
-          <img src="logo.png" alt="Magic Designer Logo" class="w-full h-full object-contain rounded-md">
+          <img src="logo.png" alt="Magic Designer Logo" class="w-full h-full object-contain rounded-md" decoding="async">
         </div>
         <span class="font-handwriting text-2xl sm:text-3xl font-bold tracking-wider text-white whitespace-nowrap group-hover:glow-text-white transition duration-300">
           Magic Designer
@@ -133,9 +141,9 @@
     </div>
   </header>
 
-  <!-- ================= بخش تیتر اصلی ================= -->
-  <section class="pt-12 sm:pt-16 md:pt-20 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-6 border border-white/20 shadow-lg">
+  <!-- ================= تیتر اصلی ================= -->
+  <section class="pt-14 sm:pt-20 md:pt-24 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
       <span id="txt-badge">بازدید هاتو منفجر کن !</span>
     </div>
@@ -146,155 +154,166 @@
   </section>
 
   <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
-  <section class="relative py-4 sm:py-6 space-y-4 sm:space-y-6 overflow-hidden pause-on-hover" dir="ltr">
-    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
-    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
+  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pause-on-hover" dir="ltr">
+    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
+    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
-    <!-- اسلایدر اول (چپ‌گرد) -->
+    <!-- اسلایدر اول (thumb1 تا thumb10) -->
     <div class="w-full overflow-hidden flex">
-      <div class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover"></div>
+      <div id="marquee-row-1" class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
 
-        <!-- تکرار اسلایدر اول -->
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover"></div>
+        <!-- تکرار لوپ ۱ تا ۱۰ -->
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
-    <!-- اسلایدر دوم (راست‌گرد) -->
+    <!-- اسلایدر دوم (thumb11 تا thumb20) -->
     <div class="w-full overflow-hidden flex">
-      <div class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover"></div>
+      <div id="marquee-row-2" class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
 
-        <!-- تکرار اسلایدر دوم -->
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover"></div>
+        <!-- تکرار لوپ ۱۱ تا ۲۰ -->
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
   <!-- ================= بخش آمار ================= -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
-        <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۵M</div>
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۵M</div>
         <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">بازدید ثبت شده</div>
       </div>
-      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
-        <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۱۴٪</div>
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۱۴٪</div>
         <div id="stat-2" class="text-xs sm:text-sm text-neutral-400">میانگین افزایش CTR</div>
       </div>
-      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
-        <div id="stat-num-3" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۳۵۰</div>
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-3" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۳۵۰</div>
         <div id="stat-3" class="text-xs sm:text-sm text-neutral-400">تامنیل طراحی شده</div>
       </div>
-      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
-        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">۲۴h</div>
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">۲۴h</div>
         <div id="stat-4" class="text-xs sm:text-sm text-neutral-400">تحویل سریع سفارش</div>
       </div>
     </div>
   </section>
 
+  <!-- خط جداکننده اول -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
   <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
-    <!-- نوار سوییچ تامنیل‌ها / محصولات (فقط در زبان فارسی نمایش داده می‌شود) -->
-    <div id="main-tab-bar" class="flex justify-center gap-4 mb-8">
-      <button onclick="switchMainTab('thumbnails')" id="tab-btn-thumbs" class="px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white">
-        تامنیل‌ها
+    <!-- ۱. نوار سوییچ فقط مخصوص صفحه فارسی -->
+    <div id="main-tab-bar" class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
+      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
+        <span>تامنیل‌ها</span>
+        <span id="arrow-thumbs" class="text-xs transition-transform duration-300">▼</span>
       </button>
 
-      <button onclick="switchMainTab('products')" id="tab-btn-prods" class="px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white">
-        محصولات
+      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
+        <span>محصولات</span>
+        <span id="arrow-prods" class="text-xs transition-transform duration-300">▼</span>
       </button>
     </div>
 
-    <!-- بخش تامنیل‌ها (همیشه در تمام زبان‌ها با ۴ سبک مختلف و ۵ تایی) -->
-    <div id="content-thumbnails" class="space-y-8 transition-all duration-500">
-      
-      <!-- دکمه‌های فیلتر سبک -->
-      <div class="flex flex-wrap justify-center gap-2.5 sm:gap-4">
-        <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white">
+    <!-- ۲. دکمه اختصاصی «تامنیل‌های بیشتر» مخصوص زبان‌های انگلیسی و عربی -->
+    <div id="en-ar-tab-bar" class="hidden justify-center mb-10">
+      <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-200 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2.5 active:scale-95">
+        <span id="txt-more-thumbs">More Thumbnails</span>
+        <span id="arrow-more-thumbs" class="text-xs transition-transform duration-300">▼</span>
+      </button>
+    </div>
+
+    <!-- بخش فیلتر تامنیل‌ها (در انگلیسی کاملاً در یک خط flex-nowrap) -->
+    <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
+      <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 overflow-x-auto py-2 px-2" dir="ltr">
+        <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all">
           <span id="lbl-vlog">ولاگ</span>
         </button>
-        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
+        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all">
           <span id="lbl-gameplay">گیم‌پلی</span>
         </button>
-        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
+        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all">
           <span id="lbl-challenge">چالش</span>
         </button>
-        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
+        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all">
           <span id="lbl-other">سایر</span>
         </button>
       </div>
 
-      <!-- گرید ۵ تایی کاملاً واکنش‌گرا (موبایل، تبلت ۳ تایی، دسکتاپ ۵ تایی) -->
-      <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 w-full">
-        <!-- آیتم‌ها توسط جاوااسکریپت نرم و ۵ تایی لود می‌شوند -->
+      <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6 w-full">
       </div>
     </div>
 
-    <!-- بخش محصولات (فقط و فقط اختصاصی زبان فارسی) -->
+    <!-- بخش محصولات (۱۰۰٪ اختصاصی و فقط در زبان فارسی) -->
     <div id="content-products" class="hidden space-y-6 transition-all duration-500">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         
-        <!-- کارت ۱: دوره موبایل -->
-        <div onclick="openProductModal('course')" class="glass-card rounded-2xl p-5 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
-          <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-neutral-900 border border-white/10 relative">
-            <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md border border-white/20">آموزش ۰ تا ۱۰۰</span>
+        <!-- دوره موبایل -->
+        <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl">
+          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+            <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
           </div>
-          <h3 class="text-xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
+          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
           <p class="text-sm text-neutral-400 mb-4 line-clamp-2">یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.</p>
-          <div class="flex items-center justify-between pt-3 border-t border-white/10">
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
             <span class="font-extrabold text-lg text-white">۱,۴۴۷,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
           </div>
         </div>
 
-        <!-- کارت ۲: جعبه ابزار Magic Tools -->
-        <div onclick="openProductModal('tools')" class="glass-card rounded-2xl p-5 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
-          <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-neutral-900 border border-white/10 relative">
-            <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md border border-white/20">+۵۰ گیگابایت فایل</span>
+        <!-- جعبه ابزار -->
+        <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl">
+          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+            <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
           </div>
-          <h3 class="text-xl font-bold mb-2 group-hover:glow-text-white transition">پکیج ابزار Magic Tools</h3>
+          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">پکیج ابزار Magic Tools</h3>
           <p class="text-sm text-neutral-400 mb-4 line-clamp-2">بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.</p>
-          <div class="flex items-center justify-between pt-3 border-t border-white/10">
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
             <span class="font-extrabold text-lg text-white">۸۴۸,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
           </div>
@@ -305,23 +324,23 @@
 
   </section>
 
-  <!-- ================= پاپ‌آپ شیشه‌ای بلر محصولات ================= -->
+  <!-- خط جداکننده دوم -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- ================= پاپ‌آپ بلر محصولات ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
-      
-      <!-- دکمه بستن -->
       <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-lg">✕</button>
 
-      <!-- تصویر محصول -->
-      <div class="aspect-video rounded-xl overflow-hidden mb-5 border border-white/20">
+      <div class="w-48 h-48 sm:w-60 sm:h-60 mx-auto aspect-square rounded-2xl overflow-hidden mb-5 border border-white/20 shadow-xl">
         <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
       </div>
 
-      <!-- محتوا -->
-      <h3 id="modal-title" class="text-2xl font-black mb-3 glow-text-white"></h3>
+      <h3 id="modal-title" class="text-xl sm:text-2xl font-black mb-3 glow-text-white text-center sm:text-start"></h3>
       <div id="modal-body" class="text-neutral-300 text-sm leading-relaxed space-y-3 mb-6"></div>
 
-      <!-- قیمت و دکمه مستقیم به پی‌وی تلگرام ilia_ltf -->
       <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <span class="text-xs text-neutral-400 block">قیمت نهایی:</span>
@@ -331,32 +350,28 @@
           خرید (تلگرام)
         </a>
       </div>
-
     </div>
   </div>
 
-  <!-- ================= بخش من؟ (ایلیا - کاملاً رنگی) ================= -->
-  <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-14 w-full">
-    <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 glow-box-white">
-      <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-10">
+  <!-- ================= بخش من؟ ================= -->
+  <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full">
+    <div class="glass-card rounded-3xl p-6 sm:p-10 md:p-14 border border-white/20 glow-box-white">
+      <div class="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12">
         
-        <!-- عکس رنگی بدون فیلتر خاکستری -->
-        <div class="relative w-44 h-56 sm:w-52 sm:h-64 md:w-60 md:h-76 rounded-2xl overflow-hidden border-2 border-white/30 p-1 flex-shrink-0 glow-box-white">
-          <img src="me.jpg" alt="Ilia - Thumbnail Designer" class="w-full h-full object-cover rounded-xl transition duration-500">
+        <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 aspect-square rounded-3xl overflow-hidden border-2 border-white/30 p-1 flex-shrink-0 glow-box-white shadow-2xl">
+          <img src="me.jpg" alt="Ilia - Thumbnail Designer" class="w-full h-full object-cover rounded-2xl transition duration-500" loading="lazy" decoding="async">
         </div>
 
-        <!-- متن معرفی با شعار دوخطی -->
-        <div class="space-y-3 sm:space-y-4 text-center md:text-start flex-1">
+        <div class="space-y-4 sm:space-y-5 text-center md:text-start flex-1">
           <h2 id="about-title" class="text-3xl sm:text-4xl md:text-5xl font-black glow-text-white">من؟</h2>
-          <h3 id="about-name" class="text-lg sm:text-xl md:text-2xl font-bold text-neutral-200">
+          <h3 id="about-name" class="text-xl sm:text-2xl font-bold text-neutral-200">
             من ایلیا هستم، ۲۰ سالمه
           </h3>
           <p id="about-desc-1" class="text-neutral-300 text-sm sm:text-base md:text-lg leading-relaxed pt-1">
             با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...
           </p>
 
-          <!-- دو خط مجزا -->
-          <div class="pt-2 border-r-2 md:border-r-4 border-white pr-3 space-y-1">
+          <div class="pt-3 border-r-2 md:border-r-4 border-white pr-4 space-y-1.5">
             <p id="about-line-1" class="text-white text-base sm:text-lg md:text-xl font-extrabold">
               ما اینجا تامنیل طراحی نمیکنیم!
             </p>
@@ -365,29 +380,31 @@
             </p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
+  <!-- خط جداکننده سوم -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
   <!-- ================= فوتر ================= -->
-  <footer id="contact" class="border-t border-white/10 bg-black/90 py-12 sm:py-16 px-4 sm:px-6 text-center w-full">
+  <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-3xl mx-auto">
-      
-      <h2 id="footer-title" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-3 glow-text-white leading-tight">
+      <h2 id="footer-title" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 glow-text-white leading-tight">
         آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟!
       </h2>
       
-      <p id="footer-desc" class="text-neutral-400 mb-8 sm:mb-10 text-base sm:text-lg font-bold">
+      <p id="footer-desc" class="text-neutral-400 mb-10 sm:mb-12 text-base sm:text-lg font-bold">
         همکاری 👇🏻
       </p>
 
-      <!-- دکمه‌ها -->
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5 mb-10 w-full max-w-md mx-auto sm:max-w-none">
-        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-12 w-full max-w-md mx-auto sm:max-w-none">
+        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
           <span id="btn-tg">ارتباط سریع (تلگرام)</span>
         </a>
-        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
           <span id="btn-ig">اینستاگرام</span>
         </a>
       </div>
@@ -398,56 +415,133 @@
     </div>
   </footer>
 
-  <!-- ================= اسکریپت‌ها ================= -->
+  <!-- ================= جاوااسکریپت ================= -->
   <script>
-    // تقسیم‌بندی دقیق هر سبک به ۵ تامنیل (جمعاً ۲۰ عدد)
+    // فعال‌سازی و تضمین پخش ویدیو
+    window.addEventListener('DOMContentLoaded', () => {
+      const vid = document.getElementById('bg-video');
+      if (vid) {
+        vid.muted = true;
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            const startVideo = () => {
+              vid.play();
+              document.removeEventListener('touchstart', startVideo);
+              document.removeEventListener('click', startVideo);
+            };
+            document.addEventListener('touchstart', startVideo);
+            document.addEventListener('click', startVideo);
+          });
+        }
+      }
+    });
+
+    // رفع گیر اسلایدر روی تاچ گوشی
+    document.addEventListener('touchstart', () => {
+      const r1 = document.getElementById('marquee-row-1');
+      const r2 = document.getElementById('marquee-row-2');
+      if (r1 && r2) {
+        r1.style.animationPlayState = 'running';
+        r2.style.animationPlayState = 'running';
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+      const r1 = document.getElementById('marquee-row-1');
+      const r2 = document.getElementById('marquee-row-2');
+      if (r1 && r2) {
+        r1.style.animationPlayState = 'running';
+        r2.style.animationPlayState = 'running';
+      }
+    }, { passive: true });
+
+    // داده‌های تامنیل‌ها
     const categoryThumbnails = {
-      vlog: ['thumb1.jpg', 'thumb2.jpg', 'thumb3.jpg', 'thumb4.jpg', 'thumb5.jpg'],
-      gameplay: ['thumb6.jpg', 'thumb7.jpg', 'thumb8.jpg', 'thumb9.jpg', 'thumb10.jpg'],
-      challenge: ['thumb11.jpg', 'thumb12.jpg', 'thumb13.jpg', 'thumb14.jpg', 'thumb15.jpg'],
-      other: ['thumb16.jpg', 'thumb17.jpg', 'thumb18.jpg', 'thumb19.jpg', 'thumb20.jpg']
+      vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
+      gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
+      challenge: ['t1ch.jpg', 't2ch.jpg', 't3ch.jpg', 't4ch.jpg', 't5ch.jpg'],
+      other: ['t1ot.jpg', 't2ot.jpg', 't3ot.jpg', 't4ot.jpg', 't5ot.jpg']
     };
 
     function filterCategory(cat) {
       document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-        btn.className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white";
+        btn.className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all";
       });
-      document.getElementById('cat-' + cat).className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white";
+      document.getElementById('cat-' + cat).className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all";
 
       const grid = document.getElementById('category-grid');
       grid.innerHTML = '';
       categoryThumbnails[cat].forEach(imgName => {
         const div = document.createElement('div');
         div.className = "aspect-video rounded-xl overflow-hidden glass-card group hover:scale-105 hover:glow-box-white transition duration-300 border border-white/10";
-        div.innerHTML = `<img src="${imgName}" alt="Thumbnail" class="w-full h-full object-cover">`;
+        div.innerHTML = `<img src="${imgName}" alt="Thumbnail" class="w-full h-full object-cover" loading="lazy" decoding="async">`;
         grid.appendChild(div);
       });
     }
 
-    // لود اولیه دسته‌بندی ولاگ
     filterCategory('vlog');
 
-    // جابجایی تب‌های تامنیل / محصولات (فقط در فارسی)
-    function switchMainTab(tab) {
+    // مدیریت تب‌های فارسی (پیش‌فرض بسته)
+    let activeTab = null;
+
+    function toggleMainTab(tab) {
       const thumbsBtn = document.getElementById('tab-btn-thumbs');
       const prodsBtn = document.getElementById('tab-btn-prods');
       const thumbsCont = document.getElementById('content-thumbnails');
       const prodsCont = document.getElementById('content-products');
+      const arrowThumbs = document.getElementById('arrow-thumbs');
+      const arrowProds = document.getElementById('arrow-prods');
 
+      if (activeTab === tab) {
+        activeTab = null;
+        thumbsCont.classList.add('hidden');
+        prodsCont.classList.add('hidden');
+        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
+        if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
+        return;
+      }
+
+      activeTab = tab;
       if (tab === 'thumbnails') {
-        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
-        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
+        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2";
+        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
         thumbsCont.classList.remove('hidden');
         prodsCont.classList.add('hidden');
+        if (arrowThumbs) arrowThumbs.style.transform = "rotate(180deg)";
+        if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
       } else {
-        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
-        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
+        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2";
+        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
         prodsCont.classList.remove('hidden');
         thumbsCont.classList.add('hidden');
+        if (arrowProds) arrowProds.style.transform = "rotate(180deg)";
+        if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
       }
     }
 
-    // پاپ‌آپ و خرید مستقیم از طریق پی‌وی تلگرام ilia_ltf
+    // باز و بسته شدن دکمه «More Thumbnails» در انگلیسی و عربی
+    let isEnArOpen = false;
+    function toggleEnArThumbs() {
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const arrow = document.getElementById('arrow-more-thumbs');
+      const btn = document.getElementById('btn-more-thumbs');
+      isEnArOpen = !isEnArOpen;
+
+      if (isEnArOpen) {
+        thumbsCont.classList.remove('hidden');
+        btn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2.5 active:scale-95";
+        if (arrow) arrow.style.transform = "rotate(180deg)";
+      } else {
+        thumbsCont.classList.add('hidden');
+        btn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-200 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2.5 active:scale-95";
+        if (arrow) arrow.style.transform = "rotate(0deg)";
+      }
+    }
+
+    // پاپ‌آپ و خرید تلگرام
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
@@ -477,7 +571,7 @@
           <p class="font-bold text-white mb-2">کامل‌ترین بانک منابع گرافیکی تامنیل با بیش از ۵۰,۰۰۰ فایل فوق‌العاده باکیفیت و بیش از ۵۰ گیگابایت محتوا!</p>
           <div class="space-y-1.5 pt-2">
             <p>⚡ ۱۰,۰۰۰+ بک‌گراند در تمامی سبک‌های محبوب</p>
-            <p>⚡ ۳,۰۰۰+ سوژه باکیفیت از معروف‌ترین یوتیوبرها</p>
+            <p>⚡ ۳,۰۰۰+ کات‌اوت باکیفیت از معروف‌ترین یوتیوبرها</p>
             <p>⚡ ۲۰,۰۰۰+ عنصر، افکت و ترنزیشن بصری کاربردی</p>
             <p>⚡ ۲,۰۰۰+ استایل متنی سه‌بعدی ترند و روسی</p>
             <p>⚡ معروف‌ترین فونت‌های پولی + نسخه مود شده برنامه‌ها</p>
@@ -495,7 +589,6 @@
       document.getElementById('modal-title').innerText = p.title;
       document.getElementById('modal-body').innerHTML = p.body;
       document.getElementById('modal-price').innerText = p.price;
-      // هدایت مستقیم به پی‌وی تلگرام ilia_ltf همراه با متن پیام آماده
       document.getElementById('modal-buy-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
       document.getElementById('product-modal').classList.remove('hidden');
     }
@@ -504,7 +597,7 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // تغییر زبان هوشمند
+    // تغییر زبان
     const translations = {
       fa: {
         dir: 'rtl',
@@ -522,6 +615,7 @@
         gameplay: 'گیم‌پلی',
         challenge: 'چالش',
         other: 'سایر',
+        moreThumbs: 'تامنیل‌های بیشتر',
         aboutTitle: 'من؟',
         aboutName: 'من ایلیا هستم، ۲۰ سالمه',
         aboutDesc1: 'با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...',
@@ -549,6 +643,7 @@
         gameplay: 'Gameplay',
         challenge: 'Challenge',
         other: 'Other',
+        moreThumbs: 'More Thumbnails',
         aboutTitle: 'Me?',
         aboutName: "I'm Ilia, 20 Years Old",
         aboutDesc1: 'Over 4 years of experience designing thumbnails, channel art, profile pics, covers and more.',
@@ -576,6 +671,7 @@
         gameplay: 'ألعاب',
         challenge: 'تحديات',
         other: 'أخرى',
+        moreThumbs: 'المزيد من التصاميم',
         aboutTitle: 'أنا مين؟',
         aboutName: 'أنا إيليا، عمري 20 سنة',
         aboutDesc1: 'أكثر من 4 سنين بصمم ثمنيلز، بنرات، صور بروفايل، كفرات وغيره الكثير.',
@@ -611,14 +707,42 @@
       document.getElementById('lbl-gameplay').innerText = t.gameplay;
       document.getElementById('lbl-challenge').innerText = t.challenge;
       document.getElementById('lbl-other').innerText = t.other;
+      document.getElementById('txt-more-thumbs').innerText = t.moreThumbs;
 
-      // مدیریت محصولات: فقط در زبان فارسی دیده شود، در انگلیسی و عربی کلاً نوار سوییچ محو شود
       const mainTabBar = document.getElementById('main-tab-bar');
+      const enArTabBar = document.getElementById('en-ar-tab-bar');
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const prodsCont = document.getElementById('content-products');
+
       if (lang === 'fa') {
+        // حالت فارسی: دکمه‌های تامنیل و محصولات فعال شوند
         mainTabBar.classList.remove('hidden');
+        enArTabBar.classList.add('hidden');
+        enArTabBar.classList.remove('flex');
+        
+        if (activeTab === 'products') {
+          prodsCont.classList.remove('hidden');
+          thumbsCont.classList.add('hidden');
+        } else if (activeTab === 'thumbnails') {
+          thumbsCont.classList.remove('hidden');
+          prodsCont.classList.add('hidden');
+        } else {
+          thumbsCont.classList.add('hidden');
+          prodsCont.classList.add('hidden');
+        }
       } else {
+        // حالت انگلیسی و عربی: نوار محصولات کلاً محو و دکمه تک «More Thumbnails» ظاهر شود
         mainTabBar.classList.add('hidden');
-        switchMainTab('thumbnails');
+        prodsCont.classList.add('hidden');
+        enArTabBar.classList.remove('hidden');
+        enArTabBar.classList.add('flex');
+        
+        // باز بودن محتوا بر اساس وضعیت دکمه
+        if (isEnArOpen) {
+          thumbsCont.classList.remove('hidden');
+        } else {
+          thumbsCont.classList.add('hidden');
+        }
       }
 
       document.getElementById('about-title').innerText = t.aboutTitle;
@@ -643,6 +767,5 @@
       });
     }
   </script>
-
 </body>
 </html>
