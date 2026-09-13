@@ -44,7 +44,6 @@
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* استایل ویدیوی بک‌گراند با بلر و اوپاسیتی بهینه */
     .bg-video-wrapper {
       position: fixed;
       inset: 0;
@@ -58,9 +57,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.30; /* اوپاسیتی ۳۰ درصد برای خوانایی متن‌ها */
-      filter: blur(3px) contrast(120%) brightness(85%); /* بلر ملایم و شیک */
-      transform: scale(1.05); /* جلوگیری از حاشیه‌های سفید ناشی از بلر */
+      opacity: 0.30;
+      filter: blur(3px) contrast(120%) brightness(85%);
+      transform: scale(1.05);
     }
 
     @keyframes marquee-left {
@@ -90,12 +89,11 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند ویدیویی bg.mp4 ================= -->
+  <!-- ================= بک‌گراند ویدیویی ================= -->
   <div class="bg-video-wrapper">
     <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video-element">
       <source src="bg.mp4" type="video/mp4">
     </video>
-    <!-- لایه گرادیانت و تیرگی روی ویدیو -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/85 to-black"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.85)_100%)]"></div>
   </div>
@@ -127,7 +125,7 @@
     </div>
   </header>
 
-  <!-- ================= بخش تیتر اصلی ================= -->
+  <!-- ================= تیتر اصلی ================= -->
   <section class="pt-12 sm:pt-16 md:pt-20 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
     <div class="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-6 border border-white/20 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
@@ -206,7 +204,7 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
       <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
         <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۵M</div>
-        <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">ویو و بازدید ثبت شده</div>
+        <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">بازدید ثبت شده</div>
       </div>
       <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
         <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۱۴٪</div>
@@ -236,7 +234,7 @@
       </button>
     </div>
 
-    <!-- بخش فیلتر تامنیل‌ها (۵ تایی) -->
+    <!-- بخش فیلتر تامنیل‌ها -->
     <div id="content-thumbnails" class="space-y-8 transition-all duration-500">
       <div class="flex flex-wrap justify-center gap-2.5 sm:gap-4">
         <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white">
@@ -253,36 +251,37 @@
         </button>
       </div>
 
-      <!-- گرید ۵ تایی بر اساس اسم‌های جدید -->
       <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 w-full">
       </div>
     </div>
 
-    <!-- بخش محصولات (مخصوص زبان فارسی) -->
+    <!-- بخش محصولات با قاب‌های اصلاح‌شده مربعی (1:1 کامل بدون برش) -->
     <div id="content-products" class="hidden space-y-6 transition-all duration-500">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         
-        <div onclick="openProductModal('course')" class="glass-card rounded-2xl p-5 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
-          <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-neutral-900 border border-white/10 relative">
+        <!-- دوره موبایل (قاب مربعی کامل) -->
+        <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
+          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative shadow-2xl">
             <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md border border-white/20">آموزش ۰ تا ۱۰۰</span>
+            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
           </div>
-          <h3 class="text-xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
+          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
           <p class="text-sm text-neutral-400 mb-4 line-clamp-2">یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.</p>
-          <div class="flex items-center justify-between pt-3 border-t border-white/10">
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
             <span class="font-extrabold text-lg text-white">۱,۴۴۷,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
           </div>
         </div>
 
-        <div onclick="openProductModal('tools')" class="glass-card rounded-2xl p-5 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
-          <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-neutral-900 border border-white/10 relative">
+        <!-- جعبه ابزار (قاب مربعی کامل) -->
+        <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
+          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative shadow-2xl">
             <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md border border-white/20">+۵۰ گیگابایت فایل</span>
+            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
           </div>
-          <h3 class="text-xl font-bold mb-2 group-hover:glow-text-white transition">پکیج ابزار Magic Tools</h3>
+          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">پکیج ابزار Magic Tools</h3>
           <p class="text-sm text-neutral-400 mb-4 line-clamp-2">بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.</p>
-          <div class="flex items-center justify-between pt-3 border-t border-white/10">
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
             <span class="font-extrabold text-lg text-white">۸۴۸,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
           </div>
@@ -293,16 +292,17 @@
 
   </section>
 
-  <!-- پاپ‌آپ بلر شیشه‌ای محصولات -->
+  <!-- ================= پاپ‌آپ محصولات با قاب مربعی متناسب ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
       <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-lg">✕</button>
 
-      <div class="aspect-video rounded-xl overflow-hidden mb-5 border border-white/20">
+      <!-- قاب مربعی و متناسب در پاپ‌آپ -->
+      <div class="w-48 h-48 sm:w-60 sm:h-60 mx-auto aspect-square rounded-2xl overflow-hidden mb-5 border border-white/20 shadow-xl">
         <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
       </div>
 
-      <h3 id="modal-title" class="text-2xl font-black mb-3 glow-text-white"></h3>
+      <h3 id="modal-title" class="text-xl sm:text-2xl font-black mb-3 glow-text-white text-center sm:text-start"></h3>
       <div id="modal-body" class="text-neutral-300 text-sm leading-relaxed space-y-3 mb-6"></div>
 
       <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -317,7 +317,7 @@
     </div>
   </div>
 
-  <!-- بخش من؟ (ایلیا - کاملاً رنگی) -->
+  <!-- ================= بخش من؟ ================= -->
   <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-14 w-full">
     <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 glow-box-white">
       <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-10">
@@ -347,7 +347,7 @@
     </div>
   </section>
 
-  <!-- فوتر -->
+  <!-- ================= فوتر ================= -->
   <footer id="contact" class="border-t border-white/10 bg-black/90 py-12 sm:py-16 px-4 sm:px-6 text-center w-full">
     <div class="max-w-3xl mx-auto">
       <h2 id="footer-title" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-3 glow-text-white leading-tight">
@@ -362,254 +362,4 @@
         <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
           <span id="btn-tg">ارتباط سریع (تلگرام)</span>
         </a>
-        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
-          <span id="btn-ig">اینستاگرام</span>
-        </a>
-      </div>
-
-      <p id="txt-copyright" class="text-xs text-neutral-500">
-        © 2026 Magic Designer | تمامی حقوق محفوظ است.
-      </p>
-    </div>
-  </footer>
-
-  <!-- جاوااسکریپت -->
-  <script>
-    const categoryThumbnails = {
-      vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
-      gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
-      challenge: ['t1ch.jpg', 't2ch.jpg', 't3ch.jpg', 't4ch.jpg', 't5ch.jpg'],
-      other: ['t1ot.jpg', 't2ot.jpg', 't3ot.jpg', 't4ot.jpg', 't5ot.jpg']
-    };
-
-    function filterCategory(cat) {
-      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-        btn.className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white";
-      });
-      document.getElementById('cat-' + cat).className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white";
-
-      const grid = document.getElementById('category-grid');
-      grid.innerHTML = '';
-      categoryThumbnails[cat].forEach(imgName => {
-        const div = document.createElement('div');
-        div.className = "aspect-video rounded-xl overflow-hidden glass-card group hover:scale-105 hover:glow-box-white transition duration-300 border border-white/10";
-        div.innerHTML = `<img src="${imgName}" alt="Thumbnail" class="w-full h-full object-cover">`;
-        grid.appendChild(div);
-      });
-    }
-
-    filterCategory('vlog');
-
-    function switchMainTab(tab) {
-      const thumbsBtn = document.getElementById('tab-btn-thumbs');
-      const prodsBtn = document.getElementById('tab-btn-prods');
-      const thumbsCont = document.getElementById('content-thumbnails');
-      const prodsCont = document.getElementById('content-products');
-
-      if (tab === 'thumbnails') {
-        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
-        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
-        thumbsCont.classList.remove('hidden');
-        prodsCont.classList.add('hidden');
-      } else {
-        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
-        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
-        prodsCont.classList.remove('hidden');
-        thumbsCont.classList.add('hidden');
-      }
-    }
-
-    const productsData = {
-      course: {
-        title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
-        img: 'course.jpg',
-        price: '۱,۴۴۷,۰۰۰ تومان',
-        tgMsg: 'سلام ایلیا جان، برای ثبت نام در دوره طراحی تامنیل با موبایل پیام میدم',
-        body: `
-          <p class="font-bold text-white mb-2">یادگیری طراحی فوق‌حرفه‌ای تامنیل و ورود مستقیم به بازار کار کسب درآمد دلاری و ریالی فقط با یک گوشی موبایل!</p>
-          <div class="space-y-1.5 pt-2">
-            <p>🔹 <strong>فصل ۱:</strong> آشنایی کامل با محیط پیکس‌آرت (PicsArt)</p>
-            <p>🔹 <strong>فصل ۲:</strong> اصول، روانشناسی رنگ و تکنیک‌های جذب نگاه</p>
-            <p>🔹 <strong>فصل ۳:</strong> پیاده‌سازی گام‌به‌گام تامنیل‌های پرکلیک و ترند</p>
-            <p>🔹 <strong>فصل ۴:</strong> نقشه راه کسب درآمد، جذب کارفرما و استقلال مالی</p>
-          </div>
-          <div class="pt-3 border-t border-white/10 text-xs space-y-1 text-neutral-400">
-            <p>✔ دسترسی آسان در گروه موضوع‌بندی‌شده تلگرام</p>
-            <p>✔ پشتیبانی دائمی و مستقیم با خود بنده برای رفع اشکال</p>
-          </div>
-        `
-      },
-      tools: {
-        title: 'پکیج Magic Tools (جعبه ابزار جادویی طراحان)',
-        img: 'tools.jpg',
-        price: '۸۴۸,۰۰۰ تومان',
-        tgMsg: 'سلام ایلیا جان، برای خرید پکیج ابزار Magic Tools پیام میدم',
-        body: `
-          <p class="font-bold text-white mb-2">کامل‌ترین بانک منابع گرافیکی تامنیل با بیش از ۵۰,۰۰۰ فایل فوق‌العاده باکیفیت و بیش از ۵۰ گیگابایت محتوا!</p>
-          <div class="space-y-1.5 pt-2">
-            <p>⚡ ۱۰,۰۰۰+ بک‌گراند در تمامی سبک‌های محبوب</p>
-            <p>⚡ ۳,۰۰۰+ کات‌اوت باکیفیت از معروف‌ترین یوتیوبرها</p>
-            <p>⚡ ۲۰,۰۰۰+ عنصر، افکت و ترنزیشن بصری کاربردی</p>
-            <p>⚡ ۲,۰۰۰+ استایل متنی سه‌بعدی ترند و روسی</p>
-            <p>⚡ معروف‌ترین فونت‌های پول‌ساز + نسخه مود شده برنامه‌ها</p>
-          </div>
-          <div class="pt-3 border-t border-white/10 text-xs text-neutral-400">
-            <p>✔ یک بار برای همیشه هزینه کن، دسترسی در تلگرام با آپدیت دائمی و مادام‌العمر!</p>
-          </div>
-        `
-      }
-    };
-
-    function openProductModal(key) {
-      const p = productsData[key];
-      document.getElementById('modal-img').src = p.img;
-      document.getElementById('modal-title').innerText = p.title;
-      document.getElementById('modal-body').innerHTML = p.body;
-      document.getElementById('modal-price').innerText = p.price;
-      document.getElementById('modal-buy-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
-      document.getElementById('product-modal').classList.remove('hidden');
-    }
-
-    function closeProductModal() {
-      document.getElementById('product-modal').classList.add('hidden');
-    }
-
-    const translations = {
-      fa: {
-        dir: 'rtl',
-        badge: 'بازدید هاتو منفجر کن !',
-        title: 'نمونه کارها',
-        statNum1: '+۵M',
-        statNum2: '+۱۴٪',
-        statNum3: '+۳۵۰',
-        statNum4: '۲۴h',
-        stat1: 'ویو و بازدید ثبت شده',
-        stat2: 'میانگین افزایش CTR',
-        stat3: 'تامنیل موفق طراحی شده',
-        stat4: 'تحویل سریع سفارش',
-        vlog: 'ولاگ',
-        gameplay: 'گیم‌پلی',
-        challenge: 'چالش',
-        other: 'سایر',
-        aboutTitle: 'من؟',
-        aboutName: 'من ایلیا هستم، ۲۰ سالمه',
-        aboutDesc1: 'با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...',
-        aboutLine1: 'ما اینجا تامنیل طراحی نمیکنیم!',
-        aboutLine2: 'اثر هنری خلق میکنیم!',
-        footerTitle: 'آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! ',
-        footerDesc: 'همکاری 👇🏻',
-        btnTg: 'ارتباط سریع (تلگرام)',
-        btnIg: 'اینستاگرام',
-        copyright: '© 2026 Magic Designer | تمامی حقوق محفوظ است.'
-      },
-      en: {
-        dir: 'ltr',
-        badge: 'Blow up your views!',
-        title: 'Thumbnail Designs',
-        statNum1: '+5M',
-        statNum2: '+14%',
-        statNum3: '+350',
-        statNum4: '24h',
-        stat1: 'Total Views Hit',
-        stat2: 'Avg. CTR Boost',
-        stat3: 'Thumbnails Designed',
-        stat4: 'Fast Delivery',
-        vlog: 'Vlog',
-        gameplay: 'Gameplay',
-        challenge: 'Challenge',
-        other: 'Other',
-        aboutTitle: 'Me?',
-        aboutName: "I'm Ilia, 20 Years Old",
-        aboutDesc1: 'Over 4 years of experience designing thumbnails, channel art, profile pics, covers and more.',
-        aboutLine1: "We don't just design thumbnails!",
-        aboutLine2: 'We create art!',
-        footerTitle: 'Ready to blow up the views on your next video?!',
-        footerDesc: 'Collaborate 👇🏻',
-        btnTg: 'Quick Chat (Telegram)',
-        btnIg: 'Instagram',
-        copyright: '© 2026 Magic Designer | All rights reserved.'
-      },
-      ar: {
-        dir: 'rtl',
-        badge: 'ولّع مشاهداتك !',
-        title: 'تصاميم الثمنيلز',
-        statNum1: '+٥M',
-        statNum2: '+١٤٪',
-        statNum3: '+٣٥٠',
-        statNum4: '٢٤h',
-        stat1: 'مجموع المشاهدات',
-        stat2: 'زيادة الـ CTR',
-        stat3: 'ثمنيل تصمم',
-        stat4: 'تسليم سريع',
-        vlog: 'فلوجات',
-        gameplay: 'ألعاب',
-        challenge: 'تحديات',
-        other: 'أخرى',
-        aboutTitle: 'أنا مين؟',
-        aboutName: 'أنا إيليا، عمري 20 سنة',
-        aboutDesc1: 'أكثر من 4 سنين بصمم ثمنيلز، بنرات، صور بروفايل، كفرات وغيره الكثير.',
-        aboutLine1: 'إحنا هنا ما بنصمم ثمنيلز وبس!',
-        aboutLine2: 'إحنا بنصنع فن!',
-        footerTitle: 'جاهز نفجّر مشاهدات الفيديو الجاي؟! ',
-        footerDesc: 'للتعاون 👇🏻',
-        btnTg: 'تواصل سريع (تيليجرام)',
-        btnIg: 'إنستغرام',
-        copyright: '© 2026 Magic Designer | جميع الحقوق محفوظة.'
-      }
-    };
-
-    function changeLanguage(lang) {
-      const t = translations[lang];
-      document.documentElement.setAttribute('lang', lang);
-      document.documentElement.setAttribute('dir', t.dir);
-
-      document.getElementById('txt-badge').innerText = t.badge;
-      document.getElementById('txt-title').innerText = t.title;
-
-      document.getElementById('stat-num-1').innerText = t.statNum1;
-      document.getElementById('stat-num-2').innerText = t.statNum2;
-      document.getElementById('stat-num-3').innerText = t.statNum3;
-      document.getElementById('stat-num-4').innerText = t.statNum4;
-
-      document.getElementById('stat-1').innerText = t.stat1;
-      document.getElementById('stat-2').innerText = t.stat2;
-      document.getElementById('stat-3').innerText = t.stat3;
-      document.getElementById('stat-4').innerText = t.stat4;
-
-      document.getElementById('lbl-vlog').innerText = t.vlog;
-      document.getElementById('lbl-gameplay').innerText = t.gameplay;
-      document.getElementById('lbl-challenge').innerText = t.challenge;
-      document.getElementById('lbl-other').innerText = t.other;
-
-      const mainTabBar = document.getElementById('main-tab-bar');
-      if (lang === 'fa') {
-        mainTabBar.classList.remove('hidden');
-      } else {
-        mainTabBar.classList.add('hidden');
-        switchMainTab('thumbnails');
-      }
-
-      document.getElementById('about-title').innerText = t.aboutTitle;
-      document.getElementById('about-name').innerText = t.aboutName;
-      document.getElementById('about-desc-1').innerText = t.aboutDesc1;
-      document.getElementById('about-line-1').innerText = t.aboutLine1;
-      document.getElementById('about-line-2').innerText = t.aboutLine2;
-
-      document.getElementById('footer-title').innerText = t.footerTitle;
-      document.getElementById('footer-desc').innerText = t.footerDesc;
-      document.getElementById('btn-tg').innerText = t.btnTg;
-      document.getElementById('btn-ig').innerText = t.btnIg;
-      document.getElementById('txt-copyright').innerText = t.copyright;
-
-      ['fa', 'en', 'ar'].forEach(l => {
-        const btn = document.getElementById('btn-' + l);
-        if (l === lang) {
-          btn.className = "px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black";
-        } else {
-          btn.className = "px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white";
-        }
-      });
-    }
-  </script>
-</body>
-</html>
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold glass-card text-white hov
