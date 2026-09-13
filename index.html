@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Magic Designer | Ilia</title>
   
+  <!-- فونت‌ها: پیدا فارسی + Kalam انگلیسی + Aref Ruqaa عربی + Caveat برند + Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/css/peyda.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,8 +45,8 @@
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* بک‌گراند ویدیویی بهینه */
-    .bg-video-wrapper {
+    /* استایل ویدیوی یوتیوب بک‌گراند */
+    .video-bg-container {
       position: fixed;
       inset: 0;
       width: 100vw;
@@ -54,22 +55,19 @@
       z-index: -20;
       pointer-events: none;
     }
-    .bg-video-element {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.35;
-      filter: blur(2px) contrast(120%) brightness(85%);
-      transform: scale(1.05);
+    .video-bg-iframe {
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      min-width: 177.77vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.15);
+      filter: blur(2px) brightness(0.65) contrast(1.15);
     }
 
-    /* خط جداکننده محو */
-    .section-divider {
-      height: 1px;
-      width: 100%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
-    }
-
+    /* انیمیشن اسلایدرهای معکوس */
     @keyframes marquee-left {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -88,23 +86,22 @@
       width: max-content;
       animation: marquee-right 48s linear infinite;
     }
-
-    @media (hover: hover) and (pointer: fine) {
-      .pause-on-hover:hover .animate-marquee-left,
-      .pause-on-hover:hover .animate-marquee-right {
-        animation-play-state: paused;
-      }
+    .pause-on-hover:hover .animate-marquee-left,
+    .pause-on-hover:hover .animate-marquee-right {
+      animation-play-state: paused;
     }
   </style>
 </head>
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند ویدیویی ================= -->
-  <div class="bg-video-wrapper">
-    <video id="bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video-element">
-      <source src="bg.mp4" type="video/mp4">
-    </video>
+  <!-- ================= بک‌گراند ویدیوی یوتیوب ================= -->
+  <div class="video-bg-container">
+    <iframe class="video-bg-iframe" 
+      src="https://www.youtube-nocookie.com/embed/vU-XJ3Zcmz0?autoplay=1&mute=1&controls=0&loop=1&playlist=vU-XJ3Zcmz0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&playsinline=1&enablejsapi=1" 
+      frameborder="0" 
+      allow="autoplay; encrypted-media">
+    </iframe>
     <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/85 to-black"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.85)_100%)]"></div>
   </div>
@@ -136,9 +133,9 @@
     </div>
   </header>
 
-  <!-- ================= تیتر اصلی ================= -->
-  <section class="pt-14 sm:pt-20 md:pt-24 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
+  <!-- ================= بخش تیتر اصلی ================= -->
+  <section class="pt-12 sm:pt-16 md:pt-20 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-6 border border-white/20 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
       <span id="txt-badge">بازدید هاتو منفجر کن !</span>
     </div>
@@ -149,13 +146,13 @@
   </section>
 
   <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
-  <section class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pause-on-hover" dir="ltr">
+  <section class="relative py-4 sm:py-6 space-y-4 sm:space-y-6 overflow-hidden pause-on-hover" dir="ltr">
     <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
     <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
 
-    <!-- اسلایدر اول (thumb1 تا thumb10) -->
+    <!-- اسلایدر اول (چپ‌گرد) -->
     <div class="w-full overflow-hidden flex">
-      <div id="marquee-row-1" class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
+      <div class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover"></div>
@@ -167,7 +164,7 @@
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover"></div>
 
-        <!-- تکرار لوپ ۱ تا ۱۰ -->
+        <!-- تکرار اسلایدر اول -->
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover"></div>
@@ -181,9 +178,9 @@
       </div>
     </div>
 
-    <!-- اسلایدر دوم (thumb11 تا thumb20) -->
+    <!-- اسلایدر دوم (راست‌گرد) -->
     <div class="w-full overflow-hidden flex">
-      <div id="marquee-row-2" class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
+      <div class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover"></div>
@@ -195,7 +192,7 @@
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover"></div>
 
-        <!-- تکرار لوپ ۱۱ تا ۲۰ -->
+        <!-- تکرار اسلایدر دوم -->
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover"></div>
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover"></div>
@@ -211,96 +208,93 @@
   </section>
 
   <!-- ================= بخش آمار ================= -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
-        <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۵M</div>
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
+        <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۵M</div>
         <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">بازدید ثبت شده</div>
       </div>
-      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
-        <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۱۴٪</div>
+      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
+        <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۱۴٪</div>
         <div id="stat-2" class="text-xs sm:text-sm text-neutral-400">میانگین افزایش CTR</div>
       </div>
-      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
-        <div id="stat-num-3" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۳۵۰</div>
+      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
+        <div id="stat-num-3" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">+۳۵۰</div>
         <div id="stat-3" class="text-xs sm:text-sm text-neutral-400">تامنیل طراحی شده</div>
       </div>
-      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
-        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">۲۴h</div>
+      <div class="glass-card p-4 sm:p-6 rounded-2xl text-center">
+        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-1">۲۴h</div>
         <div id="stat-4" class="text-xs sm:text-sm text-neutral-400">تحویل سریع سفارش</div>
       </div>
     </div>
   </section>
 
-  <!-- خط جداکننده اول -->
-  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
-    <div class="section-divider"></div>
-  </div>
-
   <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
     
-    <!-- دکمه‌های باز و بسته شونده (فقط مخصوص زبان فارسی) -->
-    <div id="main-tab-bar" class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
-      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
-        <span>تامنیل‌ها</span>
-        <span id="arrow-thumbs" class="text-xs transition-transform duration-300">▼</span>
+    <!-- نوار سوییچ تامنیل‌ها / محصولات (فقط در زبان فارسی نمایش داده می‌شود) -->
+    <div id="main-tab-bar" class="flex justify-center gap-4 mb-8">
+      <button onclick="switchMainTab('thumbnails')" id="tab-btn-thumbs" class="px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white">
+        تامنیل‌ها
       </button>
 
-      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
-        <span>محصولات</span>
-        <span id="arrow-prods" class="text-xs transition-transform duration-300">▼</span>
+      <button onclick="switchMainTab('products')" id="tab-btn-prods" class="px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white">
+        محصولات
       </button>
     </div>
 
-    <!-- بخش تامنیل‌ها (همیشه در انگلیسی و عربی باز و در فارسی بر اساس کلیک) -->
-    <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
-      <div class="flex flex-wrap justify-center gap-3 sm:gap-5">
-        <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white">
+    <!-- بخش تامنیل‌ها (همیشه در تمام زبان‌ها با ۴ سبک مختلف و ۵ تایی) -->
+    <div id="content-thumbnails" class="space-y-8 transition-all duration-500">
+      
+      <!-- دکمه‌های فیلتر سبک -->
+      <div class="flex flex-wrap justify-center gap-2.5 sm:gap-4">
+        <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white">
           <span id="lbl-vlog">ولاگ</span>
         </button>
-        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
+        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
           <span id="lbl-gameplay">گیم‌پلی</span>
         </button>
-        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
+        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
           <span id="lbl-challenge">چالش</span>
         </button>
-        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
+        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white">
           <span id="lbl-other">سایر</span>
         </button>
       </div>
 
-      <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6 w-full">
+      <!-- گرید ۵ تایی کاملاً واکنش‌گرا (موبایل، تبلت ۳ تایی، دسکتاپ ۵ تایی) -->
+      <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 w-full">
+        <!-- آیتم‌ها توسط جاوااسکریپت نرم و ۵ تایی لود می‌شوند -->
       </div>
     </div>
 
-    <!-- بخش محصولات (۱۰۰٪ اختصاصی فقط زبان فارسی) -->
+    <!-- بخش محصولات (فقط و فقط اختصاصی زبان فارسی) -->
     <div id="content-products" class="hidden space-y-6 transition-all duration-500">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         
-        <!-- دوره موبایل -->
-        <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl">
-          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+        <!-- کارت ۱: دوره موبایل -->
+        <div onclick="openProductModal('course')" class="glass-card rounded-2xl p-5 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
+          <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-neutral-900 border border-white/10 relative">
             <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
+            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md border border-white/20">آموزش ۰ تا ۱۰۰</span>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
+          <h3 class="text-xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
           <p class="text-sm text-neutral-400 mb-4 line-clamp-2">یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.</p>
-          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+          <div class="flex items-center justify-between pt-3 border-t border-white/10">
             <span class="font-extrabold text-lg text-white">۱,۴۴۷,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
           </div>
         </div>
 
-        <!-- جعبه ابزار -->
-        <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl">
-          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+        <!-- کارت ۲: جعبه ابزار Magic Tools -->
+        <div onclick="openProductModal('tools')" class="glass-card rounded-2xl p-5 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1">
+          <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-neutral-900 border border-white/10 relative">
             <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
+            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md border border-white/20">+۵۰ گیگابایت فایل</span>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">پکیج ابزار Magic Tools</h3>
+          <h3 class="text-xl font-bold mb-2 group-hover:glow-text-white transition">پکیج ابزار Magic Tools</h3>
           <p class="text-sm text-neutral-400 mb-4 line-clamp-2">بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.</p>
-          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+          <div class="flex items-center justify-between pt-3 border-t border-white/10">
             <span class="font-extrabold text-lg text-white">۸۴۸,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
           </div>
@@ -311,23 +305,23 @@
 
   </section>
 
-  <!-- خط جداکننده دوم -->
-  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
-    <div class="section-divider"></div>
-  </div>
-
-  <!-- ================= پاپ‌آپ بلر محصولات ================= -->
+  <!-- ================= پاپ‌آپ شیشه‌ای بلر محصولات ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- دکمه بستن -->
       <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-lg">✕</button>
 
-      <div class="w-48 h-48 sm:w-60 sm:h-60 mx-auto aspect-square rounded-2xl overflow-hidden mb-5 border border-white/20 shadow-xl">
+      <!-- تصویر محصول -->
+      <div class="aspect-video rounded-xl overflow-hidden mb-5 border border-white/20">
         <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
       </div>
 
-      <h3 id="modal-title" class="text-xl sm:text-2xl font-black mb-3 glow-text-white text-center sm:text-start"></h3>
+      <!-- محتوا -->
+      <h3 id="modal-title" class="text-2xl font-black mb-3 glow-text-white"></h3>
       <div id="modal-body" class="text-neutral-300 text-sm leading-relaxed space-y-3 mb-6"></div>
 
+      <!-- قیمت و دکمه مستقیم به پی‌وی تلگرام ilia_ltf -->
       <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <span class="text-xs text-neutral-400 block">قیمت نهایی:</span>
@@ -337,28 +331,32 @@
           خرید (تلگرام)
         </a>
       </div>
+
     </div>
   </div>
 
-  <!-- ================= بخش من؟ ================= -->
-  <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full">
-    <div class="glass-card rounded-3xl p-6 sm:p-10 md:p-14 border border-white/20 glow-box-white">
-      <div class="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12">
+  <!-- ================= بخش من؟ (ایلیا - کاملاً رنگی) ================= -->
+  <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-14 w-full">
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-white/20 glow-box-white">
+      <div class="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-10">
         
-        <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 aspect-square rounded-3xl overflow-hidden border-2 border-white/30 p-1 flex-shrink-0 glow-box-white shadow-2xl">
-          <img src="me.jpg" alt="Ilia - Thumbnail Designer" class="w-full h-full object-cover rounded-2xl transition duration-500">
+        <!-- عکس رنگی بدون فیلتر خاکستری -->
+        <div class="relative w-44 h-56 sm:w-52 sm:h-64 md:w-60 md:h-76 rounded-2xl overflow-hidden border-2 border-white/30 p-1 flex-shrink-0 glow-box-white">
+          <img src="me.jpg" alt="Ilia - Thumbnail Designer" class="w-full h-full object-cover rounded-xl transition duration-500">
         </div>
 
-        <div class="space-y-4 sm:space-y-5 text-center md:text-start flex-1">
+        <!-- متن معرفی با شعار دوخطی -->
+        <div class="space-y-3 sm:space-y-4 text-center md:text-start flex-1">
           <h2 id="about-title" class="text-3xl sm:text-4xl md:text-5xl font-black glow-text-white">من؟</h2>
-          <h3 id="about-name" class="text-xl sm:text-2xl font-bold text-neutral-200">
+          <h3 id="about-name" class="text-lg sm:text-xl md:text-2xl font-bold text-neutral-200">
             من ایلیا هستم، ۲۰ سالمه
           </h3>
           <p id="about-desc-1" class="text-neutral-300 text-sm sm:text-base md:text-lg leading-relaxed pt-1">
             با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...
           </p>
 
-          <div class="pt-3 border-r-2 md:border-r-4 border-white pr-4 space-y-1.5">
+          <!-- دو خط مجزا -->
+          <div class="pt-2 border-r-2 md:border-r-4 border-white pr-3 space-y-1">
             <p id="about-line-1" class="text-white text-base sm:text-lg md:text-xl font-extrabold">
               ما اینجا تامنیل طراحی نمیکنیم!
             </p>
@@ -367,31 +365,29 @@
             </p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- خط جداکننده سوم -->
-  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
-    <div class="section-divider"></div>
-  </div>
-
   <!-- ================= فوتر ================= -->
-  <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
+  <footer id="contact" class="border-t border-white/10 bg-black/90 py-12 sm:py-16 px-4 sm:px-6 text-center w-full">
     <div class="max-w-3xl mx-auto">
-      <h2 id="footer-title" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 glow-text-white leading-tight">
+      
+      <h2 id="footer-title" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-3 glow-text-white leading-tight">
         آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟!
       </h2>
       
-      <p id="footer-desc" class="text-neutral-400 mb-10 sm:mb-12 text-base sm:text-lg font-bold">
+      <p id="footer-desc" class="text-neutral-400 mb-8 sm:mb-10 text-base sm:text-lg font-bold">
         همکاری 👇🏻
       </p>
 
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-12 w-full max-w-md mx-auto sm:max-w-none">
-        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
+      <!-- دکمه‌ها -->
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5 mb-10 w-full max-w-md mx-auto sm:max-w-none">
+        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
           <span id="btn-tg">ارتباط سریع (تلگرام)</span>
         </a>
-        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
           <span id="btn-ig">اینستاگرام</span>
         </a>
       </div>
@@ -402,60 +398,21 @@
     </div>
   </footer>
 
-  <!-- ================= جاوااسکریپت ================= -->
+  <!-- ================= اسکریپت‌ها ================= -->
   <script>
-    // تضمین اجرای ویدیو
-    window.addEventListener('DOMContentLoaded', () => {
-      const vid = document.getElementById('bg-video');
-      if (vid) {
-        vid.muted = true;
-        const playPromise = vid.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            const startVideo = () => {
-              vid.play();
-              document.removeEventListener('touchstart', startVideo);
-              document.removeEventListener('click', startVideo);
-            };
-            document.addEventListener('touchstart', startVideo);
-            document.addEventListener('click', startVideo);
-          });
-        }
-      }
-    });
-
-    // رفع گیر اسلایدر روی تاچ گوشی
-    document.addEventListener('touchstart', () => {
-      const r1 = document.getElementById('marquee-row-1');
-      const r2 = document.getElementById('marquee-row-2');
-      if (r1 && r2) {
-        r1.style.animationPlayState = 'running';
-        r2.style.animationPlayState = 'running';
-      }
-    }, { passive: true });
-
-    document.addEventListener('touchend', () => {
-      const r1 = document.getElementById('marquee-row-1');
-      const r2 = document.getElementById('marquee-row-2');
-      if (r1 && r2) {
-        r1.style.animationPlayState = 'running';
-        r2.style.animationPlayState = 'running';
-      }
-    }, { passive: true });
-
-    // داده‌های تامنیل‌ها
+    // تقسیم‌بندی دقیق هر سبک به ۵ تامنیل (جمعاً ۲۰ عدد)
     const categoryThumbnails = {
-      vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
-      gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
-      challenge: ['t1ch.jpg', 't2ch.jpg', 't3ch.jpg', 't4ch.jpg', 't5ch.jpg'],
-      other: ['t1ot.jpg', 't2ot.jpg', 't3ot.jpg', 't4ot.jpg', 't5ot.jpg']
+      vlog: ['thumb1.jpg', 'thumb2.jpg', 'thumb3.jpg', 'thumb4.jpg', 'thumb5.jpg'],
+      gameplay: ['thumb6.jpg', 'thumb7.jpg', 'thumb8.jpg', 'thumb9.jpg', 'thumb10.jpg'],
+      challenge: ['thumb11.jpg', 'thumb12.jpg', 'thumb13.jpg', 'thumb14.jpg', 'thumb15.jpg'],
+      other: ['thumb16.jpg', 'thumb17.jpg', 'thumb18.jpg', 'thumb19.jpg', 'thumb20.jpg']
     };
 
     function filterCategory(cat) {
       document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-        btn.className = "cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white";
+        btn.className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white";
       });
-      document.getElementById('cat-' + cat).className = "cat-filter-btn px-5 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white";
+      document.getElementById('cat-' + cat).className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white";
 
       const grid = document.getElementById('category-grid');
       grid.innerHTML = '';
@@ -467,49 +424,30 @@
       });
     }
 
+    // لود اولیه دسته‌بندی ولاگ
     filterCategory('vlog');
 
-    // مدیریت باز و بسته شدن تب‌ها در زبان فارسی
-    let activeTab = null;
-
-    function toggleMainTab(tab) {
+    // جابجایی تب‌های تامنیل / محصولات (فقط در فارسی)
+    function switchMainTab(tab) {
       const thumbsBtn = document.getElementById('tab-btn-thumbs');
       const prodsBtn = document.getElementById('tab-btn-prods');
       const thumbsCont = document.getElementById('content-thumbnails');
       const prodsCont = document.getElementById('content-products');
-      const arrowThumbs = document.getElementById('arrow-thumbs');
-      const arrowProds = document.getElementById('arrow-prods');
 
-      if (activeTab === tab) {
-        activeTab = null;
-        thumbsCont.classList.add('hidden');
-        prodsCont.classList.add('hidden');
-        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
-        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
-        if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
-        if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
-        return;
-      }
-
-      activeTab = tab;
       if (tab === 'thumbnails') {
-        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2";
-        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
+        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
         thumbsCont.classList.remove('hidden');
         prodsCont.classList.add('hidden');
-        if (arrowThumbs) arrowThumbs.style.transform = "rotate(180deg)";
-        if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
       } else {
-        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2";
-        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
+        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
         prodsCont.classList.remove('hidden');
         thumbsCont.classList.add('hidden');
-        if (arrowProds) arrowProds.style.transform = "rotate(180deg)";
-        if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
       }
     }
 
-    // پاپ‌آپ و خرید تلگرام
+    // پاپ‌آپ و خرید مستقیم از طریق پی‌وی تلگرام ilia_ltf
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
@@ -531,7 +469,7 @@
         `
       },
       tools: {
-        title: 'پکیج Magic Tools (ابزار جادویی)',
+        title: 'پکیج Magic Tools (جعبه ابزار جادویی)',
         img: 'tools.jpg',
         price: '۸۴۸,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، برای خرید پکیج ابزار Magic Tools پیام میدم',
@@ -557,6 +495,7 @@
       document.getElementById('modal-title').innerText = p.title;
       document.getElementById('modal-body').innerHTML = p.body;
       document.getElementById('modal-price').innerText = p.price;
+      // هدایت مستقیم به پی‌وی تلگرام ilia_ltf همراه با متن پیام آماده
       document.getElementById('modal-buy-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
       document.getElementById('product-modal').classList.remove('hidden');
     }
@@ -565,7 +504,7 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // تغییر زبان هوشمند (حذف قطعی محصولات در انگلیسی و عربی)
+    // تغییر زبان هوشمند
     const translations = {
       fa: {
         dir: 'rtl',
@@ -673,29 +612,13 @@
       document.getElementById('lbl-challenge').innerText = t.challenge;
       document.getElementById('lbl-other').innerText = t.other;
 
-      // مدیریت دقیق نمایش: در انگلیسی و عربی نوار دکمه‌ها حذف و تامنیل‌ها مستقیماً باز می‌مانند
+      // مدیریت محصولات: فقط در زبان فارسی دیده شود، در انگلیسی و عربی کلاً نوار سوییچ محو شود
       const mainTabBar = document.getElementById('main-tab-bar');
-      const thumbsCont = document.getElementById('content-thumbnails');
-      const prodsCont = document.getElementById('content-products');
-
       if (lang === 'fa') {
         mainTabBar.classList.remove('hidden');
-        // در فارسی به وضعیت انتخابی برگردد
-        if (activeTab === 'products') {
-          prodsCont.classList.remove('hidden');
-          thumbsCont.classList.add('hidden');
-        } else if (activeTab === 'thumbnails') {
-          thumbsCont.classList.remove('hidden');
-          prodsCont.classList.add('hidden');
-        } else {
-          thumbsCont.classList.add('hidden');
-          prodsCont.classList.add('hidden');
-        }
       } else {
-        // در انگلیسی و عربی: نوار دکمه‌های محصولات و تامنیل‌ها کلاً حذف می‌شود و تامنیل‌ها باز است
         mainTabBar.classList.add('hidden');
-        prodsCont.classList.add('hidden');
-        thumbsCont.classList.remove('hidden');
+        switchMainTab('thumbnails');
       }
 
       document.getElementById('about-title').innerText = t.aboutTitle;
@@ -720,5 +643,6 @@
       });
     }
   </script>
+
 </body>
 </html>
