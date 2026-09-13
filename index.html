@@ -362,4 +362,254 @@
         <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
           <span id="btn-tg">ارتباط سریع (تلگرام)</span>
         </a>
-        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold glass-card text-white hov
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
+          <span id="btn-ig">اینستاگرام</span>
+        </a>
+      </div>
+
+      <p id="txt-copyright" class="text-xs text-neutral-500">
+        © 2026 Magic Designer | تمامی حقوق محفوظ است.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ================= جاوااسکریپت ================= -->
+  <script>
+    const categoryThumbnails = {
+      vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
+      gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
+      challenge: ['t1ch.jpg', 't2ch.jpg', 't3ch.jpg', 't4ch.jpg', 't5ch.jpg'],
+      other: ['t1ot.jpg', 't2ot.jpg', 't3ot.jpg', 't4ot.jpg', 't5ot.jpg']
+    };
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        btn.className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white";
+      });
+      document.getElementById('cat-' + cat).className = "cat-filter-btn px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white";
+
+      const grid = document.getElementById('category-grid');
+      grid.innerHTML = '';
+      categoryThumbnails[cat].forEach(imgName => {
+        const div = document.createElement('div');
+        div.className = "aspect-video rounded-xl overflow-hidden glass-card group hover:scale-105 hover:glow-box-white transition duration-300 border border-white/10";
+        div.innerHTML = `<img src="${imgName}" alt="Thumbnail" class="w-full h-full object-cover">`;
+        grid.appendChild(div);
+      });
+    }
+
+    filterCategory('vlog');
+
+    function switchMainTab(tab) {
+      const thumbsBtn = document.getElementById('tab-btn-thumbs');
+      const prodsBtn = document.getElementById('tab-btn-prods');
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const prodsCont = document.getElementById('content-products');
+
+      if (tab === 'thumbnails') {
+        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
+        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
+        thumbsCont.classList.remove('hidden');
+        prodsCont.classList.add('hidden');
+      } else {
+        prodsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 bg-white text-black glow-box-white";
+        thumbsBtn.className = "px-6 py-2.5 rounded-full font-bold text-sm sm:text-base transition duration-300 glass-card text-neutral-300 hover:text-white";
+        prodsCont.classList.remove('hidden');
+        thumbsCont.classList.add('hidden');
+      }
+    }
+
+    const productsData = {
+      course: {
+        title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
+        img: 'course.jpg',
+        price: '۱,۴۴۷,۰۰۰ تومان',
+        tgMsg: 'سلام ایلیا جان، برای ثبت نام در دوره طراحی تامنیل با موبایل پیام میدم',
+        body: `
+          <p class="font-bold text-white mb-2">یادگیری طراحی فوق‌حرفه‌ای تامنیل و ورود مستقیم به بازار کار کسب درآمد دلاری و ریالی فقط با یک گوشی موبایل!</p>
+          <div class="space-y-1.5 pt-2">
+            <p>🔹 <strong>فصل ۱:</strong> آشنایی کامل با محیط پیکس‌آرت (PicsArt)</p>
+            <p>🔹 <strong>فصل ۲:</strong> اصول، روانشناسی رنگ و تکنیک‌های جذب نگاه</p>
+            <p>🔹 <strong>فصل ۳:</strong> پیاده‌سازی گام‌به‌گام تامنیل‌های پرکلیک و ترند</p>
+            <p>🔹 <strong>فصل ۴:</strong> نقشه راه کسب درآمد، جذب کارفرما و استقلال مالی</p>
+          </div>
+          <div class="pt-3 border-t border-white/10 text-xs space-y-1 text-neutral-400">
+            <p>✔ دسترسی آسان در گروه موضوع‌بندی‌شده تلگرام</p>
+            <p>✔ پشتیبانی دائمی و مستقیم با خود بنده برای رفع اشکال</p>
+          </div>
+        `
+      },
+      tools: {
+        title: 'پکیج Magic Tools (جعبه ابزار جادویی طراحان)',
+        img: 'tools.jpg',
+        price: '۸۴۸,۰۰۰ تومان',
+        tgMsg: 'سلام ایلیا جان، برای خرید پکیج ابزار Magic Tools پیام میدم',
+        body: `
+          <p class="font-bold text-white mb-2">کامل‌ترین بانک منابع گرافیکی تامنیل با بیش از ۵۰,۰۰۰ فایل فوق‌العاده باکیفیت و بیش از ۵۰ گیگابایت محتوا!</p>
+          <div class="space-y-1.5 pt-2">
+            <p>⚡ ۱۰,۰۰۰+ بک‌گراند در تمامی سبک‌های محبوب</p>
+            <p>⚡ ۳,۰۰۰+ سوژه باکیفیت از معروف‌ترین یوتیوبرها</p>
+            <p>⚡ ۲۰,۰۰۰+ عنصر، افکت و ترنزیشن بصری کاربردی</p>
+            <p>⚡ ۲,۰۰۰+ استایل متنی سه‌بعدی ترند و روسی</p>
+            <p>⚡ معروف‌ترین فونت‌های پولی + نسخه مود شده برنامه‌ها</p>
+          </div>
+          <div class="pt-3 border-t border-white/10 text-xs text-neutral-400">
+            <p>✔ یک بار برای همیشه هزینه کن، دسترسی در تلگرام با آپدیت دائمی و مادام‌العمر!</p>
+          </div>
+        `
+      }
+    };
+
+    function openProductModal(key) {
+      const p = productsData[key];
+      document.getElementById('modal-img').src = p.img;
+      document.getElementById('modal-title').innerText = p.title;
+      document.getElementById('modal-body').innerHTML = p.body;
+      document.getElementById('modal-price').innerText = p.price;
+      document.getElementById('modal-buy-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
+      document.getElementById('product-modal').classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    const translations = {
+      fa: {
+        dir: 'rtl',
+        badge: 'بازدید هاتو منفجر کن !',
+        title: 'نمونه کارها',
+        statNum1: '+۵M',
+        statNum2: '+۱۴٪',
+        statNum3: '+۳۵۰',
+        statNum4: '۲۴h',
+        stat1: 'بازدید ثبت شده',
+        stat2: 'میانگین افزایش CTR',
+        stat3: 'تامنیل موفق طراحی شده',
+        stat4: 'تحویل سریع سفارش',
+        vlog: 'ولاگ',
+        gameplay: 'گیم‌پلی',
+        challenge: 'چالش',
+        other: 'سایر',
+        aboutTitle: 'من؟',
+        aboutName: 'من ایلیا هستم، ۲۰ سالمه',
+        aboutDesc1: 'با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...',
+        aboutLine1: 'ما اینجا تامنیل طراحی نمیکنیم!',
+        aboutLine2: 'اثر هنری خلق میکنیم!',
+        footerTitle: 'آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! ',
+        footerDesc: 'همکاری 👇🏻',
+        btnTg: 'ارتباط سریع (تلگرام)',
+        btnIg: 'اینستاگرام',
+        copyright: '© 2026 Magic Designer | تمامی حقوق محفوظ است.'
+      },
+      en: {
+        dir: 'ltr',
+        badge: 'Blow up your views!',
+        title: 'Thumbnail Designs',
+        statNum1: '+5M',
+        statNum2: '+14%',
+        statNum3: '+350',
+        statNum4: '24h',
+        stat1: 'Total Views Hit',
+        stat2: 'Avg. CTR Boost',
+        stat3: 'Thumbnails Designed',
+        stat4: 'Fast Delivery',
+        vlog: 'Vlog',
+        gameplay: 'Gameplay',
+        challenge: 'Challenge',
+        other: 'Other',
+        aboutTitle: 'Me?',
+        aboutName: "I'm Ilia, 20 Years Old",
+        aboutDesc1: 'Over 4 years of experience designing thumbnails, channel art, profile pics, covers and more.',
+        aboutLine1: "We don't just design thumbnails!",
+        aboutLine2: 'We create art!',
+        footerTitle: 'Ready to blow up the views on your next video?!',
+        footerDesc: 'Collaborate 👇🏻',
+        btnTg: 'Quick Chat (Telegram)',
+        btnIg: 'Instagram',
+        copyright: '© 2026 Magic Designer | All rights reserved.'
+      },
+      ar: {
+        dir: 'rtl',
+        badge: 'ولّع مشاهداتك !',
+        title: 'تصاميم الثمنيلز',
+        statNum1: '+٥M',
+        statNum2: '+١٤٪',
+        statNum3: '+٣٥٠',
+        statNum4: '٢٤h',
+        stat1: 'مجموع المشاهدات',
+        stat2: 'زيادة الـ CTR',
+        stat3: 'ثمنيل تصمم',
+        stat4: 'تسليم سريع',
+        vlog: 'فلوجات',
+        gameplay: 'ألعاب',
+        challenge: 'تحديات',
+        other: 'أخرى',
+        aboutTitle: 'أنا مين؟',
+        aboutName: 'أنا إيليا، عمري 20 سنة',
+        aboutDesc1: 'أكثر من 4 سنين بصمم ثمنيلز، بنرات، صور بروفايل، كفرات وغيره الكثير.',
+        aboutLine1: 'إحنا هنا ما بنصمم ثمنيلز وبس!',
+        aboutLine2: 'إحنا بنصنع فن!',
+        footerTitle: 'جاهز نفجّر مشاهدات الفيديو الجاي؟! ',
+        footerDesc: 'للتعاون 👇🏻',
+        btnTg: 'تواصل سريع (تيليجرام)',
+        btnIg: 'إنستغرام',
+        copyright: '© 2026 Magic Designer | جميع الحقوق محفوظة.'
+      }
+    };
+
+    function changeLanguage(lang) {
+      const t = translations[lang];
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', t.dir);
+
+      document.getElementById('txt-badge').innerText = t.badge;
+      document.getElementById('txt-title').innerText = t.title;
+
+      document.getElementById('stat-num-1').innerText = t.statNum1;
+      document.getElementById('stat-num-2').innerText = t.statNum2;
+      document.getElementById('stat-num-3').innerText = t.statNum3;
+      document.getElementById('stat-num-4').innerText = t.statNum4;
+
+      document.getElementById('stat-1').innerText = t.stat1;
+      document.getElementById('stat-2').innerText = t.stat2;
+      document.getElementById('stat-3').innerText = t.stat3;
+      document.getElementById('stat-4').innerText = t.stat4;
+
+      document.getElementById('lbl-vlog').innerText = t.vlog;
+      document.getElementById('lbl-gameplay').innerText = t.gameplay;
+      document.getElementById('lbl-challenge').innerText = t.challenge;
+      document.getElementById('lbl-other').innerText = t.other;
+
+      const mainTabBar = document.getElementById('main-tab-bar');
+      if (lang === 'fa') {
+        mainTabBar.classList.remove('hidden');
+      } else {
+        mainTabBar.classList.add('hidden');
+        switchMainTab('thumbnails');
+      }
+
+      document.getElementById('about-title').innerText = t.aboutTitle;
+      document.getElementById('about-name').innerText = t.aboutName;
+      document.getElementById('about-desc-1').innerText = t.aboutDesc1;
+      document.getElementById('about-line-1').innerText = t.aboutLine1;
+      document.getElementById('about-line-2').innerText = t.aboutLine2;
+
+      document.getElementById('footer-title').innerText = t.footerTitle;
+      document.getElementById('footer-desc').innerText = t.footerDesc;
+      document.getElementById('btn-tg').innerText = t.btnTg;
+      document.getElementById('btn-ig').innerText = t.btnIg;
+      document.getElementById('txt-copyright').innerText = t.copyright;
+
+      ['fa', 'en', 'ar'].forEach(l => {
+        const btn = document.getElementById('btn-' + l);
+        if (l === lang) {
+          btn.className = "px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black";
+        } else {
+          btn.className = "px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
