@@ -36,7 +36,6 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
     }
     
-    /* استایل سبک و بهینه‌شده کارت‌ها برای روانی سایت */
     .glass-card {
       background: rgba(12, 12, 16, 0.85);
       backdrop-filter: blur(8px);
@@ -47,7 +46,17 @@
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* بک‌گراند ویدیویی واضح و پرنور با لود سریع و بدون کندی */
+    /* افکت گلو و درخشش نئونی برای آیکون‌های جدید */
+    .icon-glow {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .group:hover .icon-glow {
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.6));
+      transform: scale(1.08) translateY(-3px);
+    }
+
+    /* بک‌گراند ویدیویی واضح و پرنور */
     .bg-video-wrapper {
       position: fixed;
       inset: 0;
@@ -61,7 +70,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.65; /* وضوح و شفافیت بالا مخصوص موبایل و دسکتاپ */
+      opacity: 0.65;
       transform: scale(1.02);
     }
 
@@ -71,7 +80,6 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
     }
 
-    /* انیمیشن‌های شتاب‌یافته با پردازنده گرافیکی (GPU Accelerated) */
     @keyframes marquee-left {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
@@ -104,12 +112,11 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند ویدیویی واضح و شفاف ================= -->
+  <!-- ================= بک‌گراند ویدیویی ================= -->
   <div class="bg-video-wrapper">
     <video id="bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video-element">
       <source src="bg.mp4" type="video/mp4">
     </video>
-    <!-- لایه‌ی ملایم برای تضمین خوانایی متون بدون تاریک کردن ویدیو -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/55 to-black/85"></div>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)]"></div>
   </div>
@@ -242,31 +249,50 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
+  <!-- ================= بخش سبک‌های تامنیل و محصولات (باکس‌های گلس‌مورفیسم آیکون‌دار) ================= -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
-    <!-- ۱. نوار سوییچ فقط مخصوص صفحه فارسی -->
-    <div id="main-tab-bar" class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12">
-      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
-        <span>تامنیل‌ها</span>
-        <span id="arrow-thumbs" class="text-xs transition-transform duration-300">▼</span>
+    <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم با آیکون مخصوص زبان فارسی -->
+    <div id="main-tab-bar" class="flex flex-wrap justify-center items-center gap-6 sm:gap-10 mb-12">
+      
+      <!-- باکس تامنیل‌ها (icon2.png) -->
+      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="group flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl w-44 sm:w-52 glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center">
+          <img src="icon2.png" alt="Thumbnails Icon" class="w-full h-full object-contain icon-glow">
+        </div>
+        <div class="flex items-center gap-2 font-black text-base sm:text-lg text-neutral-200 group-hover:text-white transition">
+          <span>تامنیل‌ها</span>
+          <span id="arrow-thumbs" class="text-xs transition-transform duration-300">▼</span>
+        </div>
       </button>
 
-      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2">
-        <span>محصولات</span>
-        <span id="arrow-prods" class="text-xs transition-transform duration-300">▼</span>
+      <!-- باکس محصولات (icon1.png) -->
+      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="group flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl w-44 sm:w-52 glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center">
+          <img src="icon1.png" alt="Products Icon" class="w-full h-full object-contain icon-glow">
+        </div>
+        <div class="flex items-center gap-2 font-black text-base sm:text-lg text-neutral-200 group-hover:text-white transition">
+          <span>محصولات</span>
+          <span id="arrow-prods" class="text-xs transition-transform duration-300">▼</span>
+        </div>
+      </button>
+
+    </div>
+
+    <!-- ۲. باکس اختصاصی «تامنیل‌های بیشتر» با آیکون icon2.png مخصوص انگلیسی و عربی -->
+    <div id="en-ar-tab-bar" class="hidden justify-center items-center mb-10">
+      <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="group flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl w-52 sm:w-60 glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center">
+          <img src="icon2.png" alt="More Thumbnails Icon" class="w-full h-full object-contain icon-glow">
+        </div>
+        <div class="flex items-center gap-2 font-black text-base sm:text-lg text-neutral-200 group-hover:text-white transition">
+          <span id="txt-more-thumbs">More Thumbnails</span>
+          <span id="arrow-more-thumbs" class="text-xs transition-transform duration-300">▼</span>
+        </div>
       </button>
     </div>
 
-    <!-- ۲. دکمه اختصاصی «تامنیل‌های بیشتر» مخصوص زبان‌های انگلیسی و عربی -->
-    <div id="en-ar-tab-bar" class="hidden justify-center mb-10">
-      <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-200 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2.5 active:scale-95">
-        <span id="txt-more-thumbs">More Thumbnails</span>
-        <span id="arrow-more-thumbs" class="text-xs transition-transform duration-300">▼</span>
-      </button>
-    </div>
-
-    <!-- بخش فیلتر تامنیل‌ها (در انگلیسی کاملاً در یک خط flex-nowrap) -->
+    <!-- بخش فیلتر تامنیل‌ها (در یک خط کامل و بدون شکستگی) -->
     <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
       <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 overflow-x-auto py-2 px-2" dir="ltr">
         <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all">
@@ -283,7 +309,8 @@
         </button>
       </div>
 
-      <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6 w-full">
+      <!-- گرید جدید و بزرگ تامنیل‌ها در لپ‌تاپ: ۱ تامنیل بزرگ وسط در بالا + دو تامنیل زیرش + دو تامنیل بعدی -->
+      <div id="category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto w-full">
       </div>
     </div>
 
@@ -389,11 +416,13 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= فوتر ================= -->
+  <!-- ================= فوتر (تیتر تک‌خطی در تمام دیوایس‌ها) ================= -->
   <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
-    <div class="max-w-3xl mx-auto">
-      <h2 id="footer-title" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 glow-text-white leading-tight">
-        آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟!
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- تیتر تک‌خطی بدون شکستگی -->
+      <h2 id="footer-title" class="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight">
+        آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! 
       </h2>
       
       <p id="footer-desc" class="text-neutral-400 mb-10 sm:mb-12 text-base sm:text-lg font-bold">
@@ -417,7 +446,6 @@
 
   <!-- ================= جاوااسکریپت ================= -->
   <script>
-    // فعال‌سازی و تضمین پخش ویدیو
     window.addEventListener('DOMContentLoaded', () => {
       const vid = document.getElementById('bg-video');
       if (vid) {
@@ -437,7 +465,6 @@
       }
     });
 
-    // رفع گیر اسلایدر روی تاچ گوشی
     document.addEventListener('touchstart', () => {
       const r1 = document.getElementById('marquee-row-1');
       const r2 = document.getElementById('marquee-row-2');
@@ -456,7 +483,6 @@
       }
     }, { passive: true });
 
-    // داده‌های تامنیل‌ها
     const categoryThumbnails = {
       vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
       gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
@@ -472,9 +498,15 @@
 
       const grid = document.getElementById('category-grid');
       grid.innerHTML = '';
-      categoryThumbnails[cat].forEach(imgName => {
+      
+      // چیدمان شیک: تامنیل اول بزرگ و وسط در بالا + دو تامنیل زیرش + دو تامنیل بعدی
+      categoryThumbnails[cat].forEach((imgName, index) => {
         const div = document.createElement('div');
-        div.className = "aspect-video rounded-xl overflow-hidden glass-card group hover:scale-105 hover:glow-box-white transition duration-300 border border-white/10";
+        if (index === 0) {
+          div.className = "md:col-span-2 w-full md:max-w-2xl md:mx-auto aspect-video rounded-2xl overflow-hidden glass-card group hover:scale-[1.02] hover:glow-box-white transition duration-300 border border-white/20 shadow-2xl";
+        } else {
+          div.className = "w-full aspect-video rounded-2xl overflow-hidden glass-card group hover:scale-[1.03] hover:glow-box-white transition duration-300 border border-white/15 shadow-xl";
+        }
         div.innerHTML = `<img src="${imgName}" alt="Thumbnail" class="w-full h-full object-cover" loading="lazy" decoding="async">`;
         grid.appendChild(div);
       });
@@ -482,7 +514,7 @@
 
     filterCategory('vlog');
 
-    // مدیریت تب‌های فارسی (پیش‌فرض بسته)
+    // مدیریت باز و بسته شدن تب‌ها در زبان فارسی
     let activeTab = null;
 
     function toggleMainTab(tab) {
@@ -497,8 +529,8 @@
         activeTab = null;
         thumbsCont.classList.add('hidden');
         prodsCont.classList.add('hidden');
-        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
-        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        thumbsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
+        prodsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
         if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
         if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
         return;
@@ -506,15 +538,15 @@
 
       activeTab = tab;
       if (tab === 'thumbnails') {
-        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2";
-        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        thumbsBtn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
+        prodsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
         thumbsCont.classList.remove('hidden');
         prodsCont.classList.add('hidden');
         if (arrowThumbs) arrowThumbs.style.transform = "rotate(180deg)";
         if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
       } else {
-        prodsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2";
-        thumbsBtn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-300 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2";
+        prodsBtn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
+        thumbsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
         prodsCont.classList.remove('hidden');
         thumbsCont.classList.add('hidden');
         if (arrowProds) arrowProds.style.transform = "rotate(180deg)";
@@ -532,11 +564,11 @@
 
       if (isEnArOpen) {
         thumbsCont.classList.remove('hidden');
-        btn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 bg-white text-black glow-box-white shadow-2xl flex items-center gap-2.5 active:scale-95";
+        btn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
         if (arrow) arrow.style.transform = "rotate(180deg)";
       } else {
         thumbsCont.classList.add('hidden');
-        btn.className = "px-8 py-3.5 sm:px-10 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition duration-300 glass-card text-neutral-200 hover:text-white border border-white/20 hover:border-white/40 shadow-xl flex items-center gap-2.5 active:scale-95";
+        btn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
         if (arrow) arrow.style.transform = "rotate(0deg)";
       }
     }
@@ -597,7 +629,6 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // تغییر زبان
     const translations = {
       fa: {
         dir: 'rtl',
@@ -649,7 +680,7 @@
         aboutDesc1: 'Over 4 years of experience designing thumbnails, channel art, profile pics, covers and more.',
         aboutLine1: "We don't just design thumbnails!",
         aboutLine2: 'We create a masterpiece!',
-        footerTitle: 'Ready to blow up the views on your next video?!',
+        footerTitle: 'Ready to blow up the views on your next video?! ',
         footerDesc: 'Collaborate 👇🏻',
         btnTg: 'Quick Chat (Telegram)',
         btnIg: 'Instagram',
@@ -715,8 +746,8 @@
       const prodsCont = document.getElementById('content-products');
 
       if (lang === 'fa') {
-        // حالت فارسی: دکمه‌های تامنیل و محصولات فعال شوند
         mainTabBar.classList.remove('hidden');
+        mainTabBar.classList.add('flex');
         enArTabBar.classList.add('hidden');
         enArTabBar.classList.remove('flex');
         
@@ -731,13 +762,12 @@
           prodsCont.classList.add('hidden');
         }
       } else {
-        // حالت انگلیسی و عربی: نوار محصولات کلاً محو و دکمه تک «More Thumbnails» ظاهر شود
         mainTabBar.classList.add('hidden');
+        mainTabBar.classList.remove('flex');
         prodsCont.classList.add('hidden');
         enArTabBar.classList.remove('hidden');
         enArTabBar.classList.add('flex');
         
-        // باز بودن محتوا بر اساس وضعیت دکمه
         if (isEnArOpen) {
           thumbsCont.classList.remove('hidden');
         } else {
