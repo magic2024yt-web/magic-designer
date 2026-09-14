@@ -46,7 +46,7 @@
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* افکت گلو و درخشش نئونی برای آیکون‌های جدید */
+    /* افکت گلو و درخشش نئونی برای آیکون‌ها */
     .icon-glow {
       filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -249,50 +249,50 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= بخش سبک‌های تامنیل و محصولات (باکس‌های گلس‌مورفیسم آیکون‌دار) ================= -->
+  <!-- ================= بخش سبک‌های تامنیل و محصولات (ابعاد جدید و کنار هم در موبایل) ================= -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
-    <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم با آیکون مخصوص زبان فارسی -->
-    <div id="main-tab-bar" class="flex flex-wrap justify-center items-center gap-6 sm:gap-10 mb-12">
+    <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم: کاملاً در یک ردیف و کنار هم در موبایل، و ابعاد بزرگ و کشیده در لپ‌تاپ -->
+    <div id="main-tab-bar" class="flex flex-row justify-center items-stretch gap-3 sm:gap-8 md:gap-12 mb-12 max-w-4xl mx-auto w-full px-1 sm:px-4">
       
       <!-- باکس تامنیل‌ها (icon2.png) -->
-      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="group flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl w-44 sm:w-52 glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center">
+      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="group flex-1 flex flex-col items-center justify-center p-4 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[170px] sm:min-h-[240px] md:min-h-[270px]">
+        <div class="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mb-3 sm:mb-5 flex items-center justify-center">
           <img src="icon2.png" alt="Thumbnails Icon" class="w-full h-full object-contain icon-glow">
         </div>
-        <div class="flex items-center gap-2 font-black text-base sm:text-lg text-neutral-200 group-hover:text-white transition">
+        <div class="flex items-center gap-2 font-black text-sm sm:text-xl md:text-2xl text-neutral-200 group-hover:text-white transition">
           <span>تامنیل‌ها</span>
-          <span id="arrow-thumbs" class="text-xs transition-transform duration-300">▼</span>
+          <span id="arrow-thumbs" class="text-xs sm:text-sm transition-transform duration-300">▼</span>
         </div>
       </button>
 
       <!-- باکس محصولات (icon1.png) -->
-      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="group flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl w-44 sm:w-52 glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center">
+      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="group flex-1 flex flex-col items-center justify-center p-4 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[170px] sm:min-h-[240px] md:min-h-[270px]">
+        <div class="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mb-3 sm:mb-5 flex items-center justify-center">
           <img src="icon1.png" alt="Products Icon" class="w-full h-full object-contain icon-glow">
         </div>
-        <div class="flex items-center gap-2 font-black text-base sm:text-lg text-neutral-200 group-hover:text-white transition">
+        <div class="flex items-center gap-2 font-black text-sm sm:text-xl md:text-2xl text-neutral-200 group-hover:text-white transition">
           <span>محصولات</span>
-          <span id="arrow-prods" class="text-xs transition-transform duration-300">▼</span>
+          <span id="arrow-prods" class="text-xs sm:text-sm transition-transform duration-300">▼</span>
         </div>
       </button>
 
     </div>
 
-    <!-- ۲. باکس اختصاصی «تامنیل‌های بیشتر» با آیکون icon2.png مخصوص انگلیسی و عربی -->
-    <div id="en-ar-tab-bar" class="hidden justify-center items-center mb-10">
-      <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="group flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl w-52 sm:w-60 glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-3 flex items-center justify-center">
+    <!-- ۲. باکس بزرگ اختصاصی «More Thumbnails» مخصوص انگلیسی و عربی -->
+    <div id="en-ar-tab-bar" class="hidden justify-center items-center mb-10 max-w-md mx-auto w-full px-4">
+      <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="group w-full flex flex-col items-center justify-center p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[170px] sm:min-h-[240px]">
+        <div class="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 mb-3 sm:mb-5 flex items-center justify-center">
           <img src="icon2.png" alt="More Thumbnails Icon" class="w-full h-full object-contain icon-glow">
         </div>
-        <div class="flex items-center gap-2 font-black text-base sm:text-lg text-neutral-200 group-hover:text-white transition">
+        <div class="flex items-center gap-2 font-black text-base sm:text-xl md:text-2xl text-neutral-200 group-hover:text-white transition">
           <span id="txt-more-thumbs">More Thumbnails</span>
-          <span id="arrow-more-thumbs" class="text-xs transition-transform duration-300">▼</span>
+          <span id="arrow-more-thumbs" class="text-xs sm:text-sm transition-transform duration-300">▼</span>
         </div>
       </button>
     </div>
 
-    <!-- بخش فیلتر تامنیل‌ها (در یک خط کامل و بدون شکستگی) -->
+    <!-- بخش فیلتر تامنیل‌ها (در یک خط کامل) -->
     <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
       <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 overflow-x-auto py-2 px-2" dir="ltr">
         <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all">
@@ -309,7 +309,7 @@
         </button>
       </div>
 
-      <!-- گرید جدید و بزرگ تامنیل‌ها در لپ‌تاپ: ۱ تامنیل بزرگ وسط در بالا + دو تامنیل زیرش + دو تامنیل بعدی -->
+      <!-- گرید جدید و بزرگ تامنیل‌ها: ۱ تامنیل بزرگ وسط در بالا + دو تامنیل زیرش + دو تامنیل بعدی -->
       <div id="category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto w-full">
       </div>
     </div>
@@ -416,11 +416,10 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= فوتر (تیتر تک‌خطی در تمام دیوایس‌ها) ================= -->
+  <!-- ================= فوتر (تیتر تک‌خطی) ================= -->
   <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-5xl mx-auto">
       
-      <!-- تیتر تک‌خطی بدون شکستگی -->
       <h2 id="footer-title" class="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight">
         آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! 
       </h2>
@@ -499,7 +498,7 @@
       const grid = document.getElementById('category-grid');
       grid.innerHTML = '';
       
-      // چیدمان شیک: تامنیل اول بزرگ و وسط در بالا + دو تامنیل زیرش + دو تامنیل بعدی
+      // چیدمان بزرگ: ۱ تامنیل بزرگ وسط در بالا + دو تامنیل زیرش + دو تامنیل بعدی
       categoryThumbnails[cat].forEach((imgName, index) => {
         const div = document.createElement('div');
         if (index === 0) {
