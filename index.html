@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Magic Designer | Ilia</title>
   
   <!-- نماد و آیکون تب مرورگر (Favicon) -->
@@ -13,9 +13,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/css/peyda.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
+    /* جلوگیری کامل از به‌هم‌ریختگی افقی و اسکرول اضافه در موبایل */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      position: relative;
+    }
+
     /* غیرفعال کردن انتخاب و کپی شدن متون در کل سایت */
     * {
       -webkit-user-select: none;
@@ -23,6 +31,7 @@
       -ms-user-select: none;
       user-select: none;
       -webkit-touch-callout: none;
+      box-sizing: border-box;
     }
 
     body {
@@ -32,10 +41,6 @@
     }
     html[lang="en"] body {
       font-family: 'Kalam', cursive;
-      font-weight: 700;
-    }
-    html[lang="ar"] body {
-      font-family: 'Aref Ruqaa', serif;
       font-weight: 700;
     }
 
@@ -98,7 +103,7 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
     }
 
-    /* انیمیشن‌های اسلایدر - حرکت پیوسته و بدون مکث */
+    /* انیمیشن‌های اسلایدر تامنیل‌ها */
     @keyframes marquee-left {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
@@ -119,11 +124,13 @@
       will-change: transform;
       animation: marquee-right 46s linear infinite;
     }
-    .animate-creators {
+
+    /* اسلایدر پروفایل یوتیوبرها: حرکت روان به سمت راست */
+    .animate-creators-right {
       display: flex;
       width: max-content;
       will-change: transform;
-      animation: marquee-left 25s linear infinite;
+      animation: marquee-right 28s linear infinite;
     }
   </style>
 </head>
@@ -139,7 +146,7 @@
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)]"></div>
   </div>
 
-  <!-- ================= هدر ================= -->
+  <!-- ================= هدر (فقط فارسی و انگلیسی) ================= -->
   <header class="sticky top-0 z-40 backdrop-blur-md border-b border-white/10 bg-black/75">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
@@ -151,16 +158,13 @@
         </span>
       </a>
 
-      <!-- سوییچر زبان -->
+      <!-- سوییچر زبان دوگانه FA / EN -->
       <div class="flex items-center glass-card rounded-full p-1 border border-white/20 text-xs sm:text-sm" dir="ltr">
-        <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black">
+        <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black">
           FA
         </button>
-        <button onclick="changeLanguage('en', true)" id="btn-en" class="px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white">
+        <button onclick="changeLanguage('en', true)" id="btn-en" class="px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white">
           EN
-        </button>
-        <button onclick="changeLanguage('ar', true)" id="btn-ar" class="px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white">
-          AR
         </button>
       </div>
     </div>
@@ -178,20 +182,18 @@
     </h1>
   </section>
 
-  <!-- ================= بخش همکاری با یوتیوبرها (Trusted by 100+ Creators) ================= -->
-  <section class="py-6 sm:py-8 max-w-4xl mx-auto px-4 text-center">
-    <!-- تیتر سازندگان -->
+  <!-- ================= بخش همکاری با یوتیوبرها (حرکت به راست بدون باگ موبایل) ================= -->
+  <section class="py-6 sm:py-8 w-full max-w-full overflow-hidden px-4 text-center">
     <p id="txt-trusted" class="text-xs sm:text-sm font-bold text-neutral-300 mb-5 tracking-wide">
       +۱۰۰ همکاری با یوتیوبرها
     </p>
 
-    <!-- اسلایدر روان پروفایل‌های دایره‌ای با فید کناره‌ها -->
-    <div class="relative w-full overflow-hidden" dir="ltr">
-      <!-- فید چپ و راست -->
-      <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
+    <!-- اسلایدر روان با حرکت به سمت راست و فید کناره‌ها -->
+    <div class="relative w-full max-w-4xl mx-auto overflow-hidden" dir="ltr">
+      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
-      <div class="animate-creators flex items-center gap-4 sm:gap-6 py-2">
+      <div class="animate-creators-right flex items-center gap-4 sm:gap-6 py-2">
         <!-- ۱۰ پروفایل دور اول (creator1 تا creator10) -->
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
@@ -204,7 +206,7 @@
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
 
-        <!-- تکرار ۱۰ پروفایل برای لوپ بی‌پایان -->
+        <!-- تکرار ۱۰ پروفایل -->
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
@@ -219,8 +221,8 @@
     </div>
   </section>
 
-  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (کاملاً پیوسته و بدون توقف) ================= -->
-  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none" dir="ltr">
+  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (بدون توقف) ================= -->
+  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
     <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
     <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
@@ -338,7 +340,7 @@
 
     </div>
 
-    <!-- ۲. باکس بزرگ اختصاصی «More Thumbnails» مخصوص انگلیسی و عربی -->
+    <!-- ۲. باکس بزرگ اختصاصی «More Thumbnails» مخصوص انگلیسی -->
     <div id="en-ar-tab-bar" class="hidden justify-center items-center mb-10 max-w-lg mx-auto w-full px-4">
       <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="group w-full flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[190px] sm:min-h-[260px] md:min-h-[320px]">
         <div class="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 mb-3 sm:mb-6 flex items-center justify-center">
@@ -482,12 +484,12 @@
       <span id="faq-badge">FAQ</span>
     </div>
 
-    <!-- تیتر و زیرتیتر -->
+    <!-- تیتر و زیرتیتر تک‌خطی فیکس‌شده -->
     <h2 id="faq-title" class="text-2xl sm:text-4xl md:text-5xl font-black mb-4 glow-text-white">
       پاسخ به سوالات شما
     </h2>
-    <p id="faq-subtitle" class="text-neutral-400 text-sm sm:text-base md:text-lg mb-12 max-w-2xl mx-auto">
-      سوالاتی که معمولاً قبل از شروع همکاری برای یوتیوبرها پیش میاد
+    <p id="faq-subtitle" class="text-neutral-400 text-[11px] min-[360px]:text-xs min-[420px]:text-sm sm:text-base md:text-lg mb-10 max-w-full mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+      سوالاتی که معمولاً قبل از شروع همکاری پیش میاد
     </p>
 
     <!-- لیست آکاردئونی ۵ تایی -->
@@ -500,13 +502,13 @@
           <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
         </button>
         <div id="faq-ans-1" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
-          <p id="faq-a1-text" class="mb-4">برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید:</p>
+          <p id="faq-a1-text" class="mb-4">برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید.</p>
           <div class="flex flex-wrap gap-3">
             <a href="https://t.me/ilia_ltf?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%A7%DB%8C%D9%84%DB%8C%D8%A7%20%D8%AC%D8%A7%D9%86%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C%20%D8%AA%D8%A7%D9%85%D9%86%DB%8C%D9%84%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%D8%AF%D9%85" target="_blank" class="px-5 py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition text-xs sm:text-sm glow-box-white">
-              ثبت در تلگرام (@ilia_ltf)
+              <span id="faq-btn-tg">پیام در تلگرام</span>
             </a>
             <a href="https://www.instagram.com/magic.designerrr?srtk=MXIweTBmNGM3c3Rxeg==" target="_blank" class="px-5 py-2.5 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition text-xs sm:text-sm">
-              پیام در اینستاگرام
+              <span id="faq-btn-ig">پیام در اینستاگرام</span>
             </a>
           </div>
         </div>
@@ -519,7 +521,7 @@
           <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
         </button>
         <div id="faq-ans-2" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
-          <p id="faq-a2">من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم .</p>
+          <p id="faq-a2">من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم.</p>
         </div>
       </div>
 
@@ -530,7 +532,7 @@
           <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
         </button>
         <div id="faq-ans-3" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
-          <p id="faq-a3">معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره .</p>
+          <p id="faq-a3">معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره.</p>
         </div>
       </div>
 
@@ -541,7 +543,7 @@
           <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
         </button>
         <div id="faq-ans-4" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
-          <p id="faq-a4">بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم</p>
+          <p id="faq-a4">بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم.</p>
         </div>
       </div>
 
@@ -552,7 +554,7 @@
           <span id="faq-icon-5" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
         </button>
         <div id="faq-ans-5" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
-          <p id="faq-a5">قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش</p>
+          <p id="faq-a5">قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش.</p>
         </div>
       </div>
 
@@ -611,7 +613,7 @@
         }
       }
 
-      // فراخوانی تشخیص خودکار زبان و آی‌پی
+      // فراخوانی تشخیص خودکار زبان
       detectUserLanguage();
     });
 
@@ -685,7 +687,7 @@
       }
     }
 
-    // باز و بسته شدن دکمه «More Thumbnails» در انگلیسی و عربی
+    // باز و بسته شدن دکمه «More Thumbnails» در انگلیسی
     let isEnArOpen = false;
     function toggleEnArThumbs() {
       const thumbsCont = document.getElementById('content-thumbnails');
@@ -711,14 +713,12 @@
       const targetIcon = document.getElementById(`faq-icon-${index}`);
       const isAlreadyOpen = !targetAns.classList.contains('hidden');
 
-      // اول همه بسته شوند و آیکون‌ها ریست شوند
       allAnswers.forEach((ans, i) => {
         ans.classList.add('hidden');
         const icon = document.getElementById(`faq-icon-${i + 1}`);
         if (icon) icon.style.transform = "rotate(0deg)";
       });
 
-      // اگر از قبل باز نبود، حالا باز شود
       if (!isAlreadyOpen) {
         targetAns.classList.remove('hidden');
         if (targetIcon) targetIcon.style.transform = "rotate(45deg)";
@@ -781,7 +781,7 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // دیکشنری زبان‌ها با اصطلاحات کاملاً عامیانه و بومی کریتورها
+    // دیکشنری زبان‌ها: فقط فارسی و انگلیسی
     const translations = {
       fa: {
         dir: 'rtl',
@@ -808,17 +808,19 @@
         aboutLine2: 'اثر هنری خلق میکنیم!',
         faqBadge: 'FAQ',
         faqTitle: 'پاسخ به سوالات شما',
-        faqSubtitle: 'سوالاتی که معمولاً قبل از شروع همکاری برای یوتیوبرها پیش میاد',
+        faqSubtitle: 'سوالاتی که معمولاً قبل از شروع همکاری پیش میاد',
         faqQ1: 'چطوری سفارشمو ثبت کنم؟',
-        faqA1Text: 'برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید:',
+        faqA1Text: 'برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید.',
+        faqBtnTg: 'پیام در تلگرام',
+        faqBtnIg: 'پیام در اینستاگرام',
         faqQ2: 'چه سبک هایی از تامنیل رو طراحی میکنید؟',
-        faqA2: 'من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم .',
+        faqA2: 'من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم.',
         faqQ3: 'سفارش طراحی تامنیل چقدر طول میکشه؟',
-        faqA3: 'معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره .',
+        faqA3: 'معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره.',
         faqQ4: 'تامنیل ها اصلاحیه داره؟',
-        faqA4: 'بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم',
+        faqA4: 'بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم.',
         faqQ5: 'شرایط و قیمت طراحی به چه صورت هستش؟',
-        faqA5: 'قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش',
+        faqA5: 'قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش.',
         footerTitle: 'آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! ',
         footerDesc: 'همکاری 👇🏻',
         btnTg: 'ارتباط سریع (تلگرام)',
@@ -850,9 +852,11 @@
         aboutLine2: 'We create a masterpiece!',
         faqBadge: 'FAQ',
         faqTitle: "Let's Clear Things Up",
-        faqSubtitle: 'Common questions creators ask before starting a project with me.',
-        faqQ1: 'How do I book a thumbnail or project?',
-        faqA1Text: 'Super simple! Just shoot me a message on Telegram or Instagram with your video concept and we’ll get straight to work:',
+        faqSubtitle: 'Common questions creators ask before getting started.',
+        faqQ1: 'How can i order?',
+        faqA1Text: 'Super simple! Just shoot me a message on Telegram or Instagram with your video concept and we’ll get straight to work.',
+        faqBtnTg: 'Message on Telegram',
+        faqBtnIg: 'Message on Instagram',
         faqQ2: 'What niches and thumbnail styles do you specialize in?',
         faqA2: 'I cover pretty much all top-performing YouTube niches: gaming, vlogs, high-stakes challenges, documentaries, high-contrast Russian typography, and full cinematic photomanipulation.',
         faqQ3: "What's your typical turnaround time?",
@@ -866,48 +870,6 @@
         btnTg: 'Quick Chat (Telegram)',
         btnIg: 'Instagram',
         copyright: '© 2026 Magic Designer | All rights reserved.'
-      },
-      ar: {
-        dir: 'rtl',
-        badge: 'ولّع مشاهداتك !',
-        title: 'تصاميم الثمنيلز',
-        trusted: 'موثوق من أكثر من 100 صانع محتوى',
-        statNum1: '+٥M',
-        statNum2: '+١٤٪',
-        statNum3: '+٣٥٠',
-        statNum4: '٢٤h',
-        stat1: 'مجموع المشاهدات',
-        stat2: 'زيادة الـ CTR',
-        stat3: 'ثمنيل تصمم',
-        stat4: 'تسليم سريع',
-        vlog: 'فلوجات',
-        gameplay: 'ألعاب',
-        challenge: 'تحديات',
-        other: 'أخرى',
-        moreThumbs: 'المزيد من التصاميم',
-        aboutTitle: 'أنا مين؟',
-        aboutName: 'أنا إيليا، عمري 20 سنة',
-        aboutDesc1: 'أكثر من 4 سنين بصمم ثمنيلز، بنرات، صور بروفايل، كفرات وغيره الكثير.',
-        aboutLine1: 'إحنا هنا ما بنصمم ثمنيلز وبس!',
-        aboutLine2: 'إحنا بنصنع فن!',
-        faqBadge: 'الأسئلة الشائعة',
-        faqTitle: 'خلنا نوضّح كل شيء',
-        faqSubtitle: 'أبرز الأسئلة الشائعة اللي يسألونها صناع المحتوى قبل ما نبدأ الشغل سوا.',
-        faqQ1: 'كيف أطلب تصميم ثمنيل أو أحجز شغلي؟',
-        faqA1Text: 'الموضوع بسيط جداً، بس تواصل معي على تيليجرام أو إنستغرام بفكرة الفيديو ونبدأ نشتغل فوراً:',
-        faqQ2: 'إيش ستايلات ومجالات الثمنيلز اللي تبدع فيها؟',
-        faqA2: 'أصمم لأغلب مجالات اليوتيوب الترند: الجيمنج، الفلوجات، التحديات القوية، المحتوى الوثائقي، التايبوجرافي الروسي عالي التباين، والدمج السينمائي الاحترافي.',
-        faqQ3: 'كم ياخذ وقت تسليم الثمنيل؟',
-        faqA3: 'المعتاد خلال 24 ساعة فقط. وإذا جدول تنزيلك مضغوط، التسليم السريع خلال 12 ساعة متاح بالتنسيق المسبق.',
-        faqQ4: 'هل فيه تعديلات بعد ما تسلّم التصميم؟',
-        faqA4: 'أكيد 100%! أعدل معك حتى تكون راضي تماماً. التعديلات غير محدودة للتأكد إن الثمنيل يجيب أعلى نسبة نقر (CTR) ممكنة.',
-        faqQ5: 'كيف طريقة التسعير وباقات العمل؟',
-        faqA5: 'الأسعار تعتمد على مدى تعقيد التصميم، المجال، ونوع التعاون (بالحبة أو باقات شهرية للقناة كاملة). وكل تصميم يشمل استشارة مجانية للأفكار ورفع الـ CTR.',
-        footerTitle: 'جاهز نفجّر مشاهدات الفيديو الجاي؟! ',
-        footerDesc: 'للتعاون 👇🏻',
-        btnTg: 'تواصل سريع (تيليجرام)',
-        btnIg: 'إنستغرام',
-        copyright: '© 2026 Magic Designer | جميع الحقوق محفوظة.'
       }
     };
 
@@ -981,12 +943,14 @@
       document.getElementById('about-line-1').innerText = t.aboutLine1;
       document.getElementById('about-line-2').innerText = t.aboutLine2;
 
-      // متن‌های بخش FAQ
+      // ترجمه متون FAQ و دکمه‌های سوال ۱
       document.getElementById('faq-badge').innerText = t.faqBadge;
       document.getElementById('faq-title').innerText = t.faqTitle;
       document.getElementById('faq-subtitle').innerText = t.faqSubtitle;
       document.getElementById('faq-q1').innerText = t.faqQ1;
       document.getElementById('faq-a1-text').innerText = t.faqA1Text;
+      document.getElementById('faq-btn-tg').innerText = t.faqBtnTg;
+      document.getElementById('faq-btn-ig').innerText = t.faqBtnIg;
       document.getElementById('faq-q2').innerText = t.faqQ2;
       document.getElementById('faq-a2').innerText = t.faqA2;
       document.getElementById('faq-q3').innerText = t.faqQ3;
@@ -1002,29 +966,27 @@
       document.getElementById('btn-ig').innerText = t.btnIg;
       document.getElementById('txt-copyright').innerText = t.copyright;
 
-      ['fa', 'en', 'ar'].forEach(l => {
+      ['fa', 'en'].forEach(l => {
         const btn = document.getElementById('btn-' + l);
-        if (l === lang) {
-          btn.className = "px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black";
-        } else {
-          btn.className = "px-2.5 sm:px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white";
+        if (btn) {
+          if (l === lang) {
+            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black";
+          } else {
+            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white";
+          }
         }
       });
     }
 
-    // سیستم هوشمند تشخیص آی‌پی و زبان سیستم
+    // سیستم هوشمند تشخیص آی‌پی و زبان سیستم (فقط فارسی و انگلیسی)
     async function detectUserLanguage() {
       const savedLang = localStorage.getItem('magic_user_lang');
-      if (savedLang && ['fa', 'en', 'ar'].includes(savedLang)) {
+      if (savedLang && ['fa', 'en'].includes(savedLang)) {
         changeLanguage(savedLang, false);
         return;
       }
 
       const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      if (navLang.startsWith('ar')) {
-        changeLanguage('ar', false);
-        return;
-      }
 
       try {
         const res = await fetch('https://api.country.is', { cache: 'no-store' });
@@ -1040,8 +1002,7 @@
             }
           }
         }
-      } catch (err) {
-      }
+      } catch (err) {}
 
       if (!navLang.startsWith('fa')) {
         changeLanguage('en', false);
