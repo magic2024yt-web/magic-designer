@@ -59,7 +59,7 @@
       border-color: rgba(255, 255, 255, 0.45);
     }
 
-    /* افکت گلو برای آیکون‌های جدید */
+    /* افکت گلو برای آیکون‌ها */
     .icon-glow {
       filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -69,7 +69,7 @@
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* بک‌گراند ویدیویی (۱۰ درصد ملایم‌تر در دسکتاپ) */
+    /* بک‌گراند ویدیویی */
     .bg-video-wrapper {
       position: fixed;
       inset: 0;
@@ -88,7 +88,7 @@
     }
     @media (min-width: 768px) {
       .bg-video-element {
-        opacity: 0.55; /* ۱۰ درصد کمتر در حالت دسکتاپ */
+        opacity: 0.55;
       }
     }
 
@@ -98,7 +98,7 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
     }
 
-    /* انیمیشن‌های اسلایدر */
+    /* انیمیشن‌های اسلایدر - حرکت پیوسته و بدون مکث */
     @keyframes marquee-left {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
@@ -119,11 +119,11 @@
       will-change: transform;
       animation: marquee-right 46s linear infinite;
     }
-
-    /* کلاس توقف اسلایدر فقط هنگام فعال بودن کلیک */
-    .marquee-paused .animate-marquee-left,
-    .marquee-paused .animate-marquee-right {
-      animation-play-state: paused !important;
+    .animate-creators {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: marquee-left 25s linear infinite;
     }
   </style>
 </head>
@@ -178,64 +178,105 @@
     </h1>
   </section>
 
-  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (ابعاد متناسب طبق کادر سبز) ================= -->
-  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden cursor-pointer" dir="ltr">
+  <!-- ================= بخش همکاری با یوتیوبرها (Trusted by 100+ Creators) ================= -->
+  <section class="py-6 sm:py-8 max-w-4xl mx-auto px-4 text-center">
+    <!-- تیتر سازندگان -->
+    <p id="txt-trusted" class="text-xs sm:text-sm font-bold text-neutral-300 mb-5 tracking-wide">
+      +۱۰۰ همکاری با یوتیوبرها
+    </p>
+
+    <!-- اسلایدر روان پروفایل‌های دایره‌ای با فید کناره‌ها -->
+    <div class="relative w-full overflow-hidden" dir="ltr">
+      <!-- فید چپ و راست -->
+      <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
+
+      <div class="animate-creators flex items-center gap-4 sm:gap-6 py-2">
+        <!-- ۱۰ پروفایل دور اول (creator1 تا creator10) -->
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+
+        <!-- تکرار ۱۰ پروفایل برای لوپ بی‌پایان -->
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (کاملاً پیوسته و بدون توقف) ================= -->
+  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none" dir="ltr">
     <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
     <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
-    <!-- اسلایدر اول (thumb1 تا thumb10 با ابعاد اصلاح‌شده در دسکتاپ) -->
+    <!-- اسلایدر اول (thumb1 تا thumb10) -->
     <div class="w-full overflow-hidden flex">
       <div id="marquee-row-1" class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
 
         <!-- تکرار لوپ ۱ تا ۱۰ -->
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
     <!-- اسلایدر دوم (thumb11 تا thumb20) -->
     <div class="w-full overflow-hidden flex">
       <div id="marquee-row-2" class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
 
         <!-- تکرار لوپ ۱۱ تا ۲۰ -->
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 group hover:scale-105 hover:glow-box-white transition duration-300"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover pointer-events-none" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -267,10 +308,10 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= بخش سبک‌های تامنیل و محصولات (باکس‌ها و آیکون‌های درشت‌تر) ================= -->
+  <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
-    <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم با آیکون‌های بسیار بزرگ و واضح در دسکتاپ -->
+    <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم در دسکتاپ -->
     <div id="main-tab-bar" class="flex flex-row justify-center items-stretch gap-3 sm:gap-8 md:gap-12 mb-12 max-w-5xl mx-auto w-full px-1 sm:px-4">
       
       <!-- باکس تامنیل‌ها (icon2.png) -->
@@ -310,7 +351,7 @@
       </button>
     </div>
 
-    <!-- بخش فیلتر تامنیل‌ها (در یک خط کامل) -->
+    <!-- بخش فیلتر تامنیل‌ها -->
     <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
       <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 overflow-x-auto py-2 px-2" dir="ltr">
         <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all">
@@ -327,7 +368,6 @@
         </button>
       </div>
 
-      <!-- گرید تامنیل‌ها: ۱ تامنیل بزرگ در بالا + ۲ تامنیل زیرش + ۲ تامنیل بعدی -->
       <div id="category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto w-full">
       </div>
     </div>
@@ -429,6 +469,96 @@
     </div>
   </section>
 
+  <!-- خط جداکننده قبل از FAQ -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- ================= بخش سوالات متداول (FAQ) ================= -->
+  <section id="faq-section" class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full text-center">
+    <!-- بج FAQ -->
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-6 border border-white/20 shadow-lg">
+      <span class="text-indigo-400 font-black">#</span>
+      <span id="faq-badge">FAQ</span>
+    </div>
+
+    <!-- تیتر و زیرتیتر -->
+    <h2 id="faq-title" class="text-2xl sm:text-4xl md:text-5xl font-black mb-4 glow-text-white">
+      پاسخ به سوالات شما
+    </h2>
+    <p id="faq-subtitle" class="text-neutral-400 text-sm sm:text-base md:text-lg mb-12 max-w-2xl mx-auto">
+      سوالاتی که معمولاً قبل از شروع همکاری برای یوتیوبرها پیش میاد
+    </p>
+
+    <!-- لیست آکاردئونی ۵ تایی -->
+    <div class="space-y-4 text-start">
+
+      <!-- سوال ۱ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(1)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q1" class="font-extrabold text-base sm:text-xl text-white">چطوری سفارشمو ثبت کنم؟</span>
+          <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div id="faq-ans-1" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+          <p id="faq-a1-text" class="mb-4">برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید:</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://t.me/ilia_ltf?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%A7%DB%8C%D9%84%DB%8C%D8%A7%20%D8%AC%D8%A7%D9%86%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C%20%D8%AA%D8%A7%D9%85%D9%86%DB%8C%D9%84%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%D8%AF%D9%85" target="_blank" class="px-5 py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition text-xs sm:text-sm glow-box-white">
+              ثبت در تلگرام (@ilia_ltf)
+            </a>
+            <a href="https://www.instagram.com/magic.designerrr?srtk=MXIweTBmNGM3c3Rxeg==" target="_blank" class="px-5 py-2.5 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition text-xs sm:text-sm">
+              پیام در اینستاگرام
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- سوال ۲ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(2)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q2" class="font-extrabold text-base sm:text-xl text-white">چه سبک هایی از تامنیل رو طراحی میکنید؟</span>
+          <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div id="faq-ans-2" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+          <p id="faq-a2">من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم .</p>
+        </div>
+      </div>
+
+      <!-- سوال ۳ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(3)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q3" class="font-extrabold text-base sm:text-xl text-white">سفارش طراحی تامنیل چقدر طول میکشه؟</span>
+          <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div id="faq-ans-3" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+          <p id="faq-a3">معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره .</p>
+        </div>
+      </div>
+
+      <!-- سوال ۴ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(4)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q4" class="font-extrabold text-base sm:text-xl text-white">تامنیل ها اصلاحیه داره؟</span>
+          <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div id="faq-ans-4" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+          <p id="faq-a4">بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم</p>
+        </div>
+      </div>
+
+      <!-- سوال ۵ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(5)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q5" class="font-extrabold text-base sm:text-xl text-white">شرایط و قیمت طراحی به چه صورت هستش؟</span>
+          <span id="faq-icon-5" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+        </button>
+        <div id="faq-ans-5" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+          <p id="faq-a5">قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- خط جداکننده سوم -->
   <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
     <div class="section-divider"></div>
@@ -483,30 +613,6 @@
 
       // فراخوانی تشخیص خودکار زبان و آی‌پی
       detectUserLanguage();
-    });
-
-    // ================= سیستم جدید توقف اسلایدرها فقط با کلیک =================
-    let isSliderPaused = false;
-    const marqueeSection = document.getElementById('marquee-section');
-
-    marqueeSection.addEventListener('click', (e) => {
-      const clickedCard = e.target.closest('.aspect-video');
-      if (clickedCard) {
-        e.stopPropagation();
-        isSliderPaused = !isSliderPaused;
-        if (isSliderPaused) {
-          marqueeSection.classList.add('marquee-paused');
-        } else {
-          marqueeSection.classList.remove('marquee-paused');
-        }
-      }
-    });
-
-    document.addEventListener('click', (e) => {
-      if (isSliderPaused && !marqueeSection.contains(e.target)) {
-        isSliderPaused = false;
-        marqueeSection.classList.remove('marquee-paused');
-      }
     });
 
     const categoryThumbnails = {
@@ -598,6 +704,27 @@
       }
     }
 
+    // ================= سیستم آکاردئونی FAQ (تک‌بازشونده) =================
+    function toggleFaq(index) {
+      const allAnswers = document.querySelectorAll('.faq-answer');
+      const targetAns = document.getElementById(`faq-ans-${index}`);
+      const targetIcon = document.getElementById(`faq-icon-${index}`);
+      const isAlreadyOpen = !targetAns.classList.contains('hidden');
+
+      // اول همه بسته شوند و آیکون‌ها ریست شوند
+      allAnswers.forEach((ans, i) => {
+        ans.classList.add('hidden');
+        const icon = document.getElementById(`faq-icon-${i + 1}`);
+        if (icon) icon.style.transform = "rotate(0deg)";
+      });
+
+      // اگر از قبل باز نبود، حالا باز شود
+      if (!isAlreadyOpen) {
+        targetAns.classList.remove('hidden');
+        if (targetIcon) targetIcon.style.transform = "rotate(45deg)";
+      }
+    }
+
     // پاپ‌آپ و خرید تلگرام
     const productsData = {
       course: {
@@ -654,11 +781,13 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
+    // دیکشنری زبان‌ها با اصطلاحات کاملاً عامیانه و بومی کریتورها
     const translations = {
       fa: {
         dir: 'rtl',
         badge: 'بازدید هاتو منفجر کن !',
         title: 'نمونه کارها',
+        trusted: '+۱۰۰ همکاری با یوتیوبرها',
         statNum1: '+۵M',
         statNum2: '+۱۴٪',
         statNum3: '+۳۵۰',
@@ -677,6 +806,19 @@
         aboutDesc1: 'با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...',
         aboutLine1: 'ما اینجا تامنیل طراحی نمیکنیم!',
         aboutLine2: 'اثر هنری خلق میکنیم!',
+        faqBadge: 'FAQ',
+        faqTitle: 'پاسخ به سوالات شما',
+        faqSubtitle: 'سوالاتی که معمولاً قبل از شروع همکاری برای یوتیوبرها پیش میاد',
+        faqQ1: 'چطوری سفارشمو ثبت کنم؟',
+        faqA1Text: 'برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید:',
+        faqQ2: 'چه سبک هایی از تامنیل رو طراحی میکنید؟',
+        faqA2: 'من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم .',
+        faqQ3: 'سفارش طراحی تامنیل چقدر طول میکشه؟',
+        faqA3: 'معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره .',
+        faqQ4: 'تامنیل ها اصلاحیه داره؟',
+        faqA4: 'بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم',
+        faqQ5: 'شرایط و قیمت طراحی به چه صورت هستش؟',
+        faqA5: 'قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش',
         footerTitle: 'آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! ',
         footerDesc: 'همکاری 👇🏻',
         btnTg: 'ارتباط سریع (تلگرام)',
@@ -687,6 +829,7 @@
         dir: 'ltr',
         badge: 'Blow up your views!',
         title: 'Thumbnail Designs',
+        trusted: 'Trusted by 100+ creators',
         statNum1: '+5M',
         statNum2: '+14%',
         statNum3: '+350',
@@ -705,6 +848,19 @@
         aboutDesc1: 'Over 4 years of experience designing thumbnails, channel art, profile pics, covers and more.',
         aboutLine1: "We don't just design thumbnails!",
         aboutLine2: 'We create a masterpiece!',
+        faqBadge: 'FAQ',
+        faqTitle: "Let's Clear Things Up",
+        faqSubtitle: 'Common questions creators ask before starting a project with me.',
+        faqQ1: 'How do I book a thumbnail or project?',
+        faqA1Text: 'Super simple! Just shoot me a message on Telegram or Instagram with your video concept and we’ll get straight to work:',
+        faqQ2: 'What niches and thumbnail styles do you specialize in?',
+        faqA2: 'I cover pretty much all top-performing YouTube niches: gaming, vlogs, high-stakes challenges, documentaries, high-contrast Russian typography, and full cinematic photomanipulation.',
+        faqQ3: "What's your typical turnaround time?",
+        faqA3: "Standard delivery is within 24 hours. If you're on a tight upload schedule, rush delivery within 12 hours is always on the table.",
+        faqQ4: 'Do you offer revisions if I need changes?',
+        faqA4: "100%. We tweak until you’re thrilled. I offer unlimited revisions to make sure the final thumbnail crushes your CTR targets.",
+        faqQ5: 'How does your pricing structure work?',
+        faqA5: 'Pricing scales based on visual complexity, niche, and whether you need single thumbnails or monthly channel packages. Plus, every project includes free ideation & CTR strategy consultation.',
         footerTitle: 'Ready to blow up the views on your next video?! ',
         footerDesc: 'Collaborate 👇🏻',
         btnTg: 'Quick Chat (Telegram)',
@@ -715,6 +871,7 @@
         dir: 'rtl',
         badge: 'ولّع مشاهداتك !',
         title: 'تصاميم الثمنيلز',
+        trusted: 'موثوق من أكثر من 100 صانع محتوى',
         statNum1: '+٥M',
         statNum2: '+١٤٪',
         statNum3: '+٣٥٠',
@@ -733,6 +890,19 @@
         aboutDesc1: 'أكثر من 4 سنين بصمم ثمنيلز، بنرات، صور بروفايل، كفرات وغيره الكثير.',
         aboutLine1: 'إحنا هنا ما بنصمم ثمنيلز وبس!',
         aboutLine2: 'إحنا بنصنع فن!',
+        faqBadge: 'الأسئلة الشائعة',
+        faqTitle: 'خلنا نوضّح كل شيء',
+        faqSubtitle: 'أبرز الأسئلة الشائعة اللي يسألونها صناع المحتوى قبل ما نبدأ الشغل سوا.',
+        faqQ1: 'كيف أطلب تصميم ثمنيل أو أحجز شغلي؟',
+        faqA1Text: 'الموضوع بسيط جداً، بس تواصل معي على تيليجرام أو إنستغرام بفكرة الفيديو ونبدأ نشتغل فوراً:',
+        faqQ2: 'إيش ستايلات ومجالات الثمنيلز اللي تبدع فيها؟',
+        faqA2: 'أصمم لأغلب مجالات اليوتيوب الترند: الجيمنج، الفلوجات، التحديات القوية، المحتوى الوثائقي، التايبوجرافي الروسي عالي التباين، والدمج السينمائي الاحترافي.',
+        faqQ3: 'كم ياخذ وقت تسليم الثمنيل؟',
+        faqA3: 'المعتاد خلال 24 ساعة فقط. وإذا جدول تنزيلك مضغوط، التسليم السريع خلال 12 ساعة متاح بالتنسيق المسبق.',
+        faqQ4: 'هل فيه تعديلات بعد ما تسلّم التصميم؟',
+        faqA4: 'أكيد 100%! أعدل معك حتى تكون راضي تماماً. التعديلات غير محدودة للتأكد إن الثمنيل يجيب أعلى نسبة نقر (CTR) ممكنة.',
+        faqQ5: 'كيف طريقة التسعير وباقات العمل؟',
+        faqA5: 'الأسعار تعتمد على مدى تعقيد التصميم، المجال، ونوع التعاون (بالحبة أو باقات شهرية للقناة كاملة). وكل تصميم يشمل استشارة مجانية للأفكار ورفع الـ CTR.',
         footerTitle: 'جاهز نفجّر مشاهدات الفيديو الجاي؟! ',
         footerDesc: 'للتعاون 👇🏻',
         btnTg: 'تواصل سريع (تيليجرام)',
@@ -752,6 +922,7 @@
 
       document.getElementById('txt-badge').innerText = t.badge;
       document.getElementById('txt-title').innerText = t.title;
+      document.getElementById('txt-trusted').innerText = t.trusted;
 
       document.getElementById('stat-num-1').innerText = t.statNum1;
       document.getElementById('stat-num-2').innerText = t.statNum2;
@@ -809,6 +980,21 @@
       document.getElementById('about-desc-1').innerText = t.aboutDesc1;
       document.getElementById('about-line-1').innerText = t.aboutLine1;
       document.getElementById('about-line-2').innerText = t.aboutLine2;
+
+      // متن‌های بخش FAQ
+      document.getElementById('faq-badge').innerText = t.faqBadge;
+      document.getElementById('faq-title').innerText = t.faqTitle;
+      document.getElementById('faq-subtitle').innerText = t.faqSubtitle;
+      document.getElementById('faq-q1').innerText = t.faqQ1;
+      document.getElementById('faq-a1-text').innerText = t.faqA1Text;
+      document.getElementById('faq-q2').innerText = t.faqQ2;
+      document.getElementById('faq-a2').innerText = t.faqA2;
+      document.getElementById('faq-q3').innerText = t.faqQ3;
+      document.getElementById('faq-a3').innerText = t.faqA3;
+      document.getElementById('faq-q4').innerText = t.faqQ4;
+      document.getElementById('faq-a4').innerText = t.faqA4;
+      document.getElementById('faq-q5').innerText = t.faqQ5;
+      document.getElementById('faq-a5').innerText = t.faqA5;
 
       document.getElementById('footer-title').innerText = t.footerTitle;
       document.getElementById('footer-desc').innerText = t.footerDesc;
