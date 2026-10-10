@@ -18,7 +18,7 @@
   <style>
     /* جلوگیری کامل از به‌هم‌ریختگی افقی و اسکرول اضافه در موبایل */
     html, body {
-      overflow-x: hidden !important;
+      overflow-x: clip;
       max-width: 100% !important;
       width: 100% !important;
       position: relative;
@@ -146,8 +146,8 @@
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)]"></div>
   </div>
 
-  <!-- ================= هدر (فقط فارسی و انگلیسی) ================= -->
-  <header class="sticky top-0 z-40 backdrop-blur-md border-b border-white/10 bg-black/75">
+  <!-- ================= هدر ثابت و چسبیده در بالا (Fixed Header) ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/10 bg-black/75">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
         <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
@@ -170,8 +170,8 @@
     </div>
   </header>
 
-  <!-- ================= تیتر اصلی ================= -->
-  <section class="pt-14 sm:pt-20 md:pt-24 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
+  <!-- ================= تیتر اصلی (با فاصله‌ی تنظیم‌شده از هدر ثابت) ================= -->
+  <section class="pt-24 sm:pt-28 md:pt-32 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
     <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
       <span id="txt-badge">بازدید هاتو منفجر کن !</span>
@@ -182,7 +182,7 @@
     </h1>
   </section>
 
-  <!-- ================= بخش همکاری با یوتیوبرها (حرکت به راست بدون باگ موبایل) ================= -->
+  <!-- ================= بخش همکاری با یوتیوبرها ================= -->
   <section class="py-6 sm:py-8 w-full max-w-full overflow-hidden px-4 text-center">
     <p id="txt-trusted" class="text-xs sm:text-sm font-bold text-neutral-300 mb-5 tracking-wide">
       +۱۰۰ همکاری با یوتیوبرها
@@ -194,7 +194,6 @@
       <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
       <div class="animate-creators-right flex items-center gap-4 sm:gap-6 py-2">
-        <!-- ۱۰ پروفایل دور اول (creator1 تا creator10) -->
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
@@ -221,12 +220,12 @@
     </div>
   </section>
 
-  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (بدون توقف) ================= -->
+  <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
   <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
     <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
     <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
-    <!-- اسلایدر اول (thumb1 تا thumb10) -->
+    <!-- اسلایدر اول -->
     <div class="w-full overflow-hidden flex">
       <div id="marquee-row-1" class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
@@ -254,7 +253,7 @@
       </div>
     </div>
 
-    <!-- اسلایدر دوم (thumb11 تا thumb20) -->
+    <!-- اسلایدر دوم -->
     <div class="w-full overflow-hidden flex">
       <div id="marquee-row-2" class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
         <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
@@ -570,6 +569,7 @@
   <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-5xl mx-auto">
       
+      <!-- سایز بهینه‌سازی‌شده برای کات نخوردن در کوچک‌ترین گوشی‌ها و تک‌خطی در لپ‌تاپ -->
       <h2 id="footer-title" class="text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight text-center px-1">
         آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! 
       </h2>
