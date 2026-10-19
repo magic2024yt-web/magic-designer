@@ -467,9 +467,9 @@
     </div>
   </div>
 
-  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت (گام دوم - الهام‌گرفته از عکس ارسالی) ================= -->
+  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت (تم سفید و مشکی + فیکس یک‌خطی) ================= -->
   <div id="payment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity">
-    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-amber-500/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] relative max-h-[90vh] overflow-y-auto">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/20 glow-box-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <!-- دکمه بستن -->
       <button onclick="closePaymentModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-sm">✕</button>
 
@@ -479,19 +479,19 @@
         <p class="text-xs sm:text-sm text-neutral-400">مبلغ را کارت به کارت کرده و رسید را ارسال کنید</p>
       </div>
 
-      <!-- برچسب محصول و قیمت -->
-      <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/25 mb-5 flex items-center justify-between">
-        <span id="pay-product-name" class="font-bold text-xs sm:text-sm text-neutral-200 truncate max-w-[200px]"></span>
-        <span id="pay-product-price" class="font-black text-amber-400 text-sm sm:text-base"></span>
+      <!-- برچسب محصول و قیمت: ۱۰۰٪ در یک خط بدون شکستگی -->
+      <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/15 mb-5 flex items-center justify-between gap-2 whitespace-nowrap">
+        <span id="pay-product-name" class="font-bold text-xs sm:text-sm text-neutral-200 truncate"></span>
+        <span id="pay-product-price" class="font-extrabold text-white text-xs sm:text-sm flex-shrink-0"></span>
       </div>
 
-      <!-- باکس شماره کارت -->
+      <!-- باکس شماره کارت: ۱۰۰٪ در یک خط با دکمه کپی -->
       <div class="p-5 rounded-2xl bg-black/60 border border-white/15 mb-5 relative">
-        <div class="flex items-center justify-between mb-3">
-          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-3.5 py-1.5 rounded-lg font-bold text-xs bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-black transition border border-amber-500/40">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl font-bold text-xs bg-white text-black hover:bg-neutral-200 transition flex-shrink-0 shadow">
             کپی کارت
           </button>
-          <span class="selectable-text text-lg sm:text-xl font-black tracking-widest text-white" dir="ltr">
+          <span class="selectable-text text-[15px] min-[380px]:text-base sm:text-lg font-black tracking-wider text-white whitespace-nowrap" dir="ltr">
             6104 3387 0203 7264
           </span>
         </div>
@@ -501,13 +501,13 @@
         </div>
       </div>
 
-      <!-- متن راهنما -->
+      <!-- متن راهنمای خلاصه شده -->
       <p class="text-xs text-neutral-400 leading-relaxed text-center mb-6 px-1">
-        بعد از پرداخت، لطفاً تصویر فیش واریزی را به همراه آیدی خود به پشتیبانی ارسال کنید تا سفارش شما سریعاً ثبت و اعمال شود.
+        بعد از پرداخت، لطفاً تصویر فیش واریزی را به پشتیبانی ارسال کنید.
       </p>
 
-      <!-- دکمه ارسال رسید به تلگرام -->
-      <a id="pay-telegram-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full py-4 rounded-xl font-black bg-amber-400 hover:bg-amber-300 text-black text-center text-sm sm:text-base transition duration-300 shadow-[0_0_25px_rgba(251,191,36,0.3)] block">
+      <!-- دکمه سفید مونوکروم ارسال رسید به تلگرام -->
+      <a id="pay-telegram-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full py-3.5 sm:py-4 rounded-xl font-black bg-white hover:bg-neutral-200 text-black text-center text-sm sm:text-base transition duration-300 glow-box-white shadow-xl block">
         ارسال رسید در تلگرام
       </a>
     </div>
@@ -665,11 +665,9 @@
 
   <!-- ================= جاوااسکریپت کامل ================= -->
   <script>
-    // نگه‌داری اطلاعات محصول فعال برای انتقال به درگاه پرداخت
     let activeProductKey = 'course';
 
-    // ================= سیستم جدید و تضمینی مدیریت بازگشت (Back Button) =================
-    // ایجاد تاریخچه‌ی پایدار تا مرورگر در هیچ شرایطی مستقیماً از سایت خارج نشود
+    // ================= سیستم پایدار مدیریت دکمه بازگشت (Back Button) =================
     if (window.history && window.history.replaceState) {
       window.history.replaceState({ page: 'home', depth: 0 }, '');
       window.history.pushState({ page: 'app', depth: 1 }, '');
@@ -679,7 +677,6 @@
       history.pushState({ page: 'action', depth: history.length + 1 }, '');
     }
 
-    // بررسی اسکرول
     let scrollTrapped = false;
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300 && !scrollTrapped) {
@@ -690,14 +687,12 @@
       }
     }, { passive: true });
 
-    // لیسنر دکمه بک در گوشی، ماوس و کیبورد
     window.addEventListener('popstate', (e) => {
-      // همیشه یک بافر ایجاد کن تا دکمه بک باعث خروج ناگهانی نشود
       const payModal = document.getElementById('payment-modal');
       const prodModal = document.getElementById('product-modal');
       const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
 
-      // ۱. اگر پنجره کارت به کارت باز است -> بسته شود و پنجره قبلی دیده شود
+      // ۱. بستن پنجره کارت به کارت و بازگشت به توضیحات محصول
       if (payModal && !payModal.classList.contains('hidden')) {
         payModal.classList.add('hidden');
         if (prodModal) prodModal.classList.remove('hidden');
@@ -705,14 +700,14 @@
         return;
       }
 
-      // ۲. اگر پنجره توضیحات محصول باز است -> بسته شود
+      // ۲. بستن پنجره توضیحات محصول
       if (prodModal && !prodModal.classList.contains('hidden')) {
         prodModal.classList.add('hidden');
         registerHistoryStep();
         return;
       }
 
-      // ۳. اگر پاسخی در FAQ باز است -> بسته شود
+      // ۳. بستن سوالات باز در FAQ
       if (anyFaqOpen) {
         document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
         document.querySelectorAll('[id^="faq-icon-"]').forEach(icon => icon.style.transform = 'rotate(0deg)');
@@ -720,21 +715,21 @@
         return;
       }
 
-      // ۴. اگر تب تامنیل یا محصولات در فارسی باز است -> بسته شود
+      // ۴. بستن تب بازشده تامنیل‌ها یا محصولات
       if (activeTab !== null) {
         toggleMainTab(activeTab);
         registerHistoryStep();
         return;
       }
 
-      // ۵. اگر دکمه More Thumbnails در انگلیسی باز است -> بسته شود
+      // ۵. بستن منوی تامنیل‌های بیشتر در انگلیسی
       if (isEnArOpen) {
         toggleEnArThumbs();
         registerHistoryStep();
         return;
       }
 
-      // ۶. اگر در پایین صفحه اسکرول کرده -> به بالای سایت برود
+      // ۶. هدایت نرم به بالای سایت در صورت اسکرول به پایین
       if (window.scrollY > 150) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         scrollTrapped = false;
@@ -742,7 +737,7 @@
         return;
       }
 
-      // ۷. اگر در بالاترین نقطه است و همه چیز بسته است، اجازه خروج طبیعی داده می‌شود
+      // خروج در صورت عدم وجود هرگونه پنجره یا اسکرول
       history.back();
     });
 
@@ -780,7 +775,6 @@
 
     filterCategory('vlog');
 
-    // مدیریت باز و بسته شدن تب‌ها در زبان فارسی
     let activeTab = null;
 
     function toggleMainTab(tab) {
@@ -824,7 +818,6 @@
       }
     }
 
-    // باز و بسته شدن دکمه «More Thumbnails» در انگلیسی
     let isEnArOpen = false;
     function toggleEnArThumbs() {
       const thumbsCont = document.getElementById('content-thumbnails');
@@ -844,7 +837,6 @@
       }
     }
 
-    // ================= سیستم آکاردئونی FAQ (تک‌بازشونده) =================
     function toggleFaq(index) {
       const allAnswers = document.querySelectorAll('.faq-answer');
       const targetAns = document.getElementById(`faq-ans-${index}`);
@@ -864,10 +856,11 @@
       }
     }
 
-    // ================= اطلاعات محصولات و سیستم پرداخت =================
+    // مشخصات محصولات (با نام خلاصه مخصوص بخش پرداخت)
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
+        shortTitle: 'دوره طراحی تامنیل با موبایل',
         img: 'course.jpg',
         price: '۱,۴۴۷,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، فیش واریزی برای دوره طراحی تامنیل با موبایل رو ارسال می‌کنم:',
@@ -887,6 +880,7 @@
       },
       tools: {
         title: 'پکیج Magic Tools (جعبه ابزار جادویی)',
+        shortTitle: 'پکیج Magic Tools',
         img: 'tools.jpg',
         price: '۸۴۸,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، فیش واریزی برای پکیج ابزار Magic Tools رو ارسال می‌کنم:',
@@ -921,10 +915,10 @@
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // باز کردن پنجره واریز وجه (کارت به کارت)
+    // باز کردن پنجره پرداخت و ست کردن عنوان خلاصه
     function goToPaymentStep() {
       const p = productsData[activeProductKey];
-      document.getElementById('pay-product-name').innerText = p.title;
+      document.getElementById('pay-product-name').innerText = p.shortTitle || p.title;
       document.getElementById('pay-product-price').innerText = p.price;
       document.getElementById('pay-telegram-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
       
@@ -937,22 +931,21 @@
       document.getElementById('payment-modal').classList.add('hidden');
     }
 
-    // کپی آسان شماره کارت در کلیپ‌بورد
+    // کپی تمیز شماره کارت به همراه استایل مونوکروم
     function copyCardNumber() {
       const cardNum = '6104338702037264';
       navigator.clipboard.writeText(cardNum).then(() => {
         const btn = document.getElementById('copy-card-btn');
         const orig = btn.innerText;
         btn.innerText = 'کپی شد! ✓';
-        btn.classList.add('bg-amber-400', 'text-black');
+        btn.classList.add('bg-white', 'text-black');
         setTimeout(() => {
           btn.innerText = orig;
-          btn.classList.remove('bg-amber-400', 'text-black');
+          btn.classList.remove('bg-white', 'text-black');
         }, 2000);
       });
     }
 
-    // دیکشنری زبان‌ها
     const translations = {
       fa: {
         dir: 'rtl',
