@@ -74,7 +74,7 @@
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* ================= انیمیشن حرکت آرام گرید رو به پایین ================= */
+    /* انیمیشن حرکت آرام گرید رو به پایین */
     @keyframes move-grid-down {
       0% {
         background-position: 0 0;
@@ -93,7 +93,6 @@
       will-change: background-position;
     }
 
-    /* تکسچر نویز (Noise Effect) */
     .noise-overlay {
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
     }
@@ -140,23 +139,16 @@
 
   <!-- ================= بک‌گراند تکسچر گرید متحرک + نویز + هاله‌های سفید ================= -->
   <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#050508]">
-    <!-- گرید متحرک رو به پایین -->
     <div class="absolute inset-0 w-full h-full animated-grid"></div>
-
-    <!-- هاله‌های نوری سفید در بخش‌های مختلف سایت -->
     <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[130px]"></div>
     <div class="absolute top-[35%] -right-24 w-[450px] h-[450px] rounded-full bg-white/[0.05] blur-[140px]"></div>
     <div class="absolute top-[65%] -left-28 w-[500px] h-[500px] rounded-full bg-white/[0.05] blur-[150px]"></div>
     <div class="absolute -bottom-20 right-1/4 w-[450px] h-[450px] rounded-full bg-white/[0.07] blur-[130px]"></div>
-
-    <!-- افکت بافت نویز (Noise Effect) -->
     <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.05]"></div>
-
-    <!-- گرادیانت تیره جهت عمق‌بخشی به لبه‌ها -->
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050508_95%)]"></div>
   </div>
 
-  <!-- ================= هدر ثابت و چسبیده در بالا (Fixed Header) ================= -->
+  <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/10 bg-black/75">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
@@ -168,7 +160,7 @@
         </span>
       </a>
 
-      <!-- سوییچر زبان دوگانه FA / EN -->
+      <!-- سوییچر زبان FA / EN -->
       <div class="flex items-center glass-card rounded-full p-1 border border-white/20 text-xs sm:text-sm" dir="ltr">
         <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black">
           FA
@@ -180,7 +172,7 @@
     </div>
   </header>
 
-  <!-- ================= تیتر اصلی (با فاصله‌ی تنظیم‌شده از هدر ثابت) ================= -->
+  <!-- ================= تیتر اصلی ================= -->
   <section class="pt-24 sm:pt-28 md:pt-32 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
     <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
@@ -198,7 +190,6 @@
       +۱۰۰ همکاری با یوتیوبرها
     </p>
 
-    <!-- اسلایدر روان با حرکت به سمت راست و فید کناره‌ها -->
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden" dir="ltr">
       <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
       <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
@@ -487,13 +478,11 @@
 
   <!-- ================= بخش سوالات متداول (FAQ) ================= -->
   <section id="faq-section" class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full text-center">
-    <!-- بج FAQ -->
     <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-6 border border-white/20 shadow-lg">
       <span class="text-indigo-400 font-black">#</span>
       <span id="faq-badge">FAQ</span>
     </div>
 
-    <!-- تیتر و زیرتیتر تک‌خطی فیکس‌شده -->
     <h2 id="faq-title" class="text-2xl sm:text-4xl md:text-5xl font-black mb-4 glow-text-white">
       پاسخ به سوالات شما
     </h2>
@@ -501,7 +490,6 @@
       سوالاتی که معمولاً قبل از شروع همکاری پیش میاد
     </p>
 
-    <!-- لیست آکاردئونی ۵ تایی -->
     <div class="space-y-4 text-start">
 
       <!-- سوال ۱ -->
@@ -579,7 +567,6 @@
   <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-5xl mx-auto">
       
-      <!-- سایز بهینه‌سازی‌شده برای کات نخوردن در کوچک‌ترین گوشی‌ها و تک‌خطی در لپ‌تاپ -->
       <h2 id="footer-title" class="text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight text-center px-1">
         آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! 
       </h2>
@@ -605,8 +592,62 @@
 
   <!-- ================= جاوااسکریپت ================= -->
   <script>
+    // ================= سیستم مدیریت دکمه بازگشت (Back Button / Gesture Handler) =================
+    let scrollStatePushed = false;
+
+    // ثبت وضعیت اولیه صفحه در تاریخچه مرورگر
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState({ step: 'home' }, '');
+    }
+
+    // گوش دادن به اسکرول برای بازگشت هوشمند به بالای صفحه با دکمه Back
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300 && !scrollStatePushed) {
+        scrollStatePushed = true;
+        history.pushState({ step: 'scrolled' }, '');
+      } else if (window.scrollY < 80) {
+        scrollStatePushed = false;
+      }
+    }, { passive: true });
+
+    // مدیریت رویداد بازگشت با دکمه Back (موبایل و کامپیوتر)
+    window.addEventListener('popstate', (e) => {
+      // ۱. اگر پاپ‌آپ محصول باز است، بسته شود
+      const modal = document.getElementById('product-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+        return;
+      }
+
+      // ۲. اگر پاسخی در سوالات متداول باز است، بسته شود
+      const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
+      if (anyFaqOpen) {
+        document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
+        document.querySelectorAll('[id^="faq-icon-"]').forEach(icon => icon.style.transform = 'rotate(0deg)');
+        return;
+      }
+
+      // ۳. اگر تب تامنیل‌ها یا محصولات در فارسی باز است، بسته شود
+      if (activeTab !== null) {
+        toggleMainTab(activeTab);
+        return;
+      }
+
+      // ۴. اگر دکمه تامنیل‌های بیشتر در انگلیسی باز است، بسته شود
+      if (isEnArOpen) {
+        toggleEnArThumbs();
+        return;
+      }
+
+      // ۵. اگر کاربر پایین صفحه است، به بالای سایت اسکرول کند
+      if (window.scrollY > 150) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollStatePushed = false;
+        return;
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
-      // فراخوانی تشخیص خودکار زبان
       detectUserLanguage();
     });
 
@@ -662,6 +703,11 @@
         return;
       }
 
+      // ثبت مرحله در تاریخچه برای بازگشت با دکمه Back
+      if (activeTab === null) {
+        history.pushState({ step: 'tab' }, '');
+      }
+
       activeTab = tab;
       if (tab === 'thumbnails') {
         thumbsBtn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
@@ -692,6 +738,7 @@
         thumbsCont.classList.remove('hidden');
         btn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
         if (arrow) arrow.style.transform = "rotate(180deg)";
+        history.pushState({ step: 'thumbs' }, '');
       } else {
         thumbsCont.classList.add('hidden');
         btn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
@@ -715,6 +762,7 @@
       if (!isAlreadyOpen) {
         targetAns.classList.remove('hidden');
         if (targetIcon) targetIcon.style.transform = "rotate(45deg)";
+        history.pushState({ step: 'faq' }, '');
       }
     }
 
@@ -768,6 +816,8 @@
       document.getElementById('modal-price').innerText = p.price;
       document.getElementById('modal-buy-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
       document.getElementById('product-modal').classList.remove('hidden');
+      // ثبت مرحله در تاریخچه برای بازگشت با دکمه Back
+      history.pushState({ step: 'modal' }, '');
     }
 
     function closeProductModal() {
