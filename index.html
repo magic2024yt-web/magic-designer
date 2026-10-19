@@ -74,27 +74,28 @@
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* بک‌گراند ویدیویی */
-    .bg-video-wrapper {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      z-index: -20;
-      pointer-events: none;
-    }
-    .bg-video-element {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.65;
-      transform: scale(1.02);
-    }
-    @media (min-width: 768px) {
-      .bg-video-element {
-        opacity: 0.55;
+    /* ================= انیمیشن حرکت آرام گرید رو به پایین ================= */
+    @keyframes move-grid-down {
+      0% {
+        background-position: 0 0;
       }
+      100% {
+        background-position: 0 32px;
+      }
+    }
+
+    .animated-grid {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 32px 32px;
+      animation: move-grid-down 8s linear infinite;
+      will-change: background-position;
+    }
+
+    /* تکسچر نویز (Noise Effect) */
+    .noise-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
     }
 
     .section-divider {
@@ -137,13 +138,22 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند ویدیویی ================= -->
-  <div class="bg-video-wrapper">
-    <video id="bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto" class="bg-video-element">
-      <source src="bg.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/55 to-black/85"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.7)_100%)]"></div>
+  <!-- ================= بک‌گراند تکسچر گرید متحرک + نویز + هاله‌های سفید ================= -->
+  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#050508]">
+    <!-- گرید متحرک رو به پایین -->
+    <div class="absolute inset-0 w-full h-full animated-grid"></div>
+
+    <!-- هاله‌های نوری سفید در بخش‌های مختلف سایت -->
+    <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[130px]"></div>
+    <div class="absolute top-[35%] -right-24 w-[450px] h-[450px] rounded-full bg-white/[0.05] blur-[140px]"></div>
+    <div class="absolute top-[65%] -left-28 w-[500px] h-[500px] rounded-full bg-white/[0.05] blur-[150px]"></div>
+    <div class="absolute -bottom-20 right-1/4 w-[450px] h-[450px] rounded-full bg-white/[0.07] blur-[130px]"></div>
+
+    <!-- افکت بافت نویز (Noise Effect) -->
+    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.05]"></div>
+
+    <!-- گرادیانت تیره جهت عمق‌بخشی به لبه‌ها -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050508_95%)]"></div>
   </div>
 
   <!-- ================= هدر ثابت و چسبیده در بالا (Fixed Header) ================= -->
@@ -309,7 +319,7 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
+  <!-- ================= بخش سبک‌های تامنیل و محصولات (باکس‌ها و آیکون‌های درشت‌تر) ================= -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
     <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم در دسکتاپ -->
@@ -582,7 +592,7 @@
         <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
           <span id="btn-tg">ارتباط سریع (تلگرام)</span>
         </a>
-        <a href="https://instagram.com/Magic.Designerrr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
           <span id="btn-ig">اینستاگرام</span>
         </a>
       </div>
@@ -596,23 +606,6 @@
   <!-- ================= جاوااسکریپت ================= -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const vid = document.getElementById('bg-video');
-      if (vid) {
-        vid.muted = true;
-        const playPromise = vid.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            const startVideo = () => {
-              vid.play();
-              document.removeEventListener('touchstart', startVideo);
-              document.removeEventListener('click', startVideo);
-            };
-            document.addEventListener('touchstart', startVideo);
-            document.addEventListener('click', startVideo);
-          });
-        }
-      }
-
       // فراخوانی تشخیص خودکار زبان
       detectUserLanguage();
     });
