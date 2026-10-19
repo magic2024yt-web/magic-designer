@@ -24,7 +24,7 @@
       position: relative;
     }
 
-    /* غیرفعال کردن انتخاب و کپی شدن متون در کل سایت */
+    /* غیرفعال کردن انتخاب و کپی شدن متون */
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -32,6 +32,14 @@
       user-select: none;
       -webkit-touch-callout: none;
       box-sizing: border-box;
+    }
+
+    /* فعال بودن کپی برای فیلدهای شماره کارت */
+    .selectable-text {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
     }
 
     body {
@@ -55,13 +63,13 @@
     }
     
     .glass-card {
-      background: rgba(12, 12, 16, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(13, 13, 18, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.45);
+      border-color: rgba(255, 255, 255, 0.35);
     }
 
     /* افکت گلو برای آیکون‌ها */
@@ -149,7 +157,7 @@
   </div>
 
   <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/10 bg-black/75">
+  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/10 bg-black/75">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
         <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
@@ -310,7 +318,7 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= بخش سبک‌های تامنیل و محصولات (باکس‌ها و آیکون‌های درشت‌تر) ================= -->
+  <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
     
     <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم در دسکتاپ -->
@@ -374,35 +382,53 @@
       </div>
     </div>
 
-    <!-- بخش محصولات (۱۰۰٪ اختصاصی فقط در زبان فارسی) -->
+    <!-- بخش محصولات (قیمت‌ها و دکمه‌ها در یک خط و کاملاً تراز) -->
     <div id="content-products" class="hidden space-y-6 transition-all duration-500">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
         
         <!-- دوره موبایل -->
-        <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl">
-          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
-            <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
+        <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl flex flex-col justify-between h-full">
+          <div class="flex-1 flex flex-col">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+              <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+              <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
+            </div>
+            <!-- عنوان با ارتفاع ثابت برای تراز شدن قیمت‌ها -->
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition min-h-[3.8rem] flex items-center">
+              دوره طراحی تامنیل با موبایل
+            </h3>
+            <!-- توضیحات با ارتفاع مشخص -->
+            <p class="text-sm text-neutral-400 mb-6 line-clamp-2 min-h-[2.5rem]">
+              یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.
+            </p>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">دوره طراحی تامنیل با موبایل</h3>
-          <p class="text-sm text-neutral-400 mb-4 line-clamp-2">یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.</p>
-          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+          <!-- فوتر کارت فیکس در یک خط -->
+          <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
             <span class="font-extrabold text-lg text-white">۱,۴۴۷,۰۰۰ تومان</span>
-            <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
+            <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition flex items-center gap-1">مشاهده توضیحات و خرید ←</span>
           </div>
         </div>
 
         <!-- جعبه ابزار -->
-        <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl">
-          <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
-            <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-            <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
+        <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl flex flex-col justify-between h-full">
+          <div class="flex-1 flex flex-col">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+              <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+              <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
+            </div>
+            <!-- عنوان با ارتفاع ثابت برای تراز شدن قیمت‌ها -->
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition min-h-[3.8rem] flex items-center">
+              پکیج Magic Tools (جعبه ابزار جادویی)
+            </h3>
+            <!-- توضیحات با ارتفاع مشخص -->
+            <p class="text-sm text-neutral-400 mb-6 line-clamp-2 min-h-[2.5rem]">
+              بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.
+            </p>
           </div>
-          <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition">پکیج Magic Tools (جعبه ابزار جادویی)</h3>
-          <p class="text-sm text-neutral-400 mb-4 line-clamp-2">بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.</p>
-          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+          <!-- فوتر کارت فیکس در یک خط -->
+          <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
             <span class="font-extrabold text-lg text-white">۸۴۸,۰۰۰ تومان</span>
-            <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition">مشاهده توضیحات و خرید ←</span>
+            <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition flex items-center gap-1">مشاهده توضیحات و خرید ←</span>
           </div>
         </div>
 
@@ -416,7 +442,7 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= پاپ‌آپ بلر محصولات ================= -->
+  <!-- ================= پاپ‌آپ توضیحات محصول (گام اول) ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
       <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-lg">✕</button>
@@ -433,10 +459,57 @@
           <span class="text-xs text-neutral-400 block">قیمت نهایی:</span>
           <span id="modal-price" class="text-xl font-extrabold text-white"></span>
         </div>
-        <a id="modal-buy-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-8 py-3 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-center text-sm">
-          خرید (تلگرام)
-        </a>
+        <!-- دکمه ورود به مرحله پرداخت -->
+        <button onclick="goToPaymentStep()" class="w-full sm:w-auto px-9 py-3.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-center text-sm shadow-xl">
+          ثبت سفارش
+        </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت (گام دوم - الهام‌گرفته از عکس ارسالی) ================= -->
+  <div id="payment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-amber-500/30 shadow-[0_0_50px_rgba(245,158,11,0.15)] relative max-h-[90vh] overflow-y-auto">
+      <!-- دکمه بستن -->
+      <button onclick="closePaymentModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-sm">✕</button>
+
+      <!-- تیتر و راهنما -->
+      <div class="text-center mb-6">
+        <h3 class="text-xl sm:text-2xl font-black text-white glow-text-white mb-1.5">اطلاعات واریز وجه</h3>
+        <p class="text-xs sm:text-sm text-neutral-400">مبلغ را کارت به کارت کرده و رسید را ارسال کنید</p>
+      </div>
+
+      <!-- برچسب محصول و قیمت -->
+      <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/25 mb-5 flex items-center justify-between">
+        <span id="pay-product-name" class="font-bold text-xs sm:text-sm text-neutral-200 truncate max-w-[200px]"></span>
+        <span id="pay-product-price" class="font-black text-amber-400 text-sm sm:text-base"></span>
+      </div>
+
+      <!-- باکس شماره کارت -->
+      <div class="p-5 rounded-2xl bg-black/60 border border-white/15 mb-5 relative">
+        <div class="flex items-center justify-between mb-3">
+          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-3.5 py-1.5 rounded-lg font-bold text-xs bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-black transition border border-amber-500/40">
+            کپی کارت
+          </button>
+          <span class="selectable-text text-lg sm:text-xl font-black tracking-widest text-white" dir="ltr">
+            6104 3387 0203 7264
+          </span>
+        </div>
+        <div class="flex items-center justify-between text-xs text-neutral-400 pt-2 border-t border-white/10">
+          <span>صاحب حساب:</span>
+          <span class="font-bold text-white">ایلیا لطف یاسوری</span>
+        </div>
+      </div>
+
+      <!-- متن راهنما -->
+      <p class="text-xs text-neutral-400 leading-relaxed text-center mb-6 px-1">
+        بعد از پرداخت، لطفاً تصویر فیش واریزی را به همراه آیدی خود به پشتیبانی ارسال کنید تا سفارش شما سریعاً ثبت و اعمال شود.
+      </p>
+
+      <!-- دکمه ارسال رسید به تلگرام -->
+      <a id="pay-telegram-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full py-4 rounded-xl font-black bg-amber-400 hover:bg-amber-300 text-black text-center text-sm sm:text-base transition duration-300 shadow-[0_0_25px_rgba(251,191,36,0.3)] block">
+        ارسال رسید در تلگرام
+      </a>
     </div>
   </div>
 
@@ -563,7 +636,7 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= فوتر (فیکس‌شده برای موبایل و تک‌خطی در تمام صفحات) ================= -->
+  <!-- ================= فوتر ================= -->
   <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-5xl mx-auto">
       
@@ -590,61 +663,87 @@
     </div>
   </footer>
 
-  <!-- ================= جاوااسکریپت ================= -->
+  <!-- ================= جاوااسکریپت کامل ================= -->
   <script>
-    // ================= سیستم مدیریت دکمه بازگشت (Back Button / Gesture Handler) =================
-    let scrollStatePushed = false;
+    // نگه‌داری اطلاعات محصول فعال برای انتقال به درگاه پرداخت
+    let activeProductKey = 'course';
 
-    // ثبت وضعیت اولیه صفحه در تاریخچه مرورگر
+    // ================= سیستم جدید و تضمینی مدیریت بازگشت (Back Button) =================
+    // ایجاد تاریخچه‌ی پایدار تا مرورگر در هیچ شرایطی مستقیماً از سایت خارج نشود
     if (window.history && window.history.replaceState) {
-      window.history.replaceState({ step: 'home' }, '');
+      window.history.replaceState({ page: 'home', depth: 0 }, '');
+      window.history.pushState({ page: 'app', depth: 1 }, '');
     }
 
-    // گوش دادن به اسکرول برای بازگشت هوشمند به بالای صفحه با دکمه Back
+    function registerHistoryStep() {
+      history.pushState({ page: 'action', depth: history.length + 1 }, '');
+    }
+
+    // بررسی اسکرول
+    let scrollTrapped = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300 && !scrollStatePushed) {
-        scrollStatePushed = true;
-        history.pushState({ step: 'scrolled' }, '');
+      if (window.scrollY > 300 && !scrollTrapped) {
+        scrollTrapped = true;
+        registerHistoryStep();
       } else if (window.scrollY < 80) {
-        scrollStatePushed = false;
+        scrollTrapped = false;
       }
     }, { passive: true });
 
-    // مدیریت رویداد بازگشت با دکمه Back (موبایل و کامپیوتر)
+    // لیسنر دکمه بک در گوشی، ماوس و کیبورد
     window.addEventListener('popstate', (e) => {
-      // ۱. اگر پاپ‌آپ محصول باز است، بسته شود
-      const modal = document.getElementById('product-modal');
-      if (modal && !modal.classList.contains('hidden')) {
-        modal.classList.add('hidden');
+      // همیشه یک بافر ایجاد کن تا دکمه بک باعث خروج ناگهانی نشود
+      const payModal = document.getElementById('payment-modal');
+      const prodModal = document.getElementById('product-modal');
+      const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
+
+      // ۱. اگر پنجره کارت به کارت باز است -> بسته شود و پنجره قبلی دیده شود
+      if (payModal && !payModal.classList.contains('hidden')) {
+        payModal.classList.add('hidden');
+        if (prodModal) prodModal.classList.remove('hidden');
+        registerHistoryStep();
         return;
       }
 
-      // ۲. اگر پاسخی در سوالات متداول باز است، بسته شود
-      const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
+      // ۲. اگر پنجره توضیحات محصول باز است -> بسته شود
+      if (prodModal && !prodModal.classList.contains('hidden')) {
+        prodModal.classList.add('hidden');
+        registerHistoryStep();
+        return;
+      }
+
+      // ۳. اگر پاسخی در FAQ باز است -> بسته شود
       if (anyFaqOpen) {
         document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
         document.querySelectorAll('[id^="faq-icon-"]').forEach(icon => icon.style.transform = 'rotate(0deg)');
+        registerHistoryStep();
         return;
       }
 
-      // ۳. اگر تب تامنیل‌ها یا محصولات در فارسی باز است، بسته شود
+      // ۴. اگر تب تامنیل یا محصولات در فارسی باز است -> بسته شود
       if (activeTab !== null) {
         toggleMainTab(activeTab);
+        registerHistoryStep();
         return;
       }
 
-      // ۴. اگر دکمه تامنیل‌های بیشتر در انگلیسی باز است، بسته شود
+      // ۵. اگر دکمه More Thumbnails در انگلیسی باز است -> بسته شود
       if (isEnArOpen) {
         toggleEnArThumbs();
+        registerHistoryStep();
         return;
       }
 
-      // ۵. اگر کاربر پایین صفحه است، به بالای سایت اسکرول کند
+      // ۶. اگر در پایین صفحه اسکرول کرده -> به بالای سایت برود
       if (window.scrollY > 150) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        scrollStatePushed = false;
+        scrollTrapped = false;
+        registerHistoryStep();
         return;
       }
+
+      // ۷. اگر در بالاترین نقطه است و همه چیز بسته است، اجازه خروج طبیعی داده می‌شود
+      history.back();
     });
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -703,9 +802,8 @@
         return;
       }
 
-      // ثبت مرحله در تاریخچه برای بازگشت با دکمه Back
       if (activeTab === null) {
-        history.pushState({ step: 'tab' }, '');
+        registerHistoryStep();
       }
 
       activeTab = tab;
@@ -738,7 +836,7 @@
         thumbsCont.classList.remove('hidden');
         btn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
         if (arrow) arrow.style.transform = "rotate(180deg)";
-        history.pushState({ step: 'thumbs' }, '');
+        registerHistoryStep();
       } else {
         thumbsCont.classList.add('hidden');
         btn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
@@ -762,17 +860,17 @@
       if (!isAlreadyOpen) {
         targetAns.classList.remove('hidden');
         if (targetIcon) targetIcon.style.transform = "rotate(45deg)";
-        history.pushState({ step: 'faq' }, '');
+        registerHistoryStep();
       }
     }
 
-    // پاپ‌آپ و خرید تلگرام
+    // ================= اطلاعات محصولات و سیستم پرداخت =================
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
         img: 'course.jpg',
         price: '۱,۴۴۷,۰۰۰ تومان',
-        tgMsg: 'سلام ایلیا جان، برای ثبت نام در دوره طراحی تامنیل با موبایل پیام میدم',
+        tgMsg: 'سلام ایلیا جان، فیش واریزی برای دوره طراحی تامنیل با موبایل رو ارسال می‌کنم:',
         body: `
           <p class="font-bold text-white mb-2">یادگیری طراحی فوق‌حرفه‌ای تامنیل و ورود مستقیم به بازار کار کسب درآمد دلاری و ریالی فقط با یک گوشی موبایل!</p>
           <div class="space-y-1.5 pt-2">
@@ -791,7 +889,7 @@
         title: 'پکیج Magic Tools (جعبه ابزار جادویی)',
         img: 'tools.jpg',
         price: '۸۴۸,۰۰۰ تومان',
-        tgMsg: 'سلام ایلیا جان، برای خرید پکیج ابزار Magic Tools پیام میدم',
+        tgMsg: 'سلام ایلیا جان، فیش واریزی برای پکیج ابزار Magic Tools رو ارسال می‌کنم:',
         body: `
           <p class="font-bold text-white mb-2">کامل‌ترین بانک منابع گرافیکی تامنیل با بیش از ۵۰,۰۰۰ فایل فوق‌العاده باکیفیت و بیش از ۵۰ گیگابایت محتوا!</p>
           <div class="space-y-1.5 pt-2">
@@ -809,22 +907,52 @@
     };
 
     function openProductModal(key) {
+      activeProductKey = key;
       const p = productsData[key];
       document.getElementById('modal-img').src = p.img;
       document.getElementById('modal-title').innerText = p.title;
       document.getElementById('modal-body').innerHTML = p.body;
       document.getElementById('modal-price').innerText = p.price;
-      document.getElementById('modal-buy-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
       document.getElementById('product-modal').classList.remove('hidden');
-      // ثبت مرحله در تاریخچه برای بازگشت با دکمه Back
-      history.pushState({ step: 'modal' }, '');
+      registerHistoryStep();
     }
 
     function closeProductModal() {
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // دیکشنری زبان‌ها: فقط فارسی و انگلیسی
+    // باز کردن پنجره واریز وجه (کارت به کارت)
+    function goToPaymentStep() {
+      const p = productsData[activeProductKey];
+      document.getElementById('pay-product-name').innerText = p.title;
+      document.getElementById('pay-product-price').innerText = p.price;
+      document.getElementById('pay-telegram-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
+      
+      document.getElementById('product-modal').classList.add('hidden');
+      document.getElementById('payment-modal').classList.remove('hidden');
+      registerHistoryStep();
+    }
+
+    function closePaymentModal() {
+      document.getElementById('payment-modal').classList.add('hidden');
+    }
+
+    // کپی آسان شماره کارت در کلیپ‌بورد
+    function copyCardNumber() {
+      const cardNum = '6104338702037264';
+      navigator.clipboard.writeText(cardNum).then(() => {
+        const btn = document.getElementById('copy-card-btn');
+        const orig = btn.innerText;
+        btn.innerText = 'کپی شد! ✓';
+        btn.classList.add('bg-amber-400', 'text-black');
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.classList.remove('bg-amber-400', 'text-black');
+        }, 2000);
+      });
+    }
+
+    // دیکشنری زبان‌ها
     const translations = {
       fa: {
         dir: 'rtl',
@@ -986,7 +1114,6 @@
       document.getElementById('about-line-1').innerText = t.aboutLine1;
       document.getElementById('about-line-2').innerText = t.aboutLine2;
 
-      // ترجمه متون FAQ و دکمه‌های سوال ۱
       document.getElementById('faq-badge').innerText = t.faqBadge;
       document.getElementById('faq-title').innerText = t.faqTitle;
       document.getElementById('faq-subtitle').innerText = t.faqSubtitle;
@@ -1021,7 +1148,6 @@
       });
     }
 
-    // سیستم هوشمند تشخیص آی‌پی و زبان سیستم (فقط فارسی و انگلیسی)
     async function detectUserLanguage() {
       const savedLang = localStorage.getItem('magic_user_lang');
       if (savedLang && ['fa', 'en'].includes(savedLang)) {
