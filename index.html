@@ -42,11 +42,11 @@
       user-select: text !important;
     }
 
-    /* تم کاملاً مشکی و سفید خالص */
+    /* تم یک پرده تیره‌تر و دارک */
     body {
       font-family: 'Peyda', sans-serif;
       font-weight: 600;
-      background-color: #050508;
+      background-color: #030305;
     }
     html[lang="en"] body {
       font-family: 'Kalam', cursive;
@@ -63,16 +63,15 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
     }
     
-    /* گلس‌مورفیسم شفاف‌تر و شیشه‌ای هماهنگ با تم سفید-مشکی */
     .glass-card {
-      background: rgba(18, 18, 22, 0.65);
+      background: rgba(14, 14, 18, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.35);
     }
 
     /* افکت گلو برای آیکون‌ها */
@@ -85,7 +84,7 @@
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* انیمیشن حرکت گرید متحرک رو به پایین با سرعت تندتر و پرانرژی */
+    /* حرکت گرید متحرک رو به پایین */
     @keyframes move-grid-down {
       0% {
         background-position: 0 0;
@@ -97,10 +96,10 @@
 
     .animated-grid {
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.065) 1px, transparent 1px);
       background-size: 32px 32px;
-      animation: move-grid-down 4.5s linear infinite; /* سرعت روان‌تر و تندتر */
+      animation: move-grid-down 4.5s linear infinite;
       will-change: background-position;
     }
 
@@ -111,7 +110,7 @@
     .section-divider {
       height: 1px;
       width: 100%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.04) 70%, transparent 100%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
     }
 
     /* انیمیشن‌های اسلایدر تامنیل‌ها */
@@ -148,20 +147,19 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند مشکی خالص + تکسچر گرید متحرک + هاله‌های سفید پرنور ================= -->
-  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#050508]">
+  <!-- ================= بک‌گراند دارک یک پرده تیره‌تر + تکسچر گرید متحرک + هاله‌های ملایم ================= -->
+  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#030305]">
     <div class="absolute inset-0 w-full h-full animated-grid"></div>
-    <!-- هاله‌های نوری سفید قوی‌تر و روشن‌تر طبق درخواست -->
-    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.14] blur-[130px]"></div>
-    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full bg-white/[0.10] blur-[130px]"></div>
-    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full bg-white/[0.10] blur-[140px]"></div>
-    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.12] blur-[130px]"></div>
-    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.05]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050508_92%)]"></div>
+    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.09] blur-[130px]"></div>
+    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full bg-white/[0.07] blur-[130px]"></div>
+    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full bg-white/[0.07] blur-[140px]"></div>
+    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[130px]"></div>
+    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.04]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#030305_94%)]"></div>
   </div>
 
   <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
-  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/15 bg-black/75">
+  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/10 bg-[#030305]/85">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
         <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
@@ -203,8 +201,8 @@
     </p>
 
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden" dir="ltr">
-      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#030305] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#030305] to-transparent"></div>
 
       <div class="animate-creators-right flex items-center gap-4 sm:gap-6 py-2">
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
@@ -235,8 +233,8 @@
 
   <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
   <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
-    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
-    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
+    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#030305] to-transparent"></div>
+    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#030305] to-transparent"></div>
 
     <!-- اسلایدر اول -->
     <div class="w-full overflow-hidden flex">
@@ -442,26 +440,26 @@
 
   <!-- ================= پاپ‌آپ توضیحات محصول (تک‌صفحه بدون اسکرول در موبایل + گلس‌مورفیسم خالص) ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md transition-opacity">
-    <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-7 max-w-md w-full border border-white/25 glow-box-white relative max-h-[96vh] flex flex-col justify-between shadow-2xl">
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-sm sm:max-w-md w-full border border-white/25 glow-box-white relative max-h-[96vh] flex flex-col justify-between shadow-2xl">
       <!-- دکمه بستن -->
       <button onclick="closeProductModal()" class="absolute top-3 left-3 w-8 h-8 rounded-full glass-card border border-white/25 flex items-center justify-center text-neutral-300 hover:text-white transition text-base z-10 shadow">✕</button>
 
       <!-- تصویر مربعی فشرده مخصوص موبایل -->
-      <div class="w-24 h-24 sm:w-36 sm:h-36 mx-auto aspect-square rounded-xl overflow-hidden mb-2 sm:mb-3 border border-white/20 shadow-lg flex-shrink-0">
+      <div class="w-20 h-20 sm:w-32 sm:h-32 mx-auto aspect-square rounded-xl overflow-hidden mb-2 sm:mb-2.5 border border-white/20 shadow-lg flex-shrink-0">
         <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
       </div>
 
       <!-- عنوان و توضیحات خلاصه و فشرده -->
-      <h3 id="modal-title" class="text-sm sm:text-lg font-black mb-1 glow-text-white text-center"></h3>
-      <div id="modal-body" class="text-neutral-200 text-xs sm:text-sm leading-relaxed mb-2"></div>
+      <h3 id="modal-title" class="text-xs sm:text-base font-black mb-1 glow-text-white text-center"></h3>
+      <div id="modal-body" class="text-neutral-200 text-[11px] sm:text-xs leading-relaxed mb-2"></div>
 
       <!-- قیمت و دکمه ثبت سفارش در انتهای پاپ‌آپ بدون اسکرول -->
-      <div class="pt-3 border-t border-white/15 flex items-center justify-between gap-3 mt-auto">
+      <div class="pt-2.5 sm:pt-3 border-t border-white/15 flex items-center justify-between gap-3 mt-auto">
         <div>
-          <span class="text-[10px] sm:text-xs text-neutral-400 block">قیمت نهایی:</span>
-          <span id="modal-price" class="text-sm sm:text-base font-black text-white"></span>
+          <span class="text-[9px] sm:text-[11px] text-neutral-400 block">قیمت نهایی:</span>
+          <span id="modal-price" class="text-xs sm:text-sm font-black text-white"></span>
         </div>
-        <button onclick="goToPaymentStep()" class="px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-xs sm:text-sm shadow-xl border border-white/30 flex-shrink-0">
+        <button onclick="goToPaymentStep()" class="px-5 sm:px-7 py-2 sm:py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-xs sm:text-sm shadow-xl border border-white/30 flex-shrink-0">
           ثبت سفارش
         </button>
       </div>
@@ -484,13 +482,13 @@
         <span id="pay-product-price" class="font-extrabold text-white text-xs sm:text-sm flex-shrink-0"></span>
       </div>
 
-      <!-- باکس شماره کارت: ۱۰۰٪ در یک خط با دکمه کپی -->
-      <div class="p-5 rounded-2xl bg-black/50 border border-white/15 mb-5 relative">
-        <div class="flex items-center justify-between gap-2 mb-3">
-          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl font-bold text-xs bg-white text-black hover:bg-neutral-200 transition flex-shrink-0 shadow border border-white/20">
-            کپی کارت
+      <!-- باکس شماره کارت: ۱۰۰٪ در یک خط با دکمه کپی شماره کارت و ارقام بدون شکستگی -->
+      <div class="p-4 sm:p-5 rounded-2xl bg-black/60 border border-white/15 mb-5 relative">
+        <div class="flex items-center justify-between gap-1.5 sm:gap-2 mb-3">
+          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-2 sm:px-3 py-1.5 rounded-xl font-bold text-[11px] min-[360px]:text-xs bg-white text-black hover:bg-neutral-200 transition flex-shrink-0 shadow border border-white/20 whitespace-nowrap">
+            کپی شماره کارت
           </button>
-          <span class="selectable-text text-[15px] min-[380px]:text-base sm:text-lg font-black tracking-wider text-white whitespace-nowrap" dir="ltr">
+          <span class="selectable-text text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-lg font-black tracking-wider text-white whitespace-nowrap" dir="ltr">
             6104 3387 0203 7264
           </span>
         </div>
@@ -822,7 +820,7 @@
       }
     }
 
-    // ================= اطلاعات محصولات (تک‌صفحه‌ای بدون اسکرول در موبایل و حذف آیکون‌های رنگی) =================
+    // ================= اطلاعات محصولات (تک‌صفحه‌ای بدون اسکرول و حذف آیکون‌های رنگی) =================
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل',
@@ -852,7 +850,7 @@
         body: `
           <p class="font-bold text-white mb-2 text-center text-xs sm:text-sm">کامل‌ترین بانک منابع گرافیکی با +۵۰,۰۰۰ فایل و ۵۰ گیگابایت محتوا!</p>
           <div class="space-y-1 text-xs sm:text-[13px] text-neutral-300 py-1">
-            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۱۰,۰۰۰ بک‌گراند در تمامی سبک‌های محبوب</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۱۰,۰۰۰ بک‌گراند در تمامی سبک‌های پرطرفدار</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۳,۰۰۰ سوژه باکیفیت از یوتیوبرهای معروف</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲۰,۰۰۰ عنصر، افکت و ترنزیشن کاربردی</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲,۰۰۰ استایل متنی سه‌بعدی روسی و ترند</p>
@@ -893,18 +891,47 @@
       document.getElementById('payment-modal').classList.add('hidden');
     }
 
+    // تابع کپی شماره کارت با پشتیبانی ۱۰۰٪ تضمینی حتی روی سایت‌های بدون SSL (HTTP)
     function copyCardNumber() {
       const cardNum = '6104338702037264';
-      navigator.clipboard.writeText(cardNum).then(() => {
-        const btn = document.getElementById('copy-card-btn');
-        const orig = btn.innerText;
+      const btn = document.getElementById('copy-card-btn');
+      const origText = 'کپی شماره کارت';
+
+      function showSuccess() {
         btn.innerText = 'کپی شد! ✓';
         btn.classList.add('bg-white', 'text-black');
         setTimeout(() => {
-          btn.innerText = orig;
+          btn.innerText = origText;
           btn.classList.remove('bg-white', 'text-black');
         }, 2000);
-      });
+      }
+
+      // روش استاندارد و روش Fallback برای پوشش تمام دستگاه‌ها
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(cardNum).then(showSuccess).catch(() => {
+          fallbackCopyText(cardNum, showSuccess);
+        });
+      } else {
+        fallbackCopyText(cardNum, showSuccess);
+      }
+    }
+
+    function fallbackCopyText(text, callback) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        callback();
+      } catch (err) {
+        prompt('شماره کارت جهت کپی:', text);
+      }
+      document.body.removeChild(textArea);
     }
 
     const translations = {
@@ -1133,4 +1160,4 @@
     }
   </script>
 </body>
-</html>
+          </html>
