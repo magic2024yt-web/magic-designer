@@ -42,10 +42,11 @@
       user-select: text !important;
     }
 
+    /* تم کاملاً مشکی و سفید خالص */
     body {
       font-family: 'Peyda', sans-serif;
       font-weight: 600;
-      background-color: #0d0f18; /* طوسی ذغالی مدرن به جای سیاه مطلق */
+      background-color: #050508;
     }
     html[lang="en"] body {
       font-family: 'Kalam', cursive;
@@ -62,17 +63,16 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
     }
     
-    /* استایل گلس‌مورفیسم شیشه‌ای‌تر و پرنور با حاشیه‌های ظریف */
+    /* گلس‌مورفیسم شفاف‌تر و شیشه‌ای هماهنگ با تم سفید-مشکی */
     .glass-card {
-      background: rgba(20, 24, 38, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      background: rgba(18, 18, 22, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
     .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.45);
-      background: rgba(26, 31, 48, 0.82);
+      border-color: rgba(255, 255, 255, 0.4);
     }
 
     /* افکت گلو برای آیکون‌ها */
@@ -85,7 +85,7 @@
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* انیمیشن حرکت آرام گرید رو به پایین - خطوط واضح‌تر */
+    /* انیمیشن حرکت گرید متحرک رو به پایین با سرعت تندتر و پرانرژی */
     @keyframes move-grid-down {
       0% {
         background-position: 0 0;
@@ -97,15 +97,15 @@
 
     .animated-grid {
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.11) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.11) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
       background-size: 32px 32px;
-      animation: move-grid-down 8s linear infinite;
+      animation: move-grid-down 4.5s linear infinite; /* سرعت روان‌تر و تندتر */
       will-change: background-position;
     }
 
     .noise-overlay {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
     }
 
     .section-divider {
@@ -148,23 +148,23 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند تکسچر گرید متحرک واضح + نویز + هاله‌های سفید ================= -->
-  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#0d0f18]">
+  <!-- ================= بک‌گراند مشکی خالص + تکسچر گرید متحرک + هاله‌های سفید پرنور ================= -->
+  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#050508]">
     <div class="absolute inset-0 w-full h-full animated-grid"></div>
-    <!-- هاله‌های نوری روشن‌تر و عمیق‌تر -->
-    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.12] blur-[140px]"></div>
-    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[140px]"></div>
-    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full bg-white/[0.08] blur-[150px]"></div>
-    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.10] blur-[140px]"></div>
-    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.06]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#0d0f18_95%)]"></div>
+    <!-- هاله‌های نوری سفید قوی‌تر و روشن‌تر طبق درخواست -->
+    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.14] blur-[130px]"></div>
+    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full bg-white/[0.10] blur-[130px]"></div>
+    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full bg-white/[0.10] blur-[140px]"></div>
+    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.12] blur-[130px]"></div>
+    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.05]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050508_92%)]"></div>
   </div>
 
   <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
-  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/15 bg-[#0d0f18]/80">
+  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/15 bg-black/75">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
-        <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black/60 transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
+        <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
           <img src="logo.png" alt="Magic Designer Logo" class="w-full h-full object-contain rounded-md" decoding="async">
         </div>
         <span class="font-handwriting text-2xl sm:text-3xl font-bold tracking-wider text-white whitespace-nowrap group-hover:glow-text-white transition duration-300">
@@ -172,8 +172,8 @@
         </span>
       </a>
 
-      <!-- سوییچر زبان FA / EN با کادر مشخص -->
-      <div class="flex items-center glass-card rounded-full p-1 border border-white/25 text-xs sm:text-sm" dir="ltr">
+      <!-- سوییچر زبان FA / EN -->
+      <div class="flex items-center glass-card rounded-full p-1 border border-white/20 text-xs sm:text-sm" dir="ltr">
         <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black shadow-md">
           FA
         </button>
@@ -186,7 +186,7 @@
 
   <!-- ================= تیتر اصلی ================= -->
   <section class="pt-24 sm:pt-28 md:pt-32 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/25 shadow-lg">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
       <span id="txt-badge">بازدید هاتو منفجر کن !</span>
     </div>
@@ -203,8 +203,8 @@
     </p>
 
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden" dir="ltr">
-      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#0d0f18] to-transparent"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#0d0f18] to-transparent"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
       <div class="animate-creators-right flex items-center gap-4 sm:gap-6 py-2">
         <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
@@ -235,8 +235,8 @@
 
   <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
   <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
-    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#0d0f18] to-transparent"></div>
-    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#0d0f18] to-transparent"></div>
+    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
+    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
 
     <!-- اسلایدر اول -->
     <div class="w-full overflow-hidden flex">
@@ -440,31 +440,35 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= پاپ‌آپ توضیحات محصول (گام اول) ================= -->
-  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
-    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition text-lg">✕</button>
+  <!-- ================= پاپ‌آپ توضیحات محصول (تک‌صفحه بدون اسکرول در موبایل + گلس‌مورفیسم خالص) ================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md transition-opacity">
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-7 max-w-md w-full border border-white/25 glow-box-white relative max-h-[96vh] flex flex-col justify-between shadow-2xl">
+      <!-- دکمه بستن -->
+      <button onclick="closeProductModal()" class="absolute top-3 left-3 w-8 h-8 rounded-full glass-card border border-white/25 flex items-center justify-center text-neutral-300 hover:text-white transition text-base z-10 shadow">✕</button>
 
-      <div class="w-48 h-48 sm:w-60 sm:h-60 mx-auto aspect-square rounded-2xl overflow-hidden mb-5 border border-white/20 shadow-xl">
+      <!-- تصویر مربعی فشرده مخصوص موبایل -->
+      <div class="w-24 h-24 sm:w-36 sm:h-36 mx-auto aspect-square rounded-xl overflow-hidden mb-2 sm:mb-3 border border-white/20 shadow-lg flex-shrink-0">
         <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
       </div>
 
-      <h3 id="modal-title" class="text-xl sm:text-2xl font-black mb-3 glow-text-white text-center sm:text-start"></h3>
-      <div id="modal-body" class="text-neutral-200 text-sm leading-relaxed space-y-3 mb-6"></div>
+      <!-- عنوان و توضیحات خلاصه و فشرده -->
+      <h3 id="modal-title" class="text-sm sm:text-lg font-black mb-1 glow-text-white text-center"></h3>
+      <div id="modal-body" class="text-neutral-200 text-xs sm:text-sm leading-relaxed mb-2"></div>
 
-      <div class="pt-4 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <!-- قیمت و دکمه ثبت سفارش در انتهای پاپ‌آپ بدون اسکرول -->
+      <div class="pt-3 border-t border-white/15 flex items-center justify-between gap-3 mt-auto">
         <div>
-          <span class="text-xs text-neutral-400 block">قیمت نهایی:</span>
-          <span id="modal-price" class="text-xl font-extrabold text-white"></span>
+          <span class="text-[10px] sm:text-xs text-neutral-400 block">قیمت نهایی:</span>
+          <span id="modal-price" class="text-sm sm:text-base font-black text-white"></span>
         </div>
-        <button onclick="goToPaymentStep()" class="w-full sm:w-auto px-9 py-3.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-center text-sm shadow-xl border border-white/30">
+        <button onclick="goToPaymentStep()" class="px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-xs sm:text-sm shadow-xl border border-white/30 flex-shrink-0">
           ثبت سفارش
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت ================= -->
+  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت (تم سفید و مشکی + فیکس یک‌خطی) ================= -->
   <div id="payment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/25 glow-box-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <button onclick="closePaymentModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition text-sm">✕</button>
@@ -630,7 +634,7 @@
   </div>
 
   <!-- ================= فوتر ================= -->
-  <footer id="contact" class="border-t border-white/15 bg-[#0d0f18]/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
+  <footer id="contact" class="border-t border-white/15 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-5xl mx-auto">
       
       <h2 id="footer-title" class="text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight text-center px-1">
@@ -661,20 +665,16 @@
     let activeProductKey = 'course';
 
     // ================= سیستم قفل کامل بازگشت (Never-Exit Back Button Trap) =================
-    // جلوگیری قطعی از خروج ناگهانی از سایت
     function trapHistory() {
       window.history.pushState({ page: 'trap' }, '', window.location.href);
     }
 
-    // مقداردهی اولیه تاریخچه
     window.history.replaceState({ page: 'root' }, '', window.location.href);
     trapHistory();
 
     window.addEventListener('popstate', function(e) {
-      // شارژ مجدد پشته تاریخچه تا مرورگر هیچ‌وقت صفحه را نبندد
       trapHistory();
 
-      // ۱. اگر پنجره کارت به کارت باز است -> به توضیحات محصول برگردد
       const payModal = document.getElementById('payment-modal');
       const prodModal = document.getElementById('product-modal');
       if (payModal && !payModal.classList.contains('hidden')) {
@@ -683,13 +683,11 @@
         return;
       }
 
-      // ۲. اگر پنجره توضیحات محصول باز است -> بسته شود
       if (prodModal && !prodModal.classList.contains('hidden')) {
         prodModal.classList.add('hidden');
         return;
       }
 
-      // ۳. اگر پاسخی در FAQ باز است -> بسته شود
       const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
       if (anyFaqOpen) {
         document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
@@ -697,25 +695,21 @@
         return;
       }
 
-      // ۴. اگر تب تامنیل یا محصولات در فارسی باز است -> بسته شود
       if (activeTab !== null) {
         toggleMainTab(activeTab);
         return;
       }
 
-      // ۵. اگر دکمه More Thumbnails در انگلیسی باز است -> بسته شود
       if (typeof isEnArOpen !== 'undefined' && isEnArOpen) {
         toggleEnArThumbs();
         return;
       }
 
-      // ۶. اگر در پایین صفحه اسکرول کرده -> نرم به بالای سایت برود
       if (window.scrollY > 80) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
 
-      // اگر در بالای صفحه باشد، همان‌جا باقی بماند و از سایت خارج نشود
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -828,44 +822,44 @@
       }
     }
 
+    // ================= اطلاعات محصولات (تک‌صفحه‌ای بدون اسکرول در موبایل و حذف آیکون‌های رنگی) =================
     const productsData = {
       course: {
-        title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
+        title: 'دوره جامع طراحی تامنیل با موبایل',
         shortTitle: 'دوره طراحی تامنیل با موبایل',
         img: 'course.jpg',
         price: '۱,۴۴۷,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، فیش واریزی برای دوره طراحی تامنیل با موبایل رو ارسال می‌کنم:',
         body: `
-          <p class="font-bold text-white mb-2">یادگیری طراحی فوق‌حرفه‌ای تامنیل و ورود مستقیم به بازار کار کسب درآمد دلاری و ریالی فقط با یک گوشی موبایل!</p>
-          <div class="space-y-1.5 pt-2">
-            <p>🔹 <strong>فصل ۱:</strong> آشنایی کامل با محیط پیکس‌آرت (PicsArt)</p>
-            <p>🔹 <strong>فصل ۲:</strong> اصول، روانشناسی رنگ و تکنیک‌های طراحی تامنیل</p>
-            <p>🔹 <strong>فصل ۳:</strong> پیاده‌سازی گام‌به‌گام تامنیل‌های پرکلیک و ترند</p>
-            <p>🔹 <strong>فصل ۴:</strong> نقشه راه کسب درآمد، جذب کارفرما و استقلال مالی</p>
+          <p class="font-bold text-white mb-2 text-center text-xs sm:text-sm">یادگیری حرفه‌ای تامنیل و ورود به بازار کار دلاری و ریالی با موبایل!</p>
+          <div class="space-y-1 text-xs sm:text-[13px] text-neutral-300 py-1">
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۱:</strong> تسلط کامل به محیط پیکس‌آرت (PicsArt)</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۲:</strong> روانشناسی رنگ و اصول جذب کلیک</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۳:</strong> طراحی گام‌به‌گام تامنیل‌های ترند</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۴:</strong> نقشه راه کسب درآمد و جذب کارفرما</p>
           </div>
-          <div class="pt-3 border-t border-white/10 text-xs space-y-1 text-neutral-300">
-            <p>✔ دسترسی آسان در گروه موضوع‌بندی‌شده تلگرام</p>
-            <p>✔ پشتیبانی دائمی و مستقیم با خود بنده برای رفع اشکال</p>
+          <div class="pt-2 text-[11px] sm:text-xs text-neutral-400 text-center border-t border-white/10 mt-1">
+            ✔ دسترسی دائمی در تلگرام + پشتیبانی مستقیم نامحدود
           </div>
         `
       },
       tools: {
-        title: 'پکیج Magic Tools (جعبه ابزار جادویی)',
+        title: 'پکیج Magic Tools (جعبه ابزار)',
         shortTitle: 'پکیج Magic Tools',
         img: 'tools.jpg',
         price: '۸۴۸,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، فیش واریزی برای پکیج ابزار Magic Tools رو ارسال می‌کنم:',
         body: `
-          <p class="font-bold text-white mb-2">کامل‌ترین بانک منابع گرافیکی تامنیل با بیش از ۵۰,۰۰۰ فایل فوق‌العاده باکیفیت و بیش از ۵۰ گیگابایت محتوا!</p>
-          <div class="space-y-1.5 pt-2">
-            <p>⚡ ۱۰,۰۰۰+ بک‌گراند در تمامی سبک‌های محبوب</p>
-            <p>⚡ ۳,۰۰۰+ سوژه باکیفیت از معروف‌ترین یوتیوبرها</p>
-            <p>⚡ ۲۰,۰۰۰+ عنصر، افکت و ترنزیشن بصری کاربردی</p>
-            <p>⚡ ۲,۰۰۰+ استایل متنی سه‌بعدی ترند و روسی</p>
-            <p>⚡ معروف‌ترین فونت‌های پولی + نسخه مود شده برنامه‌ها</p>
+          <p class="font-bold text-white mb-2 text-center text-xs sm:text-sm">کامل‌ترین بانک منابع گرافیکی با +۵۰,۰۰۰ فایل و ۵۰ گیگابایت محتوا!</p>
+          <div class="space-y-1 text-xs sm:text-[13px] text-neutral-300 py-1">
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۱۰,۰۰۰ بک‌گراند در تمامی سبک‌های محبوب</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۳,۰۰۰ سوژه باکیفیت از یوتیوبرهای معروف</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲۰,۰۰۰ عنصر، افکت و ترنزیشن کاربردی</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲,۰۰۰ استایل متنی سه‌بعدی روسی و ترند</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>معروف‌ترین فونت‌های پولی + نسخه مود برنامه‌ها</p>
           </div>
-          <div class="pt-3 border-t border-white/10 text-xs text-neutral-300">
-            <p>✔ یک بار برای همیشه هزینه کن، دسترسی در تلگرام با آپدیت دائمی و مادام‌العمر!</p>
+          <div class="pt-2 text-[11px] sm:text-xs text-neutral-400 text-center border-t border-white/10 mt-1">
+            ✔ یک بار هزینه کن، دسترسی دائمی با آپدیت مادام‌العمر در تلگرام
           </div>
         `
       }
@@ -1139,4 +1133,4 @@
     }
   </script>
 </body>
-  </html>
+                            </html>
