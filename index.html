@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    /* جلوگیری کامل از به‌هم‌ریختگی افقی و اسکرول اضافه در موبایل */
+    /* جلوگیری از اسکرول اضافه افقی با بهینه‌ترین روش */
     html, body {
       overflow-x: clip;
       max-width: 100% !important;
@@ -24,7 +24,6 @@
       position: relative;
     }
 
-    /* غیرفعال کردن انتخاب و کپی شدن متون */
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -34,15 +33,12 @@
       box-sizing: border-box;
     }
 
-    /* فعال بودن کپی برای فیلدهای شماره کارت */
     .selectable-text {
       -webkit-user-select: text !important;
       -moz-user-select: text !important;
-      -ms-user-select: text !important;
       user-select: text !important;
     }
 
-    /* تم یک پرده تیره‌تر و دارک */
     body {
       font-family: 'Peyda', sans-serif;
       font-weight: 600;
@@ -63,35 +59,30 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
     }
     
+    /* استایل شیشه‌ای بهینه‌شده بدون افت فریم */
     .glass-card {
-      background: rgba(14, 14, 18, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(16, 16, 22, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     .glass-card:hover {
       border-color: rgba(255, 255, 255, 0.35);
     }
 
-    /* افکت گلو برای آیکون‌ها */
     .icon-glow {
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.35));
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
+      transition: transform 0.3s ease;
     }
     .group:hover .icon-glow {
-      filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 28px rgba(255, 255, 255, 0.6));
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* حرکت گرید متحرک رو به پایین */
+    /* حرکت گرید متحرک رو به پایین با شتاب‌دهنده گرافیکی (GPU بدون Repaint) */
     @keyframes move-grid-down {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 0 32px;
-      }
+      0% { transform: translate3d(0, -32px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
     }
 
     .animated-grid {
@@ -100,11 +91,7 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.065) 1px, transparent 1px);
       background-size: 32px 32px;
       animation: move-grid-down 4.5s linear infinite;
-      will-change: background-position;
-    }
-
-    .noise-overlay {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      will-change: transform;
     }
 
     .section-divider {
@@ -113,7 +100,7 @@
       background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
     }
 
-    /* انیمیشن‌های اسلایدر تامنیل‌ها */
+    /* انیمیشن‌های اسلایدر کاملاً روان و سبک */
     @keyframes marquee-left {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
@@ -127,35 +114,43 @@
       width: max-content;
       will-change: transform;
       animation: marquee-left 46s linear infinite;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
     }
     .animate-marquee-right {
       display: flex;
       width: max-content;
       will-change: transform;
       animation: marquee-right 46s linear infinite;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
     }
 
-    /* اسلایدر پروفایل یوتیوبرها: حرکت روان به سمت راست */
     .animate-creators-right {
       display: flex;
       width: max-content;
       will-change: transform;
       animation: marquee-right 28s linear infinite;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
     }
   </style>
 </head>
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند دارک یک پرده تیره‌تر + تکسچر گرید متحرک + هاله‌های ملایم ================= -->
+  <!-- ================= بک‌گراند دارک بهینه‌شده بدون لگ و افت فریم ================= -->
   <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#030305]">
-    <div class="absolute inset-0 w-full h-full animated-grid"></div>
-    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.09] blur-[130px]"></div>
-    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full bg-white/[0.07] blur-[130px]"></div>
-    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full bg-white/[0.07] blur-[140px]"></div>
-    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[130px]"></div>
-    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.04]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#030305_94%)]"></div>
+    <!-- گرید متحرک رو به پایین بر پایه Transform سخت‌افزاری -->
+    <div class="absolute -top-[32px] left-0 w-full h-[calc(100%+64px)] animated-grid"></div>
+    
+    <!-- هاله‌های نوری گرادیانتی (فوق‌العاده سریع بدون فشار پردازشی) -->
+    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);"></div>
+    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);"></div>
+    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);"></div>
+    
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#030305_94%)]"></div>
   </div>
 
   <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
@@ -231,7 +226,7 @@
     </div>
   </section>
 
-  <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
+  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (سبک‌شده بدون بلر مخرب) ================= -->
   <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
     <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#030305] to-transparent"></div>
     <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#030305] to-transparent"></div>
@@ -239,56 +234,56 @@
     <!-- اسلایدر اول -->
     <div class="w-full overflow-hidden flex">
       <div id="marquee-row-1" class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
 
         <!-- تکرار لوپ ۱ تا ۱۰ -->
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
     <!-- اسلایدر دوم -->
     <div class="w-full overflow-hidden flex">
       <div id="marquee-row-2" class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
 
         <!-- تکرار لوپ ۱۱ تا ۲۰ -->
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
-        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden glass-card flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -438,8 +433,8 @@
     <div class="section-divider"></div>
   </div>
 
-  <!-- ================= پاپ‌آپ توضیحات محصول (تک‌صفحه بدون اسکرول در موبایل + گلس‌مورفیسم خالص) ================= -->
-  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md transition-opacity">
+  <!-- ================= پاپ‌آپ توضیحات محصول (تک‌صفحه بدون اسکرول در موبایل + گلس‌مورفیسم شفاف) ================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-sm sm:max-w-md w-full border border-white/25 glow-box-white relative max-h-[96vh] flex flex-col justify-between shadow-2xl">
       <!-- دکمه بستن -->
       <button onclick="closeProductModal()" class="absolute top-3 left-3 w-8 h-8 rounded-full glass-card border border-white/25 flex items-center justify-center text-neutral-300 hover:text-white transition text-base z-10 shadow">✕</button>
@@ -820,7 +815,7 @@
       }
     }
 
-    // ================= اطلاعات محصولات (تک‌صفحه‌ای بدون اسکرول و حذف آیکون‌های رنگی) =================
+    // ================= اطلاعات پاپ‌آپ محصولات (کامپکت تک‌صفحه‌ای + نقاط درخشان سفید) =================
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل',
@@ -829,14 +824,14 @@
         price: '۱,۴۴۷,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، فیش واریزی برای دوره طراحی تامنیل با موبایل رو ارسال می‌کنم:',
         body: `
-          <p class="font-bold text-white mb-2 text-center text-xs sm:text-sm">یادگیری حرفه‌ای تامنیل و ورود به بازار کار دلاری و ریالی با موبایل!</p>
-          <div class="space-y-1 text-xs sm:text-[13px] text-neutral-300 py-1">
+          <p class="font-bold text-white mb-2 text-center text-xs">طراحی حرفه‌ای تامنیل و ورود به بازار کار دلاری و ریالی با موبایل!</p>
+          <div class="space-y-1 text-xs text-neutral-200 py-1">
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۱:</strong> تسلط کامل به محیط پیکس‌آرت (PicsArt)</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۲:</strong> روانشناسی رنگ و اصول جذب کلیک</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۳:</strong> طراحی گام‌به‌گام تامنیل‌های ترند</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۴:</strong> نقشه راه کسب درآمد و جذب کارفرما</p>
           </div>
-          <div class="pt-2 text-[11px] sm:text-xs text-neutral-400 text-center border-t border-white/10 mt-1">
+          <div class="pt-2 text-[11px] text-neutral-300 text-center border-t border-white/10 mt-1">
             ✔ دسترسی دائمی در تلگرام + پشتیبانی مستقیم نامحدود
           </div>
         `
@@ -848,15 +843,15 @@
         price: '۸۴۸,۰۰۰ تومان',
         tgMsg: 'سلام ایلیا جان، فیش واریزی برای پکیج ابزار Magic Tools رو ارسال می‌کنم:',
         body: `
-          <p class="font-bold text-white mb-2 text-center text-xs sm:text-sm">کامل‌ترین بانک منابع گرافیکی با +۵۰,۰۰۰ فایل و ۵۰ گیگابایت محتوا!</p>
-          <div class="space-y-1 text-xs sm:text-[13px] text-neutral-300 py-1">
-            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۱۰,۰۰۰ بک‌گراند در تمامی سبک‌های پرطرفدار</p>
+          <p class="font-bold text-white mb-2 text-center text-xs">کامل‌ترین بانک منابع گرافیکی با +۵۰,۰۰۰ فایل و ۵۰ گیگابایت محتوا!</p>
+          <div class="space-y-1 text-xs text-neutral-200 py-1">
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۱۰,۰۰۰ بک‌گراند در تمامی سبک‌های محبوب</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۳,۰۰۰ سوژه باکیفیت از یوتیوبرهای معروف</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲۰,۰۰۰ عنصر، افکت و ترنزیشن کاربردی</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲,۰۰۰ استایل متنی سه‌بعدی روسی و ترند</p>
             <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>معروف‌ترین فونت‌های پولی + نسخه مود برنامه‌ها</p>
           </div>
-          <div class="pt-2 text-[11px] sm:text-xs text-neutral-400 text-center border-t border-white/10 mt-1">
+          <div class="pt-2 text-[11px] text-neutral-300 text-center border-t border-white/10 mt-1">
             ✔ یک بار هزینه کن، دسترسی دائمی با آپدیت مادام‌العمر در تلگرام
           </div>
         `
@@ -891,7 +886,6 @@
       document.getElementById('payment-modal').classList.add('hidden');
     }
 
-    // تابع کپی شماره کارت با پشتیبانی ۱۰۰٪ تضمینی حتی روی سایت‌های بدون SSL (HTTP)
     function copyCardNumber() {
       const cardNum = '6104338702037264';
       const btn = document.getElementById('copy-card-btn');
@@ -906,7 +900,6 @@
         }, 2000);
       }
 
-      // روش استاندارد و روش Fallback برای پوشش تمام دستگاه‌ها
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(cardNum).then(showSuccess).catch(() => {
           fallbackCopyText(cardNum, showSuccess);
@@ -1160,4 +1153,4 @@
     }
   </script>
 </body>
-          </html>
+</html>
