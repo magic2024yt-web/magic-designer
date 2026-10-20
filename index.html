@@ -45,7 +45,7 @@
     body {
       font-family: 'Peyda', sans-serif;
       font-weight: 600;
-      background-color: #050508;
+      background-color: #0d0f18; /* طوسی ذغالی مدرن به جای سیاه مطلق */
     }
     html[lang="en"] body {
       font-family: 'Kalam', cursive;
@@ -62,19 +62,22 @@
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
     }
     
+    /* استایل گلس‌مورفیسم شیشه‌ای‌تر و پرنور با حاشیه‌های ظریف */
     .glass-card {
-      background: rgba(13, 13, 18, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(20, 24, 38, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
     .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.45);
+      background: rgba(26, 31, 48, 0.82);
     }
 
     /* افکت گلو برای آیکون‌ها */
     .icon-glow {
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.35));
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .group:hover .icon-glow {
@@ -82,7 +85,7 @@
       transform: scale(1.08) translateY(-3px);
     }
 
-    /* انیمیشن حرکت آرام گرید رو به پایین */
+    /* انیمیشن حرکت آرام گرید رو به پایین - خطوط واضح‌تر */
     @keyframes move-grid-down {
       0% {
         background-position: 0 0;
@@ -94,21 +97,21 @@
 
     .animated-grid {
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.11) 1px, transparent 1px);
       background-size: 32px 32px;
       animation: move-grid-down 8s linear infinite;
       will-change: background-position;
     }
 
     .noise-overlay {
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
     .section-divider {
       height: 1px;
       width: 100%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.04) 70%, transparent 100%);
     }
 
     /* انیمیشن‌های اسلایدر تامنیل‌ها */
@@ -145,22 +148,23 @@
 
 <body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-  <!-- ================= بک‌گراند تکسچر گرید متحرک + نویز + هاله‌های سفید ================= -->
-  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#050508]">
+  <!-- ================= بک‌گراند تکسچر گرید متحرک واضح + نویز + هاله‌های سفید ================= -->
+  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#0d0f18]">
     <div class="absolute inset-0 w-full h-full animated-grid"></div>
-    <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[130px]"></div>
-    <div class="absolute top-[35%] -right-24 w-[450px] h-[450px] rounded-full bg-white/[0.05] blur-[140px]"></div>
-    <div class="absolute top-[65%] -left-28 w-[500px] h-[500px] rounded-full bg-white/[0.05] blur-[150px]"></div>
-    <div class="absolute -bottom-20 right-1/4 w-[450px] h-[450px] rounded-full bg-white/[0.07] blur-[130px]"></div>
-    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.05]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#050508_95%)]"></div>
+    <!-- هاله‌های نوری روشن‌تر و عمیق‌تر -->
+    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full bg-white/[0.12] blur-[140px]"></div>
+    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full bg-white/[0.08] blur-[140px]"></div>
+    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full bg-white/[0.08] blur-[150px]"></div>
+    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full bg-white/[0.10] blur-[140px]"></div>
+    <div class="absolute inset-0 w-full h-full noise-overlay opacity-[0.06]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#0d0f18_95%)]"></div>
   </div>
 
   <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
-  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/10 bg-black/75">
+  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/15 bg-[#0d0f18]/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
-        <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
+        <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black/60 transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
           <img src="logo.png" alt="Magic Designer Logo" class="w-full h-full object-contain rounded-md" decoding="async">
         </div>
         <span class="font-handwriting text-2xl sm:text-3xl font-bold tracking-wider text-white whitespace-nowrap group-hover:glow-text-white transition duration-300">
@@ -168,12 +172,12 @@
         </span>
       </a>
 
-      <!-- سوییچر زبان FA / EN -->
-      <div class="flex items-center glass-card rounded-full p-1 border border-white/20 text-xs sm:text-sm" dir="ltr">
-        <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black">
+      <!-- سوییچر زبان FA / EN با کادر مشخص -->
+      <div class="flex items-center glass-card rounded-full p-1 border border-white/25 text-xs sm:text-sm" dir="ltr">
+        <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black shadow-md">
           FA
         </button>
-        <button onclick="changeLanguage('en', true)" id="btn-en" class="px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white">
+        <button onclick="changeLanguage('en', true)" id="btn-en" class="px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-300 hover:text-white">
           EN
         </button>
       </div>
@@ -182,7 +186,7 @@
 
   <!-- ================= تیتر اصلی ================= -->
   <section class="pt-24 sm:pt-28 md:pt-32 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/25 shadow-lg">
       <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
       <span id="txt-badge">بازدید هاتو منفجر کن !</span>
     </div>
@@ -194,45 +198,45 @@
 
   <!-- ================= بخش همکاری با یوتیوبرها ================= -->
   <section class="py-6 sm:py-8 w-full max-w-full overflow-hidden px-4 text-center">
-    <p id="txt-trusted" class="text-xs sm:text-sm font-bold text-neutral-300 mb-5 tracking-wide">
+    <p id="txt-trusted" class="text-xs sm:text-sm font-bold text-neutral-200 mb-5 tracking-wide">
       +۱۰۰ همکاری با یوتیوبرها
     </p>
 
     <div class="relative w-full max-w-4xl mx-auto overflow-hidden" dir="ltr">
-      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#0d0f18] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#0d0f18] to-transparent"></div>
 
       <div class="animate-creators-right flex items-center gap-4 sm:gap-6 py-2">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
 
         <!-- تکرار ۱۰ پروفایل -->
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
-        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/25 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
       </div>
     </div>
   </section>
 
   <!-- ================= دو اسلایدر معکوس ۲۰ تایی ================= -->
   <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
-    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#050508] to-transparent"></div>
-    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#050508] to-transparent"></div>
+    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#0d0f18] to-transparent"></div>
+    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#0d0f18] to-transparent"></div>
 
     <!-- اسلایدر اول -->
     <div class="w-full overflow-hidden flex">
@@ -296,19 +300,19 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
         <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۵M</div>
-        <div id="stat-1" class="text-xs sm:text-sm text-neutral-400">بازدید ثبت شده</div>
+        <div id="stat-1" class="text-xs sm:text-sm text-neutral-300">بازدید ثبت شده</div>
       </div>
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
         <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۱۴٪</div>
-        <div id="stat-2" class="text-xs sm:text-sm text-neutral-400">میانگین افزایش CTR</div>
+        <div id="stat-2" class="text-xs sm:text-sm text-neutral-300">میانگین افزایش CTR</div>
       </div>
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
         <div id="stat-num-3" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۳۵۰</div>
-        <div id="stat-3" class="text-xs sm:text-sm text-neutral-400">تامنیل طراحی شده</div>
+        <div id="stat-3" class="text-xs sm:text-sm text-neutral-300">تامنیل طراحی شده</div>
       </div>
       <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
         <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">۲۴h</div>
-        <div id="stat-4" class="text-xs sm:text-sm text-neutral-400">تحویل سریع سفارش</div>
+        <div id="stat-4" class="text-xs sm:text-sm text-neutral-300">تحویل سریع سفارش</div>
       </div>
     </div>
   </section>
@@ -367,13 +371,13 @@
         <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all">
           <span id="lbl-vlog">ولاگ</span>
         </button>
-        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all">
+        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all">
           <span id="lbl-gameplay">گیم‌پلی</span>
         </button>
-        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all">
+        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all">
           <span id="lbl-challenge">چالش</span>
         </button>
-        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all">
+        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all">
           <span id="lbl-other">سایر</span>
         </button>
       </div>
@@ -389,21 +393,18 @@
         <!-- دوره موبایل -->
         <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl flex flex-col justify-between h-full">
           <div class="flex-1 flex flex-col">
-            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950/60 border border-white/15 relative">
               <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
               <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
             </div>
-            <!-- عنوان با ارتفاع ثابت برای تراز شدن قیمت‌ها -->
             <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition min-h-[3.8rem] flex items-center">
               دوره طراحی تامنیل با موبایل
             </h3>
-            <!-- توضیحات با ارتفاع مشخص -->
-            <p class="text-sm text-neutral-400 mb-6 line-clamp-2 min-h-[2.5rem]">
+            <p class="text-sm text-neutral-300 mb-6 line-clamp-2 min-h-[2.5rem]">
               یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.
             </p>
           </div>
-          <!-- فوتر کارت فیکس در یک خط -->
-          <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
+          <div class="flex items-center justify-between pt-4 border-t border-white/15 mt-auto">
             <span class="font-extrabold text-lg text-white">۱,۴۴۷,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition flex items-center gap-1">مشاهده توضیحات و خرید ←</span>
           </div>
@@ -412,21 +413,18 @@
         <!-- جعبه ابزار -->
         <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl flex flex-col justify-between h-full">
           <div class="flex-1 flex flex-col">
-            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950 border border-white/10 relative">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950/60 border border-white/15 relative">
               <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
               <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
             </div>
-            <!-- عنوان با ارتفاع ثابت برای تراز شدن قیمت‌ها -->
             <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition min-h-[3.8rem] flex items-center">
               پکیج Magic Tools (جعبه ابزار جادویی)
             </h3>
-            <!-- توضیحات با ارتفاع مشخص -->
-            <p class="text-sm text-neutral-400 mb-6 line-clamp-2 min-h-[2.5rem]">
+            <p class="text-sm text-neutral-300 mb-6 line-clamp-2 min-h-[2.5rem]">
               بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.
             </p>
           </div>
-          <!-- فوتر کارت فیکس در یک خط -->
-          <div class="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
+          <div class="flex items-center justify-between pt-4 border-t border-white/15 mt-auto">
             <span class="font-extrabold text-lg text-white">۸۴۸,۰۰۰ تومان</span>
             <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition flex items-center gap-1">مشاهده توضیحات و خرید ←</span>
           </div>
@@ -445,69 +443,64 @@
   <!-- ================= پاپ‌آپ توضیحات محصول (گام اول) ================= -->
   <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity">
     <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-white/30 glow-box-white relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-lg">✕</button>
+      <button onclick="closeProductModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition text-lg">✕</button>
 
       <div class="w-48 h-48 sm:w-60 sm:h-60 mx-auto aspect-square rounded-2xl overflow-hidden mb-5 border border-white/20 shadow-xl">
         <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
       </div>
 
       <h3 id="modal-title" class="text-xl sm:text-2xl font-black mb-3 glow-text-white text-center sm:text-start"></h3>
-      <div id="modal-body" class="text-neutral-300 text-sm leading-relaxed space-y-3 mb-6"></div>
+      <div id="modal-body" class="text-neutral-200 text-sm leading-relaxed space-y-3 mb-6"></div>
 
-      <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="pt-4 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <span class="text-xs text-neutral-400 block">قیمت نهایی:</span>
           <span id="modal-price" class="text-xl font-extrabold text-white"></span>
         </div>
-        <!-- دکمه ورود به مرحله پرداخت -->
-        <button onclick="goToPaymentStep()" class="w-full sm:w-auto px-9 py-3.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-center text-sm shadow-xl">
+        <button onclick="goToPaymentStep()" class="w-full sm:w-auto px-9 py-3.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-center text-sm shadow-xl border border-white/30">
           ثبت سفارش
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت (تم سفید و مشکی + فیکس یک‌خطی) ================= -->
+  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت ================= -->
   <div id="payment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity">
-    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/20 glow-box-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
-      <!-- دکمه بستن -->
-      <button onclick="closePaymentModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-400 hover:text-white transition text-sm">✕</button>
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/25 glow-box-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closePaymentModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition text-sm">✕</button>
 
-      <!-- تیتر و راهنما -->
       <div class="text-center mb-6">
         <h3 class="text-xl sm:text-2xl font-black text-white glow-text-white mb-1.5">اطلاعات واریز وجه</h3>
-        <p class="text-xs sm:text-sm text-neutral-400">مبلغ را کارت به کارت کرده و رسید را ارسال کنید</p>
+        <p class="text-xs sm:text-sm text-neutral-300">مبلغ را کارت به کارت کرده و رسید را ارسال کنید</p>
       </div>
 
-      <!-- برچسب محصول و قیمت: ۱۰۰٪ در یک خط بدون شکستگی -->
-      <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-white/15 mb-5 flex items-center justify-between gap-2 whitespace-nowrap">
+      <!-- برچسب محصول و قیمت: ۱۰۰٪ در یک خط -->
+      <div class="p-3.5 rounded-2xl bg-white/[0.06] border border-white/15 mb-5 flex items-center justify-between gap-2 whitespace-nowrap">
         <span id="pay-product-name" class="font-bold text-xs sm:text-sm text-neutral-200 truncate"></span>
         <span id="pay-product-price" class="font-extrabold text-white text-xs sm:text-sm flex-shrink-0"></span>
       </div>
 
       <!-- باکس شماره کارت: ۱۰۰٪ در یک خط با دکمه کپی -->
-      <div class="p-5 rounded-2xl bg-black/60 border border-white/15 mb-5 relative">
+      <div class="p-5 rounded-2xl bg-black/50 border border-white/15 mb-5 relative">
         <div class="flex items-center justify-between gap-2 mb-3">
-          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl font-bold text-xs bg-white text-black hover:bg-neutral-200 transition flex-shrink-0 shadow">
+          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl font-bold text-xs bg-white text-black hover:bg-neutral-200 transition flex-shrink-0 shadow border border-white/20">
             کپی کارت
           </button>
           <span class="selectable-text text-[15px] min-[380px]:text-base sm:text-lg font-black tracking-wider text-white whitespace-nowrap" dir="ltr">
             6104 3387 0203 7264
           </span>
         </div>
-        <div class="flex items-center justify-between text-xs text-neutral-400 pt-2 border-t border-white/10">
+        <div class="flex items-center justify-between text-xs text-neutral-300 pt-2 border-t border-white/10">
           <span>صاحب حساب:</span>
           <span class="font-bold text-white">ایلیا لطف یاسوری</span>
         </div>
       </div>
 
-      <!-- متن راهنمای خلاصه شده -->
-      <p class="text-xs text-neutral-400 leading-relaxed text-center mb-6 px-1">
+      <p class="text-xs text-neutral-300 leading-relaxed text-center mb-6 px-1">
         بعد از پرداخت، لطفاً تصویر فیش واریزی را به پشتیبانی ارسال کنید.
       </p>
 
-      <!-- دکمه سفید مونوکروم ارسال رسید به تلگرام -->
-      <a id="pay-telegram-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full py-3.5 sm:py-4 rounded-xl font-black bg-white hover:bg-neutral-200 text-black text-center text-sm sm:text-base transition duration-300 glow-box-white shadow-xl block">
+      <a id="pay-telegram-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full py-3.5 sm:py-4 rounded-xl font-black bg-white hover:bg-neutral-200 text-black text-center text-sm sm:text-base transition duration-300 glow-box-white shadow-xl block border border-white/30">
         ارسال رسید در تلگرام
       </a>
     </div>
@@ -559,25 +552,25 @@
     <h2 id="faq-title" class="text-2xl sm:text-4xl md:text-5xl font-black mb-4 glow-text-white">
       پاسخ به سوالات شما
     </h2>
-    <p id="faq-subtitle" class="text-neutral-400 text-[11px] min-[360px]:text-xs min-[420px]:text-sm sm:text-base md:text-lg mb-10 max-w-full mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+    <p id="faq-subtitle" class="text-neutral-300 text-[11px] min-[360px]:text-xs min-[420px]:text-sm sm:text-base md:text-lg mb-10 max-w-full mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
       سوالاتی که معمولاً قبل از شروع همکاری پیش میاد
     </p>
 
     <div class="space-y-4 text-start">
 
       <!-- سوال ۱ -->
-      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
         <button onclick="toggleFaq(1)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
           <span id="faq-q1" class="font-extrabold text-base sm:text-xl text-white">چطوری سفارشمو ثبت کنم؟</span>
-          <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+          <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
         </button>
-        <div id="faq-ans-1" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+        <div id="faq-ans-1" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
           <p id="faq-a1-text" class="mb-4">برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید.</p>
           <div class="flex flex-wrap gap-3">
-            <a href="https://t.me/ilia_ltf?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%A7%DB%8C%D9%84%DB%8C%D8%A7%20%D8%AC%D8%A7%D9%86%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C%20%D8%AA%D8%A7%D9%85%D9%86%DB%8C%D9%84%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%D8%AF%D9%85" target="_blank" class="px-5 py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition text-xs sm:text-sm glow-box-white">
+            <a href="https://t.me/ilia_ltf?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%A7%DB%8C%D9%84%DB%8C%D8%A7%20%D8%AC%D8%A7%D9%86%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C%20%D8%AA%D8%A7%D9%85%D9%86%DB%8C%D9%84%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%D8%AF%D9%85" target="_blank" class="px-5 py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition text-xs sm:text-sm glow-box-white border border-white/30">
               <span id="faq-btn-tg">پیام در تلگرام</span>
             </a>
-            <a href="https://www.instagram.com/magic.designerrr?srtk=MXIweTBmNGM3c3Rxeg==" target="_blank" class="px-5 py-2.5 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition text-xs sm:text-sm">
+            <a href="https://www.instagram.com/magic.designerrr?srtk=MXIweTBmNGM3c3Rxeg==" target="_blank" class="px-5 py-2.5 rounded-xl font-bold glass-card text-white hover:bg-white/15 transition text-xs sm:text-sm border border-white/20">
               <span id="faq-btn-ig">پیام در اینستاگرام</span>
             </a>
           </div>
@@ -585,45 +578,45 @@
       </div>
 
       <!-- سوال ۲ -->
-      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
         <button onclick="toggleFaq(2)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
           <span id="faq-q2" class="font-extrabold text-base sm:text-xl text-white">چه سبک هایی از تامنیل رو طراحی میکنید؟</span>
-          <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+          <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
         </button>
-        <div id="faq-ans-2" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+        <div id="faq-ans-2" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
           <p id="faq-a2">من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم.</p>
         </div>
       </div>
 
       <!-- سوال ۳ -->
-      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
         <button onclick="toggleFaq(3)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
           <span id="faq-q3" class="font-extrabold text-base sm:text-xl text-white">سفارش طراحی تامنیل چقدر طول میکشه؟</span>
-          <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+          <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
         </button>
-        <div id="faq-ans-3" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+        <div id="faq-ans-3" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
           <p id="faq-a3">معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره.</p>
         </div>
       </div>
 
       <!-- سوال ۴ -->
-      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
         <button onclick="toggleFaq(4)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
           <span id="faq-q4" class="font-extrabold text-base sm:text-xl text-white">تامنیل ها اصلاحیه داره؟</span>
-          <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+          <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
         </button>
-        <div id="faq-ans-4" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+        <div id="faq-ans-4" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
           <p id="faq-a4">بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم.</p>
         </div>
       </div>
 
       <!-- سوال ۵ -->
-      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300 overflow-hidden">
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
         <button onclick="toggleFaq(5)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
           <span id="faq-q5" class="font-extrabold text-base sm:text-xl text-white">شرایط و قیمت طراحی به چه صورت هستش؟</span>
-          <span id="faq-icon-5" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300">+</span>
+          <span id="faq-icon-5" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
         </button>
-        <div id="faq-ans-5" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-300 text-sm sm:text-base leading-relaxed border-t border-white/5 pt-4">
+        <div id="faq-ans-5" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
           <p id="faq-a5">قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش.</p>
         </div>
       </div>
@@ -637,27 +630,27 @@
   </div>
 
   <!-- ================= فوتر ================= -->
-  <footer id="contact" class="border-t border-white/10 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
+  <footer id="contact" class="border-t border-white/15 bg-[#0d0f18]/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
     <div class="max-w-5xl mx-auto">
       
       <h2 id="footer-title" class="text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight text-center px-1">
         آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! 
       </h2>
       
-      <p id="footer-desc" class="text-neutral-400 mb-10 sm:mb-12 text-base sm:text-lg font-bold">
+      <p id="footer-desc" class="text-neutral-300 mb-10 sm:mb-12 text-base sm:text-lg font-bold">
         همکاری 👇🏻
       </p>
 
       <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-12 w-full max-w-md mx-auto sm:max-w-none">
-        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base">
+        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base border border-white/30">
           <span id="btn-tg">ارتباط سریع (تلگرام)</span>
         </a>
-        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/10 transition duration-300 flex items-center justify-center text-sm sm:text-base">
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/15 transition duration-300 flex items-center justify-center text-sm sm:text-base border border-white/20">
           <span id="btn-ig">اینستاگرام</span>
         </a>
       </div>
 
-      <p id="txt-copyright" class="text-xs text-neutral-500">
+      <p id="txt-copyright" class="text-xs text-neutral-400">
         © 2026 Magic Designer | تمامی حقوق محفوظ است.
       </p>
     </div>
@@ -667,78 +660,63 @@
   <script>
     let activeProductKey = 'course';
 
-    // ================= سیستم پایدار مدیریت دکمه بازگشت (Back Button) =================
-    if (window.history && window.history.replaceState) {
-      window.history.replaceState({ page: 'home', depth: 0 }, '');
-      window.history.pushState({ page: 'app', depth: 1 }, '');
+    // ================= سیستم قفل کامل بازگشت (Never-Exit Back Button Trap) =================
+    // جلوگیری قطعی از خروج ناگهانی از سایت
+    function trapHistory() {
+      window.history.pushState({ page: 'trap' }, '', window.location.href);
     }
 
-    function registerHistoryStep() {
-      history.pushState({ page: 'action', depth: history.length + 1 }, '');
-    }
+    // مقداردهی اولیه تاریخچه
+    window.history.replaceState({ page: 'root' }, '', window.location.href);
+    trapHistory();
 
-    let scrollTrapped = false;
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300 && !scrollTrapped) {
-        scrollTrapped = true;
-        registerHistoryStep();
-      } else if (window.scrollY < 80) {
-        scrollTrapped = false;
-      }
-    }, { passive: true });
+    window.addEventListener('popstate', function(e) {
+      // شارژ مجدد پشته تاریخچه تا مرورگر هیچ‌وقت صفحه را نبندد
+      trapHistory();
 
-    window.addEventListener('popstate', (e) => {
+      // ۱. اگر پنجره کارت به کارت باز است -> به توضیحات محصول برگردد
       const payModal = document.getElementById('payment-modal');
       const prodModal = document.getElementById('product-modal');
-      const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
-
-      // ۱. بستن پنجره کارت به کارت و بازگشت به توضیحات محصول
       if (payModal && !payModal.classList.contains('hidden')) {
         payModal.classList.add('hidden');
         if (prodModal) prodModal.classList.remove('hidden');
-        registerHistoryStep();
         return;
       }
 
-      // ۲. بستن پنجره توضیحات محصول
+      // ۲. اگر پنجره توضیحات محصول باز است -> بسته شود
       if (prodModal && !prodModal.classList.contains('hidden')) {
         prodModal.classList.add('hidden');
-        registerHistoryStep();
         return;
       }
 
-      // ۳. بستن سوالات باز در FAQ
+      // ۳. اگر پاسخی در FAQ باز است -> بسته شود
+      const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
       if (anyFaqOpen) {
         document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
         document.querySelectorAll('[id^="faq-icon-"]').forEach(icon => icon.style.transform = 'rotate(0deg)');
-        registerHistoryStep();
         return;
       }
 
-      // ۴. بستن تب بازشده تامنیل‌ها یا محصولات
+      // ۴. اگر تب تامنیل یا محصولات در فارسی باز است -> بسته شود
       if (activeTab !== null) {
         toggleMainTab(activeTab);
-        registerHistoryStep();
         return;
       }
 
-      // ۵. بستن منوی تامنیل‌های بیشتر در انگلیسی
-      if (isEnArOpen) {
+      // ۵. اگر دکمه More Thumbnails در انگلیسی باز است -> بسته شود
+      if (typeof isEnArOpen !== 'undefined' && isEnArOpen) {
         toggleEnArThumbs();
-        registerHistoryStep();
         return;
       }
 
-      // ۶. هدایت نرم به بالای سایت در صورت اسکرول به پایین
-      if (window.scrollY > 150) {
+      // ۶. اگر در پایین صفحه اسکرول کرده -> نرم به بالای سایت برود
+      if (window.scrollY > 80) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        scrollTrapped = false;
-        registerHistoryStep();
         return;
       }
 
-      // خروج در صورت عدم وجود هرگونه پنجره یا اسکرول
-      history.back();
+      // اگر در بالای صفحه باشد، همان‌جا باقی بماند و از سایت خارج نشود
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -754,9 +732,9 @@
 
     function filterCategory(cat) {
       document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-        btn.className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-400 hover:text-white transition-all";
+        btn.className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all";
       });
-      document.getElementById('cat-' + cat).className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all";
+      document.getElementById('cat-' + cat).className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/15 glow-box-white transition-all";
 
       const grid = document.getElementById('category-grid');
       grid.innerHTML = '';
@@ -796,10 +774,6 @@
         return;
       }
 
-      if (activeTab === null) {
-        registerHistoryStep();
-      }
-
       activeTab = tab;
       if (tab === 'thumbnails') {
         thumbsBtn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
@@ -829,7 +803,6 @@
         thumbsCont.classList.remove('hidden');
         btn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
         if (arrow) arrow.style.transform = "rotate(180deg)";
-        registerHistoryStep();
       } else {
         thumbsCont.classList.add('hidden');
         btn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
@@ -852,11 +825,9 @@
       if (!isAlreadyOpen) {
         targetAns.classList.remove('hidden');
         if (targetIcon) targetIcon.style.transform = "rotate(45deg)";
-        registerHistoryStep();
       }
     }
 
-    // مشخصات محصولات (با نام خلاصه مخصوص بخش پرداخت)
     const productsData = {
       course: {
         title: 'دوره جامع طراحی تامنیل با موبایل (صفر تا صد)',
@@ -872,7 +843,7 @@
             <p>🔹 <strong>فصل ۳:</strong> پیاده‌سازی گام‌به‌گام تامنیل‌های پرکلیک و ترند</p>
             <p>🔹 <strong>فصل ۴:</strong> نقشه راه کسب درآمد، جذب کارفرما و استقلال مالی</p>
           </div>
-          <div class="pt-3 border-t border-white/10 text-xs space-y-1 text-neutral-400">
+          <div class="pt-3 border-t border-white/10 text-xs space-y-1 text-neutral-300">
             <p>✔ دسترسی آسان در گروه موضوع‌بندی‌شده تلگرام</p>
             <p>✔ پشتیبانی دائمی و مستقیم با خود بنده برای رفع اشکال</p>
           </div>
@@ -893,7 +864,7 @@
             <p>⚡ ۲,۰۰۰+ استایل متنی سه‌بعدی ترند و روسی</p>
             <p>⚡ معروف‌ترین فونت‌های پولی + نسخه مود شده برنامه‌ها</p>
           </div>
-          <div class="pt-3 border-t border-white/10 text-xs text-neutral-400">
+          <div class="pt-3 border-t border-white/10 text-xs text-neutral-300">
             <p>✔ یک بار برای همیشه هزینه کن، دسترسی در تلگرام با آپدیت دائمی و مادام‌العمر!</p>
           </div>
         `
@@ -908,14 +879,12 @@
       document.getElementById('modal-body').innerHTML = p.body;
       document.getElementById('modal-price').innerText = p.price;
       document.getElementById('product-modal').classList.remove('hidden');
-      registerHistoryStep();
     }
 
     function closeProductModal() {
       document.getElementById('product-modal').classList.add('hidden');
     }
 
-    // باز کردن پنجره پرداخت و ست کردن عنوان خلاصه
     function goToPaymentStep() {
       const p = productsData[activeProductKey];
       document.getElementById('pay-product-name').innerText = p.shortTitle || p.title;
@@ -924,14 +893,12 @@
       
       document.getElementById('product-modal').classList.add('hidden');
       document.getElementById('payment-modal').classList.remove('hidden');
-      registerHistoryStep();
     }
 
     function closePaymentModal() {
       document.getElementById('payment-modal').classList.add('hidden');
     }
 
-    // کپی تمیز شماره کارت به همراه استایل مونوکروم
     function copyCardNumber() {
       const cardNum = '6104338702037264';
       navigator.clipboard.writeText(cardNum).then(() => {
@@ -1133,9 +1100,9 @@
         const btn = document.getElementById('btn-' + l);
         if (btn) {
           if (l === lang) {
-            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black";
+            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black shadow-md";
           } else {
-            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-400 hover:text-white";
+            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-300 hover:text-white";
           }
         }
       });
@@ -1172,4 +1139,4 @@
     }
   </script>
 </body>
-</html>
+  </html>
