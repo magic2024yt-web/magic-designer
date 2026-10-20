@@ -1,1425 +1,1156 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>روبیکس پنل | بزرگ ترین مجموعه خدمات تخصصی روبیکا</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Magic Designer | Ilia</title>
+  
+  <!-- نماد و آیکون تب مرورگر (Favicon) -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/css/peyda.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* جلوگیری از اسکرول اضافه افقی با بهینه‌ترین روش */
+    html, body {
+      overflow-x: clip;
+      max-width: 100% !important;
+      width: 100% !important;
+      position: relative;
+    }
+
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+      box-sizing: border-box;
+    }
+
+    .selectable-text {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      user-select: text !important;
+    }
+
+    body {
+      font-family: 'Peyda', sans-serif;
+      font-weight: 600;
+      background-color: #030305;
+    }
+    html[lang="en"] body {
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+    }
+
+    .font-handwriting {
+      font-family: 'Caveat', cursive;
+    }
+    .glow-text-white {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 35px rgba(255, 255, 255, 0.4);
+    }
+    .glow-box-white {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.18);
+    }
     
-    <!-- آیکون تب مرورگر -->
-    <link rel="icon" type="image/jpeg" href="icon.jpg">
-    <link rel="shortcut icon" href="icon.jpg">
-
-    <!-- فونت پیدا با سنگین‌ترین وزن -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AmirAbbasVafaee/persian-fonts-cdn@main/css/peyda.css">
-
-    <style>
-        :root {
-            --bg-color: #080a0e;
-            --card-bg: rgba(18, 22, 31, 0.72);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --yellow-accent: #ffd700;
-            --yellow-glow: rgba(255, 215, 0, 0.28);
-            --text-primary: #ffffff;
-            --text-muted: #959fad;
-        }
-
-        /* قفل کپی متون */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none !important;
-            -webkit-user-select: none !important;
-        }
-
-        /* اعمال قطعی فونت سنگین پیدا روی کل صفحه و تمام دکمه‌ها */
-        body, button, input, select, textarea, .order-btn, .copy-card-btn, .send-receipt-btn, .contact-btn, .sub-tab-btn, .channel-btn {
-            font-family: 'Peyda', sans-serif !important;
-            font-weight: 900 !important;
-        }
-
-        html, body {
-            width: 100%;
-            max-width: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        /* تکسچر گرید شطرنجی */
-        .grid-background {
-            position: fixed;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255, 215, 0, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 215, 0, 0.035) 1px, transparent 1px);
-            background-size: 38px 38px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* هاله‌های نوری طلایی شناور */
-        .ambient-glow {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(85px);
-            pointer-events: none;
-            z-index: 0;
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
-        }
-
-        .halo-1 {
-            width: 380px;
-            height: 380px;
-            background: rgba(255, 215, 0, 0.11);
-            top: 5%;
-            right: -100px;
-            animation: floatGlow 9s ease-in-out infinite alternate;
-        }
-
-        .halo-2 {
-            width: 340px;
-            height: 340px;
-            background: rgba(255, 215, 0, 0.07);
-            bottom: 12%;
-            left: -90px;
-            animation: floatGlow 11s ease-in-out infinite alternate-reverse;
-        }
-
-        @keyframes floatGlow {
-            0% { transform: translate3d(0, 0, 0) scale(1); }
-            100% { transform: translate3d(0, 40px, 0) scale(1.12); }
-        }
-
-        /* هدر شیشه‌ای و چسبان */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            background: rgba(8, 10, 14, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--card-border);
-            z-index: 999999;
-            padding: 12px 20px;
-        }
-
-        .header-content {
-            max-width: 1050px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .logo-img {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            box-shadow: 0 0 15px var(--yellow-glow);
-        }
-
-        .logo-title {
-            font-size: 1.25rem;
-        }
-
-        .contact-btn {
-            background: rgba(255, 215, 0, 0.08);
-            color: var(--yellow-accent);
-            border: 1.5px solid var(--yellow-accent);
-            padding: 8px 18px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            transition: all 0.25s ease;
-        }
-
-        .contact-btn:hover {
-            background: var(--yellow-accent);
-            color: #0a0c10;
-            box-shadow: 0 0 18px var(--yellow-glow);
-        }
-
-        /* کانتینر اصلی محتوا */
-        .app-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 95px 18px 50px 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        /* هیرو */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-            padding-top: 10px;
-            width: 100%;
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            padding: 7px 18px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: #fff;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 0 18px rgba(255, 215, 0, 0.1);
-        }
-
-        .pulse-dot {
-            width: 9px;
-            height: 9px;
-            background-color: var(--yellow-accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--yellow-accent);
-            animation: pulseGlow 1.6s infinite ease-in-out;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 14px var(--yellow-accent), 0 0 4px #fff; }
-            50% { opacity: 0.35; transform: scale(0.75); box-shadow: 0 0 4px var(--yellow-accent); }
-        }
-
-        .hero h1 {
-            font-size: clamp(0.92rem, 4.3vw, 2.3rem);
-            white-space: nowrap;
-            width: 100%;
-            text-align: center;
-        }
-
-        .hero h1 span {
-            color: var(--yellow-accent);
-            text-shadow: 0 0 25px var(--yellow-glow);
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
-            max-width: 620px;
-            line-height: 1.75;
-        }
-
-        /* دو دکمه مربعی اصلی */
-        .quick-actions-row {
-            display: flex;
-            flex-direction: row;
-            gap: 18px;
-            width: 100%;
-            max-width: 520px;
-            margin: 0 auto;
-            justify-content: center;
-        }
-
-        .square-btn {
-            flex: 1;
-            aspect-ratio: 1 / 1;
-            max-width: 230px;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1.5px solid var(--card-border);
-            border-radius: 26px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .square-btn.active {
-            border-color: var(--yellow-accent);
-            background: rgba(255, 215, 0, 0.12);
-            box-shadow: 0 0 30px var(--yellow-glow);
-            transform: translateY(-4px);
-        }
-
-        .square-icon-wrap {
-            width: 65px;
-            height: 65px;
-            border-radius: 20px;
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--yellow-accent);
-            box-shadow: 0 0 16px var(--yellow-glow);
-            transition: all 0.25s ease;
-        }
-
-        .square-btn.active .square-icon-wrap {
-            background: var(--yellow-accent);
-            color: #0a0c10;
-            box-shadow: 0 0 25px var(--yellow-accent);
-        }
-
-        .square-icon-wrap svg {
-            width: 32px;
-            height: 32px;
-            stroke-width: 2.2;
-        }
-
-        .square-title {
-            font-size: clamp(1rem, 3.8vw, 1.25rem);
-            color: #ffffff;
-        }
-
-        .section-divider {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), rgba(255, 255, 255, 0.08), transparent);
-            margin: 4px 0;
-        }
-
-        #services-section {
-            display: block;
-            width: 100%;
-        }
-
-        #reviews-section {
-            display: none;
-            width: 100%;
-        }
-
-        /* آکاردئون خدمات */
-        .services-accordion {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            width: 100%;
-        }
-
-        .accordion-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .accordion-item.open {
-            border-color: rgba(255, 215, 0, 0.45);
-            box-shadow: 0 0 22px rgba(255, 215, 0, 0.12);
-        }
-
-        .accordion-item.special-item {
-            border: 1.5px solid rgba(255, 215, 0, 0.45);
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.09) 0%, rgba(18, 22, 31, 0.85) 100%);
-            box-shadow: 0 0 22px rgba(255, 215, 0, 0.12);
-        }
-
-        .accordion-header {
-            padding: 18px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .accordion-header-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.15rem;
-        }
-
-        .accordion-tag {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--yellow-accent);
-            font-size: 0.75rem;
-            padding: 3px 9px;
-            border-radius: 6px;
-        }
-
-        .accordion-tag.special-tag {
-            background: var(--yellow-accent);
-            color: #0a0c10;
-            font-weight: 900;
-        }
-
-        .accordion-chevron {
-            width: 20px;
-            height: 20px;
-            color: var(--yellow-accent);
-            transition: transform 0.35s ease;
-        }
-
-        .accordion-item.open .accordion-chevron {
-            transform: rotate(180deg);
-        }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
-            background: rgba(10, 13, 18, 0.65);
-            border-top: 1px solid transparent;
-        }
-
-        .accordion-item.open .accordion-body {
-            max-height: 850px;
-            padding: 20px;
-            border-top: 1px solid var(--card-border);
-        }
-
-        .sub-toggle-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
-            width: 100%;
-        }
-
-        .sub-tab-btn {
-            flex: 1;
-            padding: 10px 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1.5px solid var(--card-border);
-            border-radius: 12px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-align: center;
-        }
-
-        .sub-tab-btn.active {
-            border-color: var(--yellow-accent);
-            background: rgba(255, 215, 0, 0.14);
-            color: var(--yellow-accent);
-            box-shadow: 0 0 15px var(--yellow-glow);
-        }
-
-        .sub-content-panel {
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            animation: subFadeIn 0.25s ease;
-        }
-
-        .sub-content-panel.show {
-            display: flex;
-        }
-
-        @keyframes subFadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .accordion-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .price-list-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        /* نوار تک‌خطی قیمت */
-        .price-banner {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 215, 0, 0.07);
-            border: 1px dashed rgba(255, 215, 0, 0.35);
-            border-radius: 12px;
-            padding: 11px 13px;
-            color: #ffffff;
-            font-size: clamp(0.75rem, 2.9vw, 0.92rem);
-            white-space: nowrap !important;
-            gap: 8px;
-            overflow: hidden;
-        }
-
-        .price-banner span:first-child {
-            white-space: nowrap !important;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .price-highlight {
-            color: var(--yellow-accent);
-            font-size: clamp(0.84rem, 3.2vw, 1.05rem);
-            text-shadow: 0 0 10px var(--yellow-glow);
-            white-space: nowrap !important;
-            flex-shrink: 0;
-        }
-
-        /* دکمه ثبت سفارش */
-        .order-btn {
-            display: block;
-            width: 100%;
-            background: var(--yellow-accent);
-            color: #0a0c10;
-            padding: 13px;
-            border-radius: 13px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 0.98rem;
-            text-align: center;
-            box-shadow: 0 0 16px var(--yellow-glow);
-            transition: all 0.25s ease;
-            margin-top: 4px;
-        }
-
-        .order-btn:hover {
-            background: #ffe34d;
-            box-shadow: 0 0 24px var(--yellow-glow);
-            transform: scale(1.01);
-        }
-
-        /* ==================== بخش جداگانه و همیشه‌پیدا: کانال روبیکا ==================== */
-        .channel-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid rgba(255, 215, 0, 0.45);
-            border-radius: 22px;
-            padding: 22px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 215, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .channel-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
-        }
-
-        .channel-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 14px;
-        }
-
-        .channel-title {
-            font-size: clamp(1.2rem, 4.5vw, 1.6rem);
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        .channel-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--yellow-accent);
-            color: #0a0c10;
-            padding: 12px 28px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 1rem;
-            box-shadow: 0 0 20px var(--yellow-glow);
-            transition: all 0.25s ease;
-            white-space: nowrap;
-        }
-
-        .channel-btn:hover {
-            background: #ffe34d;
-            box-shadow: 0 0 28px var(--yellow-glow);
-            transform: translateY(-2px);
-        }
-
-        .channel-btn svg {
-            width: 18px;
-            height: 18px;
-            stroke-width: 2.5;
-        }
-
-        .channel-logo-wrap {
-            width: 86px;
-            height: 86px;
-            min-width: 86px;
-            border-radius: 22px;
-            background: #151822;
-            border: 2px solid var(--yellow-accent);
-            box-shadow: 0 0 25px var(--yellow-glow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 6px;
-        }
-
-        .channel-logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 16px;
-        }
-
-        @media (max-width: 480px) {
-            .channel-card {
-                padding: 18px 16px;
-            }
-            .channel-logo-wrap {
-                width: 74px;
-                height: 74px;
-                min-width: 74px;
-            }
-            .channel-btn {
-                padding: 10px 22px;
-                font-size: 0.92rem;
-            }
-        }
-        /* ===================================================================== */
-
-        /* گالری رضایت‌ها */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 14px;
-            width: 100%;
-        }
-
-        .review-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 9 / 16;
-            cursor: pointer;
-            position: relative;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .review-card:hover {
-            border-color: var(--yellow-accent);
-            box-shadow: 0 0 20px var(--yellow-glow);
-            transform: translateY(-4px);
-        }
-
-        .review-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .review-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .review-placeholder svg {
-            width: 28px;
-            height: 28px;
-            color: var(--yellow-accent);
-        }
-
-        /* مدال‌های پاپ‌آپ با بلور شیشه‌ای عمیق */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.86);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 9999999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: modalFadeIn 0.25s ease;
-        }
-
-        .modal.open {
-            display: flex;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.97); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* کارت واریز وجه و ثبت سفارش */
-        .payment-box {
-            background: rgba(18, 22, 31, 0.96);
-            border: 1.5px solid rgba(255, 215, 0, 0.45);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8), 0 0 35px var(--yellow-glow);
-            border-radius: 24px;
-            width: 100%;
-            max-width: 470px;
-            padding: 22px 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 16px;
-            left: 18px;
-            font-size: 1.8rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: color 0.2s;
-            line-height: 1;
-        }
-
-        .modal-close-btn:hover {
-            color: #fff;
-        }
-
-        .payment-header {
-            text-align: center;
-            padding-bottom: 2px;
-        }
-
-        .payment-header h3 {
-            font-size: 1.25rem;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .payment-header p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* مشخصات سفارش در یک خط افقی */
-        .selected-order-info {
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid rgba(255, 215, 0, 0.25);
-            border-radius: 14px;
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            white-space: nowrap !important;
-            overflow: hidden;
-        }
-
-        .selected-order-info span:first-child {
-            font-size: clamp(0.75rem, 2.8vw, 0.92rem) !important;
-            color: #ffffff;
-            white-space: nowrap !important;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex: 1;
-        }
-
-        .selected-order-price {
-            color: var(--yellow-accent);
-            font-size: clamp(0.85rem, 3.2vw, 1.05rem) !important;
-            text-shadow: 0 0 12px var(--yellow-glow);
-            white-space: nowrap !important;
-            flex-shrink: 0;
-        }
-
-        /* کارت بانکی */
-        .bank-card-container {
-            background: linear-gradient(135deg, #1c212c 0%, #10131a 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 16px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
-            width: 100%;
-        }
-
-        /* ردیف شماره کارت و دکمه کپی در یک خط */
-        .card-number-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            direction: ltr;
-            gap: 8px;
-            width: 100%;
-            white-space: nowrap !important;
-        }
-
-        .card-number-text {
-            font-size: clamp(0.85rem, 3.2vw, 1.15rem) !important;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            font-family: monospace, 'Peyda', sans-serif !important;
-            white-space: nowrap !important;
-            flex-shrink: 0;
-        }
-
-        .copy-card-btn {
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid var(--yellow-accent);
-            color: var(--yellow-accent);
-            padding: 6px 10px;
-            border-radius: 10px;
-            font-size: clamp(0.72rem, 2.4vw, 0.82rem);
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap !important;
-            flex-shrink: 0;
-        }
-
-        .copy-card-btn:hover {
-            background: var(--yellow-accent);
-            color: #000;
-        }
-
-        .card-owner-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .card-owner-name {
-            color: #fff;
-        }
-
-        .payment-note {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.65;
-            text-align: center;
-        }
-
-        .send-receipt-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            background: var(--yellow-accent);
-            color: #0a0c10;
-            padding: 13px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-size: 1rem;
-            box-shadow: 0 0 22px var(--yellow-glow);
-            transition: all 0.25s ease;
-        }
-
-        .send-receipt-btn:hover {
-            background: #ffe34d;
-            box-shadow: 0 0 28px var(--yellow-glow);
-            transform: scale(1.01);
-        }
-
-        .modal-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 16px;
-            border: 2px solid var(--yellow-accent);
-            box-shadow: 0 0 35px var(--yellow-glow);
-        }
-
-        .features-strip {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-            padding: 24px 18px;
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            background: rgba(18, 22, 31, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .feature-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 5px;
-            flex: 1 1 180px;
-        }
-
-        .feature-title {
-            color: var(--yellow-accent);
-            font-size: 1.05rem;
-        }
-
-        .feature-sub {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px 0;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-    </style>
+    /* استایل شیشه‌ای بهینه‌شده بدون افت فریم */
+    .glass-card {
+      background: rgba(16, 16, 22, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .icon-glow {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
+      transition: transform 0.3s ease;
+    }
+    .group:hover .icon-glow {
+      transform: scale(1.08) translateY(-3px);
+    }
+
+    /* حرکت گرید متحرک رو به پایین با شتاب‌دهنده گرافیکی (GPU بدون Repaint) */
+    @keyframes move-grid-down {
+      0% { transform: translate3d(0, -32px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    .animated-grid {
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.065) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.065) 1px, transparent 1px);
+      background-size: 32px 32px;
+      animation: move-grid-down 4.5s linear infinite;
+      will-change: transform;
+    }
+
+    .section-divider {
+      height: 1px;
+      width: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
+    }
+
+    /* انیمیشن‌های اسلایدر کاملاً روان و سبک */
+    @keyframes marquee-left {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    @keyframes marquee-right {
+      0% { transform: translate3d(-50%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+    .animate-marquee-left {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: marquee-left 46s linear infinite;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+    .animate-marquee-right {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: marquee-right 46s linear infinite;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .animate-creators-right {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: marquee-right 28s linear infinite;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+  </style>
 </head>
-<body>
 
-    <!-- تکسچر گرید شطرنجی -->
-    <div class="grid-background"></div>
+<body class="text-white overflow-x-hidden selection:bg-white selection:text-black min-h-screen flex flex-col justify-between">
 
-    <!-- هاله‌های نوری طلایی شناور -->
-    <div class="ambient-glow halo-1"></div>
-    <div class="ambient-glow halo-2"></div>
+  <!-- ================= بک‌گراند دارک بهینه‌شده بدون لگ و افت فریم ================= -->
+  <div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none bg-[#030305]">
+    <!-- گرید متحرک رو به پایین بر پایه Transform سخت‌افزاری -->
+    <div class="absolute -top-[32px] left-0 w-full h-[calc(100%+64px)] animated-grid"></div>
+    
+    <!-- هاله‌های نوری گرادیانتی (فوق‌العاده سریع بدون فشار پردازشی) -->
+    <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);"></div>
+    <div class="absolute top-[35%] -right-24 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);"></div>
+    <div class="absolute top-[65%] -left-28 w-[550px] h-[550px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-20 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);"></div>
+    
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,#030305_94%)]"></div>
+  </div>
 
-    <!-- هدر ثابت -->
-    <header>
-        <div class="header-content">
-            <a href="#" class="logo">
-                <img src="icon.jpg" alt="روبیکس پنل" class="logo-img">
-                <span class="logo-title">روبیکس پنل</span>
+  <!-- ================= هدر ثابت در بالا (Fixed Header) ================= -->
+  <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b border-white/10 bg-[#030305]/85">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
+        <div class="relative w-9 h-9 sm:w-11 sm:h-11 rounded-lg overflow-hidden border border-white/30 p-0.5 bg-black transition group-hover:scale-105 group-hover:border-white flex-shrink-0">
+          <img src="logo.png" alt="Magic Designer Logo" class="w-full h-full object-contain rounded-md" decoding="async">
+        </div>
+        <span class="font-handwriting text-2xl sm:text-3xl font-bold tracking-wider text-white whitespace-nowrap group-hover:glow-text-white transition duration-300">
+          Magic Designer
+        </span>
+      </a>
+
+      <!-- سوییچر زبان FA / EN -->
+      <div class="flex items-center glass-card rounded-full p-1 border border-white/20 text-xs sm:text-sm" dir="ltr">
+        <button onclick="changeLanguage('fa', true)" id="btn-fa" class="px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black shadow-md">
+          FA
+        </button>
+        <button onclick="changeLanguage('en', true)" id="btn-en" class="px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-300 hover:text-white">
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= تیتر اصلی ================= -->
+  <section class="pt-24 sm:pt-28 md:pt-32 pb-4 px-4 sm:px-6 text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-8 border border-white/20 shadow-lg">
+      <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+      <span id="txt-badge">بازدید هاتو منفجر کن !</span>
+    </div>
+
+    <h1 id="txt-title" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-2 glow-text-white whitespace-nowrap">
+      نمونه کارها
+    </h1>
+  </section>
+
+  <!-- ================= بخش همکاری با یوتیوبرها ================= -->
+  <section class="py-6 sm:py-8 w-full max-w-full overflow-hidden px-4 text-center">
+    <p id="txt-trusted" class="text-xs sm:text-sm font-bold text-neutral-200 mb-5 tracking-wide">
+      +۱۰۰ همکاری با یوتیوبرها
+    </p>
+
+    <div class="relative w-full max-w-4xl mx-auto overflow-hidden" dir="ltr">
+      <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#030305] to-transparent"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#030305] to-transparent"></div>
+
+      <div class="animate-creators-right flex items-center gap-4 sm:gap-6 py-2">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+
+        <!-- تکرار ۱۰ پروفایل -->
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator1.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator2.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator3.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator4.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator5.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator6.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator7.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator8.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator9.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+        <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0 shadow-lg bg-neutral-900"><img src="creator10.jpg" alt="Creator" class="w-full h-full object-cover pointer-events-none" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= دو اسلایدر معکوس ۲۰ تایی (سبک‌شده بدون بلر مخرب) ================= -->
+  <section id="marquee-section" class="relative py-6 sm:py-8 space-y-4 sm:space-y-6 overflow-hidden pointer-events-none w-full max-w-full" dir="ltr">
+    <div class="hidden sm:block absolute left-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-r from-[#030305] to-transparent"></div>
+    <div class="hidden sm:block absolute right-0 top-0 bottom-0 w-20 md:w-36 z-10 pointer-events-none bg-gradient-to-l from-[#030305] to-transparent"></div>
+
+    <!-- اسلایدر اول -->
+    <div class="w-full overflow-hidden flex">
+      <div id="marquee-row-1" class="animate-marquee-left flex gap-4 sm:gap-6 items-center">
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+
+        <!-- تکرار لوپ ۱ تا ۱۰ -->
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb1.jpg" alt="Thumb 1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb2.jpg" alt="Thumb 2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb3.jpg" alt="Thumb 3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb4.jpg" alt="Thumb 4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb5.jpg" alt="Thumb 5" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb6.jpg" alt="Thumb 6" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb7.jpg" alt="Thumb 7" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb8.jpg" alt="Thumb 8" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb9.jpg" alt="Thumb 9" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb10.jpg" alt="Thumb 10" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+
+    <!-- اسلایدر دوم -->
+    <div class="w-full overflow-hidden flex">
+      <div id="marquee-row-2" class="animate-marquee-right flex gap-4 sm:gap-6 items-center">
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+
+        <!-- تکرار لوپ ۱۱ تا ۲۰ -->
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb11.jpg" alt="Thumb 11" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb12.jpg" alt="Thumb 12" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb13.jpg" alt="Thumb 13" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb14.jpg" alt="Thumb 14" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb15.jpg" alt="Thumb 15" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb16.jpg" alt="Thumb 16" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb17.jpg" alt="Thumb 17" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb18.jpg" alt="Thumb 18" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb19.jpg" alt="Thumb 19" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+        <div class="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] xl:w-[460px] aspect-video rounded-xl sm:rounded-2xl overflow-hidden bg-neutral-900/90 border border-white/10 flex-shrink-0 shadow-xl"><img src="thumb20.jpg" alt="Thumb 20" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= بخش آمار ================= -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-1" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۵M</div>
+        <div id="stat-1" class="text-xs sm:text-sm text-neutral-300">بازدید ثبت شده</div>
+      </div>
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-2" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۱۴٪</div>
+        <div id="stat-2" class="text-xs sm:text-sm text-neutral-300">میانگین افزایش CTR</div>
+      </div>
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-3" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">+۳۵۰</div>
+        <div id="stat-3" class="text-xs sm:text-sm text-neutral-300">تامنیل طراحی شده</div>
+      </div>
+      <div class="glass-card p-5 sm:p-7 rounded-2xl text-center">
+        <div id="stat-num-4" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white glow-text-white mb-2">۲۴h</div>
+        <div id="stat-4" class="text-xs sm:text-sm text-neutral-300">تحویل سریع سفارش</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- خط جداکننده اول -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- ================= بخش سبک‌های تامنیل و محصولات ================= -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
+    
+    <!-- ۱. باکس‌های دوتایی گلس‌مورفیسم در دسکتاپ -->
+    <div id="main-tab-bar" class="flex flex-row justify-center items-stretch gap-3 sm:gap-8 md:gap-12 mb-12 max-w-5xl mx-auto w-full px-1 sm:px-4">
+      
+      <!-- باکس تامنیل‌ها (icon2.png) -->
+      <button onclick="toggleMainTab('thumbnails')" id="tab-btn-thumbs" class="group flex-1 flex flex-col items-center justify-center p-5 sm:p-8 md:p-12 lg:p-14 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[190px] sm:min-h-[260px] md:min-h-[320px] lg:min-h-[350px]">
+        <div class="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 mb-3 sm:mb-6 flex items-center justify-center">
+          <img src="icon2.png" alt="Thumbnails Icon" class="w-full h-full object-contain icon-glow">
+        </div>
+        <div class="flex items-center gap-2.5 font-black text-base sm:text-2xl md:text-3xl lg:text-4xl text-neutral-200 group-hover:text-white transition">
+          <span>تامنیل‌ها</span>
+          <span id="arrow-thumbs" class="text-xs sm:text-base md:text-lg transition-transform duration-300">▼</span>
+        </div>
+      </button>
+
+      <!-- باکس محصولات (icon1.png) -->
+      <button onclick="toggleMainTab('products')" id="tab-btn-prods" class="group flex-1 flex flex-col items-center justify-center p-5 sm:p-8 md:p-12 lg:p-14 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[190px] sm:min-h-[260px] md:min-h-[320px] lg:min-h-[350px]">
+        <div class="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 mb-3 sm:mb-6 flex items-center justify-center">
+          <img src="icon1.png" alt="Products Icon" class="w-full h-full object-contain icon-glow">
+        </div>
+        <div class="flex items-center gap-2.5 font-black text-base sm:text-2xl md:text-3xl lg:text-4xl text-neutral-200 group-hover:text-white transition">
+          <span>محصولات</span>
+          <span id="arrow-prods" class="text-xs sm:text-base md:text-lg transition-transform duration-300">▼</span>
+        </div>
+      </button>
+
+    </div>
+
+    <!-- ۲. باکس بزرگ اختصاصی «More Thumbnails» مخصوص انگلیسی -->
+    <div id="en-ar-tab-bar" class="hidden justify-center items-center mb-10 max-w-lg mx-auto w-full px-4">
+      <button onclick="toggleEnArThumbs()" id="btn-more-thumbs" class="group w-full flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 rounded-2xl sm:rounded-3xl glass-card border border-white/20 hover:border-white/50 transition-all duration-300 shadow-2xl hover:-translate-y-1.5 active:scale-95 min-h-[190px] sm:min-h-[260px] md:min-h-[320px]">
+        <div class="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 mb-3 sm:mb-6 flex items-center justify-center">
+          <img src="icon2.png" alt="More Thumbnails Icon" class="w-full h-full object-contain icon-glow">
+        </div>
+        <div class="flex items-center gap-2.5 font-black text-base sm:text-2xl md:text-3xl lg:text-4xl text-neutral-200 group-hover:text-white transition">
+          <span id="txt-more-thumbs">More Thumbnails</span>
+          <span id="arrow-more-thumbs" class="text-xs sm:text-base md:text-lg transition-transform duration-300">▼</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- بخش فیلتر تامنیل‌ها -->
+    <div id="content-thumbnails" class="hidden space-y-10 transition-all duration-500">
+      <div class="flex flex-nowrap justify-center items-center gap-2 sm:gap-4 overflow-x-auto py-2 px-2" dir="ltr">
+        <button onclick="filterCategory('vlog')" id="cat-vlog" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/10 glow-box-white transition-all">
+          <span id="lbl-vlog">ولاگ</span>
+        </button>
+        <button onclick="filterCategory('gameplay')" id="cat-gameplay" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all">
+          <span id="lbl-gameplay">گیم‌پلی</span>
+        </button>
+        <button onclick="filterCategory('challenge')" id="cat-challenge" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all">
+          <span id="lbl-challenge">چالش</span>
+        </button>
+        <button onclick="filterCategory('other')" id="cat-other" class="cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all">
+          <span id="lbl-other">سایر</span>
+        </button>
+      </div>
+
+      <div id="category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto w-full">
+      </div>
+    </div>
+
+    <!-- بخش محصولات (قیمت‌ها و دکمه‌ها در یک خط و کاملاً تراز) -->
+    <div id="content-products" class="hidden space-y-6 transition-all duration-500">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+        
+        <!-- دوره موبایل -->
+        <div onclick="openProductModal('course')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl flex flex-col justify-between h-full">
+          <div class="flex-1 flex flex-col">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950/60 border border-white/15 relative">
+              <img src="course.jpg" alt="دوره آموزشی طراحی با موبایل" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+              <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">آموزش ۰ تا ۱۰۰</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition min-h-[3.8rem] flex items-center">
+              دوره طراحی تامنیل با موبایل
+            </h3>
+            <p class="text-sm text-neutral-300 mb-6 line-clamp-2 min-h-[2.5rem]">
+              یادگیری اصولی و حرفه‌ای طراحی تامنیل‌های پرکلیک فقط با گوشی موبایل و ورود به بازار کار درآمد دلاری و ریالی.
+            </p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-white/15 mt-auto">
+            <span class="font-extrabold text-lg text-white">۱,۴۴۷,۰۰۰ تومان</span>
+            <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition flex items-center gap-1">مشاهده توضیحات و خرید ←</span>
+          </div>
+        </div>
+
+        <!-- جعبه ابزار -->
+        <div onclick="openProductModal('tools')" class="glass-card rounded-3xl p-6 sm:p-7 border border-white/20 hover:border-white/50 cursor-pointer group transition duration-300 hover:-translate-y-1 shadow-2xl flex flex-col justify-between h-full">
+          <div class="flex-1 flex flex-col">
+            <div class="aspect-square w-full rounded-2xl overflow-hidden mb-5 bg-neutral-950/60 border border-white/15 relative">
+              <img src="tools.jpg" alt="جعبه ابزار Magic Tools" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+              <span class="absolute top-3 right-3 bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">+۵۰ گیگابایت فایل</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 group-hover:glow-text-white transition min-h-[3.8rem] flex items-center">
+              پکیج Magic Tools (جعبه ابزار جادویی)
+            </h3>
+            <p class="text-sm text-neutral-300 mb-6 line-clamp-2 min-h-[2.5rem]">
+              بیش از ۵۰,۰۰۰ فایل دسته‌بندی شده شامل بک‌گراند، سوژه‌ها، استایل متنی سه‌بعدی و فونت‌های کاربردی در تلگرام.
+            </p>
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-white/15 mt-auto">
+            <span class="font-extrabold text-lg text-white">۸۴۸,۰۰۰ تومان</span>
+            <span class="text-xs font-bold text-neutral-300 group-hover:text-white transition flex items-center gap-1">مشاهده توضیحات و خرید ←</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- خط جداکننده دوم -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- ================= پاپ‌آپ توضیحات محصول (تک‌صفحه بدون اسکرول در موبایل + گلس‌مورفیسم شفاف) ================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md transition-opacity">
+    <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-sm sm:max-w-md w-full border border-white/25 glow-box-white relative max-h-[96vh] flex flex-col justify-between shadow-2xl">
+      <!-- دکمه بستن -->
+      <button onclick="closeProductModal()" class="absolute top-3 left-3 w-8 h-8 rounded-full glass-card border border-white/25 flex items-center justify-center text-neutral-300 hover:text-white transition text-base z-10 shadow">✕</button>
+
+      <!-- تصویر مربعی فشرده مخصوص موبایل -->
+      <div class="w-20 h-20 sm:w-32 sm:h-32 mx-auto aspect-square rounded-xl overflow-hidden mb-2 sm:mb-2.5 border border-white/20 shadow-lg flex-shrink-0">
+        <img id="modal-img" src="" alt="محصول" class="w-full h-full object-cover">
+      </div>
+
+      <!-- عنوان و توضیحات خلاصه و فشرده -->
+      <h3 id="modal-title" class="text-xs sm:text-base font-black mb-1 glow-text-white text-center"></h3>
+      <div id="modal-body" class="text-neutral-200 text-[11px] sm:text-xs leading-relaxed mb-2"></div>
+
+      <!-- قیمت و دکمه ثبت سفارش در انتهای پاپ‌آپ بدون اسکرول -->
+      <div class="pt-2.5 sm:pt-3 border-t border-white/15 flex items-center justify-between gap-3 mt-auto">
+        <div>
+          <span class="text-[9px] sm:text-[11px] text-neutral-400 block">قیمت نهایی:</span>
+          <span id="modal-price" class="text-xs sm:text-sm font-black text-white"></span>
+        </div>
+        <button onclick="goToPaymentStep()" class="px-5 sm:px-7 py-2 sm:py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white text-xs sm:text-sm shadow-xl border border-white/30 flex-shrink-0">
+          ثبت سفارش
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= پاپ‌آپ واریز وجه و کارت به کارت (تم سفید و مشکی + فیکس یک‌خطی) ================= -->
+  <div id="payment-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity">
+    <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-white/25 glow-box-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closePaymentModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full glass-card border border-white/20 flex items-center justify-center text-neutral-300 hover:text-white transition text-sm">✕</button>
+
+      <div class="text-center mb-6">
+        <h3 class="text-xl sm:text-2xl font-black text-white glow-text-white mb-1.5">اطلاعات واریز وجه</h3>
+        <p class="text-xs sm:text-sm text-neutral-300">مبلغ را کارت به کارت کرده و رسید را ارسال کنید</p>
+      </div>
+
+      <!-- برچسب محصول و قیمت: ۱۰۰٪ در یک خط -->
+      <div class="p-3.5 rounded-2xl bg-white/[0.06] border border-white/15 mb-5 flex items-center justify-between gap-2 whitespace-nowrap">
+        <span id="pay-product-name" class="font-bold text-xs sm:text-sm text-neutral-200 truncate"></span>
+        <span id="pay-product-price" class="font-extrabold text-white text-xs sm:text-sm flex-shrink-0"></span>
+      </div>
+
+      <!-- باکس شماره کارت: ۱۰۰٪ در یک خط با دکمه کپی شماره کارت و ارقام بدون شکستگی -->
+      <div class="p-4 sm:p-5 rounded-2xl bg-black/60 border border-white/15 mb-5 relative">
+        <div class="flex items-center justify-between gap-1.5 sm:gap-2 mb-3">
+          <button onclick="copyCardNumber()" id="copy-card-btn" class="px-2 sm:px-3 py-1.5 rounded-xl font-bold text-[11px] min-[360px]:text-xs bg-white text-black hover:bg-neutral-200 transition flex-shrink-0 shadow border border-white/20 whitespace-nowrap">
+            کپی شماره کارت
+          </button>
+          <span class="selectable-text text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-lg font-black tracking-wider text-white whitespace-nowrap" dir="ltr">
+            6104 3387 0203 7264
+          </span>
+        </div>
+        <div class="flex items-center justify-between text-xs text-neutral-300 pt-2 border-t border-white/10">
+          <span>صاحب حساب:</span>
+          <span class="font-bold text-white">ایلیا لطف یاسوری</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-neutral-300 leading-relaxed text-center mb-6 px-1">
+        بعد از پرداخت، لطفاً تصویر فیش واریزی را به پشتیبانی ارسال کنید.
+      </p>
+
+      <a id="pay-telegram-btn" href="https://t.me/ilia_ltf" target="_blank" class="w-full py-3.5 sm:py-4 rounded-xl font-black bg-white hover:bg-neutral-200 text-black text-center text-sm sm:text-base transition duration-300 glow-box-white shadow-xl block border border-white/30">
+        ارسال رسید در تلگرام
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= بخش من؟ ================= -->
+  <section class="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full">
+    <div class="glass-card rounded-3xl p-6 sm:p-10 md:p-14 border border-white/20 glow-box-white">
+      <div class="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12">
+        
+        <div class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 aspect-square rounded-3xl overflow-hidden border-2 border-white/30 p-1 flex-shrink-0 glow-box-white shadow-2xl">
+          <img src="me.jpg" alt="Ilia - Thumbnail Designer" class="w-full h-full object-cover rounded-2xl transition duration-500" loading="lazy" decoding="async">
+        </div>
+
+        <div class="space-y-4 sm:space-y-5 text-center md:text-start flex-1">
+          <h2 id="about-title" class="text-3xl sm:text-4xl md:text-5xl font-black glow-text-white">من؟</h2>
+          <h3 id="about-name" class="text-xl sm:text-2xl font-bold text-neutral-200">
+            من ایلیا هستم، ۲۰ سالمه
+          </h3>
+          <p id="about-desc-1" class="text-neutral-300 text-sm sm:text-base md:text-lg leading-relaxed pt-1">
+            با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...
+          </p>
+
+          <div class="pt-3 border-r-2 md:border-r-4 border-white pr-4 space-y-1.5">
+            <p id="about-line-1" class="text-white text-base sm:text-lg md:text-xl font-extrabold">
+              ما اینجا تامنیل طراحی نمیکنیم!
+            </p>
+            <p id="about-line-2" class="text-white text-base sm:text-lg md:text-xl font-extrabold">
+              اثر هنری خلق میکنیم!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- خط جداکننده قبل از FAQ -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- ================= بخش سوالات متداول (FAQ) ================= -->
+  <section id="faq-section" class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full text-center">
+    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-card text-xs sm:text-sm text-neutral-200 mb-6 border border-white/20 shadow-lg">
+      <span class="text-indigo-400 font-black">#</span>
+      <span id="faq-badge">FAQ</span>
+    </div>
+
+    <h2 id="faq-title" class="text-2xl sm:text-4xl md:text-5xl font-black mb-4 glow-text-white">
+      پاسخ به سوالات شما
+    </h2>
+    <p id="faq-subtitle" class="text-neutral-300 text-[11px] min-[360px]:text-xs min-[420px]:text-sm sm:text-base md:text-lg mb-10 max-w-full mx-auto whitespace-nowrap overflow-hidden text-ellipsis">
+      سوالاتی که معمولاً قبل از شروع همکاری پیش میاد
+    </p>
+
+    <div class="space-y-4 text-start">
+
+      <!-- سوال ۱ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(1)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q1" class="font-extrabold text-base sm:text-xl text-white">چطوری سفارشمو ثبت کنم؟</span>
+          <span id="faq-icon-1" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
+        </button>
+        <div id="faq-ans-1" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
+          <p id="faq-a1-text" class="mb-4">برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://t.me/ilia_ltf?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%A7%DB%8C%D9%84%DB%8C%D8%A7%20%D8%AC%D8%A7%D9%86%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B7%D8%B1%D8%A7%D8%AD%DB%8C%20%D8%AA%D8%A7%D9%85%D9%86%DB%8C%D9%84%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%D8%AF%D9%85" target="_blank" class="px-5 py-2.5 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition text-xs sm:text-sm glow-box-white border border-white/30">
+              <span id="faq-btn-tg">پیام در تلگرام</span>
             </a>
-            <a href="https://rubika.ir/i_4_iIia" target="_blank" class="contact-btn">ارتباط با پشتیبانی</a>
-        </div>
-    </header>
-
-    <div class="app-container">
-
-        <!-- هیرو -->
-        <section class="hero">
-            <div class="hero-tag">
-                <span class="pulse-dot"></span>
-                <span>از رقیبات جلو بزن !</span>
-            </div>
-            <h1>بزرگ‌ترین مجموعه خدمات تخصصی <span>روبیکا</span></h1>
-            <p>جهت مشاهده تعرفه‌ها و رضایت‌های مشتریان یکی از گزینه‌های زیر را انتخاب کنید:</p>
-        </section>
-
-        <!-- دو دکمه مربعی اصلی -->
-        <div class="quick-actions-row">
-            
-            <div class="square-btn active" id="btn-services" onclick="showServices()">
-                <div class="square-icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                </div>
-                <span class="square-title">خدمات روبیکا</span>
-            </div>
-
-            <div class="square-btn" id="btn-reviews" onclick="showReviews()">
-                <div class="square-icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                    </svg>
-                </div>
-                <span class="square-title">رضایت های شما</span>
-            </div>
-
-        </div>
-
-        <div class="section-divider"></div>
-
-        <!-- ۱. لیست آکاردئونی خدمات -->
-        <div id="services-section">
-            <div class="services-accordion">
-                
-                <!-- ۱. ممبر کانال روبیکا -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag">کانال</span>
-                            <span>ممبر کانال روبیکا</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="sub-toggle-tabs">
-                            <div class="sub-tab-btn active" id="btn-tab-member-fake" onclick="switchSubTab('member', 'fake')">فیک</div>
-                            <div class="sub-tab-btn" id="btn-tab-member-real" onclick="switchSubTab('member', 'real')">واقعی</div>
-                        </div>
-
-                        <!-- ممبر فیک -->
-                        <div class="sub-content-panel show" id="panel-member-fake">
-                            <p class="accordion-desc">افزایش اعضای فیک و بدون ریزش برای کانال، ایده‌آل جهت اعتمادسازی اولیه و بالا بردن آمار کانال.</p>
-                            <div class="price-banner">
-                                <span>قیمت ۱,۰۰۰ ممبر فیک:</span>
-                                <span class="price-highlight">۵۰۰,۰۰۰ تومان</span>
-                            </div>
-                            <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ ممبر فیک کانال روبیکا', '۵۰۰,۰۰۰ تومان')">ثبت سفارش</button>
-                        </div>
-
-                        <!-- ممبر واقعی -->
-                        <div class="sub-content-panel" id="panel-member-real">
-                            <p class="accordion-desc">افزایش اعضای واقعی و فعال برای کانال روبیکا (با احتمال ریزش)، کاملاً مناسب کسب‌وکارها و فروشگاه‌ها.</p>
-                            <div class="price-banner">
-                                <span>قیمت ۱,۰۰۰ ممبر واقعی:</span>
-                                <span class="price-highlight">۶۰۰,۰۰۰ تومان</span>
-                            </div>
-                            <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ ممبر واقعی کانال روبیکا', '۶۰۰,۰۰۰ تومان')">ثبت سفارش</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ۲. بازدید (سین) پست‌های کانال -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag">کانال</span>
-                            <span>بازدید (سین) پست‌های کانال</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <p class="accordion-desc" style="margin-bottom: 12px;">افزایش سریع و طبیعی بازدید برای تک‌پست یا چندین پست اخیر کانال شما:</p>
-                        <div class="price-list-wrap">
-                            <div class="price-banner"><span>۱,۰۰۰ بازدید پست آخر:</span><span class="price-highlight">۲۰,۰۰۰ تومان</span></div>
-                            <div class="price-banner"><span>۱,۰۰۰ بازدید پست دلخواه:</span><span class="price-highlight">۴۰,۰۰۰ تومان</span></div>
-                            <div class="price-banner"><span>۱,۰۰۰ بازدید ۵ پست آخر:</span><span class="price-highlight">۶۰,۰۰۰ تومان</span></div>
-                            <div class="price-banner"><span>۱,۰۰۰ بازدید ۱۰ پست آخر:</span><span class="price-highlight">۱۲۰,۰۰۰ تومان</span></div>
-                            <div class="price-banner"><span>۱,۰۰۰ بازدید ۲۰ پست آخر:</span><span class="price-highlight">۲۰۰,۰۰۰ تومان</span></div>
-                        </div>
-                        <button class="order-btn" onclick="openPaymentModal('بازدید پست‌های کانال روبیکا', 'بر اساس پلن انتخابی')">ثبت سفارش</button>
-                    </div>
-                </div>
-
-                <!-- ۳. ری‌اکشن پست‌های کانال -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag">کانال</span>
-                            <span>ری‌اکشن پست‌های کانال</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <p class="accordion-desc" style="margin-bottom: 12px;">ارسال ری‌اکشن‌ها و واکنش‌های متنوع (قلب، لایک، آتش و...) روی پست‌های کانال:</p>
-                        <div class="price-banner" style="margin-bottom: 14px;">
-                            <span>قیمت هر ۱,۰۰۰ ری‌اکشن:</span>
-                            <span class="price-highlight">۱۵۰,۰۰۰ تومان</span>
-                        </div>
-                        <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ ری‌اکشن پست‌های کانال', '۱۵۰,۰۰۰ تومان')">ثبت سفارش</button>
-                    </div>
-                </div>
-
-                <!-- ۴. فالور پیج روبینو -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag">روبینو</span>
-                            <span>فالور پیج روبینو</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <div class="sub-toggle-tabs">
-                            <div class="sub-tab-btn active" id="btn-tab-follower-fake" onclick="switchSubTab('follower', 'fake')">فیک</div>
-                            <div class="sub-tab-btn" id="btn-tab-follower-real" onclick="switchSubTab('follower', 'real')">واقعی</div>
-                        </div>
-
-                        <!-- فالور فیک -->
-                        <div class="sub-content-panel show" id="panel-follower-fake">
-                            <p class="accordion-desc">افزایش فالور فیک باکیفیت و بدون ریزش جهت اعتبارسازی و بالا بردن عدد فالور پیج روبینو.</p>
-                            <div class="price-banner">
-                                <span>قیمت ۱,۰۰۰ فالور فیک:</span>
-                                <span class="price-highlight">۱۵۰,۰۰۰ تومان</span>
-                            </div>
-                            <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ فالور فیک پیج روبینو', '۱۵۰,۰۰۰ تومان')">ثبت سفارش</button>
-                        </div>
-
-                        <!-- فالور واقعی -->
-                        <div class="sub-content-panel" id="panel-follower-real">
-                            <p class="accordion-desc">افزایش فالور واقعی و فعال روبینو (با احتمال ریزش)، با تعامل مناسب جهت ارتقای پیج و ورود به ویترین.</p>
-                            <div class="price-banner">
-                                <span>قیمت ۱,۰۰۰ فالور واقعی:</span>
-                                <span class="price-highlight">۲۵۰,۰۰۰ تومان</span>
-                            </div>
-                            <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ فالور واقعی روبینو', '۲۵۰,۰۰۰ تومان')">ثبت سفارش</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ۵. لایک پست روبینو -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag">روبینو</span>
-                            <span>لایک پست روبینو</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <p class="accordion-desc" style="margin-bottom: 12px;">افزایش فوری لایک برای عکس‌ها و کلیپ‌های روبینو با کیفیت عالی:</p>
-                        <div class="price-banner" style="margin-bottom: 14px;">
-                            <span>قیمت هر ۱,۰۰۰ لایک روبینو:</span>
-                            <span class="price-highlight">۵۰,۰۰۰ تومان</span>
-                        </div>
-                        <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ لایک پست روبینو', '۵۰,۰۰۰ تومان')">ثبت سفارش</button>
-                    </div>
-                </div>
-
-                <!-- ۶. بازدید ویدیو روبینو -->
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag">روبینو</span>
-                            <span>بازدید ویدیو روبینو</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <p class="accordion-desc" style="margin-bottom: 12px;">افزایش چشمگیر ویو کلیپ‌ها و ریلزهای روبینو جهت رفتن به ویترین:</p>
-                        <div class="price-banner" style="margin-bottom: 14px;">
-                            <span>قیمت هر ۱,۰۰۰ بازدید ویدیو:</span>
-                            <span class="price-highlight">۵۰,۰۰۰ تومان</span>
-                        </div>
-                        <button class="order-btn" onclick="openPaymentModal('۱,۰۰۰ بازدید ویدیوی روبینو', '۵۰,۰۰۰ تومان')">ثبت سفارش</button>
-                    </div>
-                </div>
-
-                <!-- ۷. سایر خدمات -->
-                <div class="accordion-item special-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
-                        <div class="accordion-header-title">
-                            <span class="accordion-tag special-tag">ویژه</span>
-                            <span>سایر خدمات</span>
-                        </div>
-                        <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="accordion-body">
-                        <p class="accordion-desc" style="margin-bottom: 16px; font-size: 0.95rem; color: #ffffff;">سایر خدمات روبیکا از جمله رای نظرسنجی ، بازدید لایو ، اکانت روبیکا و خدمات سایر پلتفرم‌ها موجوده !</p>
-                        <a href="https://rubika.ir/i_4_iIia" target="_blank" class="order-btn">استعلام قیمت در روبیکا</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ۲. گالری رضایت‌ها -->
-        <div id="reviews-section">
-            <div class="reviews-grid" id="reviews-grid"></div>
-        </div>
-
-        <!-- خط جداکننده قبل از بخش کانال ما در روبیکا -->
-        <div class="section-divider"></div>
-
-        <!-- ==================== بخش جداگانه و همیشه پیدا: کانال ما در روبیکا ==================== -->
-        <div class="channel-card">
-            <div class="channel-info">
-                <div class="channel-title">کانال ما در روبیکا</div>
-                <a href="https://rubika.ir/joinc/FGFHEEJI0QNRRKBRJBXNIVXCYYHKSLRZ" target="_blank" class="channel-btn">
-                    <span>پیوستن به کانال</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </a>
-            </div>
-            <div class="channel-logo-wrap">
-                <img src="rubika.jpg" alt="کانال روبیکا" class="channel-logo-img" onerror="this.onerror=null; this.src='icon.jpg';">
-            </div>
-        </div>
-
-        <!-- خط جداکننده بعد از بخش کانال ما در روبیکا -->
-        <div class="section-divider"></div>
-
-        <!-- ویژگی‌ها -->
-        <div class="features-strip">
-            <div class="feature-item">
-                <div class="feature-title">ثبت سفارش آنی</div>
-                <div class="feature-sub">تکمیل سفارش نهایتاً ۲۴ ساعته</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-title">پشتیبانی دائمی</div>
-                <div class="feature-sub">پاسخگویی سریع در روبیکا</div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-title">امنیت ۱۰۰٪ تضمینی</div>
-                <div class="feature-sub">بدون نیاز به پسورد یا اطلاعات حساس</div>
-            </div>
-        </div>
-
-        <footer>
-            <p>© کلیه حقوق برای روبیکس پنل محفوظ است.</p>
-        </footer>
-
-    </div>
-
-    <!-- پاپ‌آپ پرداخت با فیکس قطعی یک‌خطی بودن کارت -->
-    <div class="modal" id="paymentModal" onclick="closeModalSafe('paymentModal')">
-        <div class="payment-box" onclick="event.stopPropagation()">
-            <span class="modal-close-btn" onclick="closeModalSafe('paymentModal')">&times;</span>
-            
-            <div class="payment-header">
-                <h3>اطلاعات واریز وجه</h3>
-                <p>مبلغ را کارت به کارت کرده و رسید را ارسال کنید</p>
-            </div>
-
-            <!-- مشخصات سفارش انتخابی -->
-            <div class="selected-order-info">
-                <span id="modal-service-name">سرویس انتخابی</span>
-                <span class="selected-order-price" id="modal-service-price">۰ تومان</span>
-            </div>
-
-            <!-- کارت بانکی -->
-            <div class="bank-card-container">
-                <div class="card-number-row">
-                    <button class="copy-card-btn" id="copyBtn" onclick="copyCardNumber()">کپی شماره کارت</button>
-                    <span class="card-number-text" id="cardNumberText">6104 3387 0203 7264</span>
-                </div>
-                <div class="card-owner-row">
-                    <span style="color: var(--text-muted);">صاحب حساب:</span>
-                    <span class="card-owner-name">ایلیا لطف یاسوری</span>
-                </div>
-            </div>
-
-            <p class="payment-note">بعد از پرداخت، لطفاً تصویر فیش واریزی را به همراه آیدی کانال/پیج خود به پشتیبانی ارسال کنید تا سفارشتان سریعاً ثبت و اعمال شود.</p>
-
-            <a href="https://rubika.ir/i_4_iIia" target="_blank" class="send-receipt-btn">
-                <span>ارسال رسید در روبیکا</span>
+            <a href="https://www.instagram.com/magic.designerrr?srtk=MXIweTBmNGM3c3Rxeg==" target="_blank" class="px-5 py-2.5 rounded-xl font-bold glass-card text-white hover:bg-white/15 transition text-xs sm:text-sm border border-white/20">
+              <span id="faq-btn-ig">پیام در اینستاگرام</span>
             </a>
+          </div>
         </div>
+      </div>
+
+      <!-- سوال ۲ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(2)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q2" class="font-extrabold text-base sm:text-xl text-white">چه سبک هایی از تامنیل رو طراحی میکنید؟</span>
+          <span id="faq-icon-2" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
+        </button>
+        <div id="faq-ans-2" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
+          <p id="faq-a2">من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم.</p>
+        </div>
+      </div>
+
+      <!-- سوال ۳ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(3)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q3" class="font-extrabold text-base sm:text-xl text-white">سفارش طراحی تامنیل چقدر طول میکشه؟</span>
+          <span id="faq-icon-3" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
+        </button>
+        <div id="faq-ans-3" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
+          <p id="faq-a3">معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره.</p>
+        </div>
+      </div>
+
+      <!-- سوال ۴ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(4)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q4" class="font-extrabold text-base sm:text-xl text-white">تامنیل ها اصلاحیه داره؟</span>
+          <span id="faq-icon-4" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
+        </button>
+        <div id="faq-ans-4" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
+          <p id="faq-a4">بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم.</p>
+        </div>
+      </div>
+
+      <!-- سوال ۵ -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl border border-white/15 hover:border-white/35 transition-all duration-300 overflow-hidden">
+        <button onclick="toggleFaq(5)" class="w-full p-5 sm:p-7 flex items-center justify-between gap-4 text-start">
+          <span id="faq-q5" class="font-extrabold text-base sm:text-xl text-white">شرایط و قیمت طراحی به چه صورت هستش؟</span>
+          <span id="faq-icon-5" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white text-xl font-bold flex-shrink-0 transition-transform duration-300 border border-white/15">+</span>
+        </button>
+        <div id="faq-ans-5" class="faq-answer hidden px-5 sm:px-7 pb-6 text-neutral-200 text-sm sm:text-base leading-relaxed border-t border-white/10 pt-4">
+          <p id="faq-a5">قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش.</p>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <!-- پاپ‌آپ عکس رضایت -->
-    <div class="modal" id="imageModal" onclick="closeModalSafe('imageModal')">
-        <span class="modal-close-btn" style="top:25px; left:25px;" onclick="closeModalSafe('imageModal')">&times;</span>
-        <img class="modal-img" id="modalImg" src="" onclick="event.stopPropagation()">
+  <!-- خط جداکننده سوم -->
+  <div class="max-w-5xl mx-auto px-6 my-6 sm:my-10 w-full">
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- ================= فوتر ================= -->
+  <footer id="contact" class="border-t border-white/15 bg-black/90 py-14 sm:py-20 px-4 sm:px-6 text-center w-full">
+    <div class="max-w-5xl mx-auto">
+      
+      <h2 id="footer-title" class="text-[13px] min-[360px]:text-[14px] min-[400px]:text-base sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 glow-text-white whitespace-nowrap tracking-tight text-center px-1">
+        آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! 
+      </h2>
+      
+      <p id="footer-desc" class="text-neutral-300 mb-10 sm:mb-12 text-base sm:text-lg font-bold">
+        همکاری 👇🏻
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-12 w-full max-w-md mx-auto sm:max-w-none">
+        <a href="https://t.me/ilia_ltf" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold bg-white text-black hover:bg-neutral-200 transition duration-300 glow-box-white flex items-center justify-center text-sm sm:text-base border border-white/30">
+          <span id="btn-tg">ارتباط سریع (تلگرام)</span>
+        </a>
+        <a href="https://instagram.com/Magic_Designerr" target="_blank" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold glass-card text-white hover:bg-white/15 transition duration-300 flex items-center justify-center text-sm sm:text-base border border-white/20">
+          <span id="btn-ig">اینستاگرام</span>
+        </a>
+      </div>
+
+      <p id="txt-copyright" class="text-xs text-neutral-400">
+        © 2026 Magic Designer | تمامی حقوق محفوظ است.
+      </p>
     </div>
+  </footer>
 
-    <script>
-        history.replaceState({ page: 'home' }, '');
+  <!-- ================= جاوااسکریپت کامل ================= -->
+  <script>
+    let activeProductKey = 'course';
 
-        let activeModalId = null;
-        let isClosingViaButton = false;
+    // ================= سیستم قفل کامل بازگشت (Never-Exit Back Button Trap) =================
+    function trapHistory() {
+      window.history.pushState({ page: 'trap' }, '', window.location.href);
+    }
 
-        function openModalSafe(modalId) {
-            activeModalId = modalId;
-            document.getElementById(modalId).classList.add('open');
-            history.pushState({ modal: modalId }, '');
+    window.history.replaceState({ page: 'root' }, '', window.location.href);
+    trapHistory();
+
+    window.addEventListener('popstate', function(e) {
+      trapHistory();
+
+      const payModal = document.getElementById('payment-modal');
+      const prodModal = document.getElementById('product-modal');
+      if (payModal && !payModal.classList.contains('hidden')) {
+        payModal.classList.add('hidden');
+        if (prodModal) prodModal.classList.remove('hidden');
+        return;
+      }
+
+      if (prodModal && !prodModal.classList.contains('hidden')) {
+        prodModal.classList.add('hidden');
+        return;
+      }
+
+      const anyFaqOpen = Array.from(document.querySelectorAll('.faq-answer')).some(ans => !ans.classList.contains('hidden'));
+      if (anyFaqOpen) {
+        document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
+        document.querySelectorAll('[id^="faq-icon-"]').forEach(icon => icon.style.transform = 'rotate(0deg)');
+        return;
+      }
+
+      if (activeTab !== null) {
+        toggleMainTab(activeTab);
+        return;
+      }
+
+      if (typeof isEnArOpen !== 'undefined' && isEnArOpen) {
+        toggleEnArThumbs();
+        return;
+      }
+
+      if (window.scrollY > 80) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      detectUserLanguage();
+    });
+
+    const categoryThumbnails = {
+      vlog: ['t1vl.jpg', 't2vl.jpg', 't3vl.jpg', 't4vl.jpg', 't5vl.jpg'],
+      gameplay: ['t1gm.jpg', 't2gm.jpg', 't3gm.jpg', 't4gm.jpg', 't5gm.jpg'],
+      challenge: ['t1ch.jpg', 't2ch.jpg', 't3ch.jpg', 't4ch.jpg', 't5ch.jpg'],
+      other: ['t1ot.jpg', 't2ot.jpg', 't3ot.jpg', 't4ot.jpg', 't5ot.jpg']
+    };
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        btn.className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/10 text-neutral-300 hover:text-white transition-all";
+      });
+      document.getElementById('cat-' + cat).className = "cat-filter-btn whitespace-nowrap flex-shrink-0 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold glass-card border border-white/30 text-white bg-white/15 glow-box-white transition-all";
+
+      const grid = document.getElementById('category-grid');
+      grid.innerHTML = '';
+      
+      categoryThumbnails[cat].forEach((imgName, index) => {
+        const div = document.createElement('div');
+        if (index === 0) {
+          div.className = "md:col-span-2 w-full md:max-w-2xl md:mx-auto aspect-video rounded-2xl overflow-hidden glass-card group hover:scale-[1.02] hover:glow-box-white transition duration-300 border border-white/20 shadow-2xl";
+        } else {
+          div.className = "w-full aspect-video rounded-2xl overflow-hidden glass-card group hover:scale-[1.03] hover:glow-box-white transition duration-300 border border-white/15 shadow-xl";
         }
+        div.innerHTML = `<img src="${imgName}" alt="Thumbnail" class="w-full h-full object-cover" loading="lazy" decoding="async">`;
+        grid.appendChild(div);
+      });
+    }
 
-        function closeModalSafe(modalId, isFromPopstate = false) {
-            const modal = document.getElementById(modalId);
-            if (modal) modal.classList.remove('open');
-            activeModalId = null;
+    filterCategory('vlog');
 
-            if (!isFromPopstate && history.state && history.state.modal === modalId) {
-                isClosingViaButton = true;
-                history.back();
-            }
-        }
+    let activeTab = null;
 
-        window.addEventListener('popstate', (e) => {
-            if (isClosingViaButton) {
-                isClosingViaButton = false;
-                return;
-            }
-            if (activeModalId) {
-                closeModalSafe(activeModalId, true);
-            }
+    function toggleMainTab(tab) {
+      const thumbsBtn = document.getElementById('tab-btn-thumbs');
+      const prodsBtn = document.getElementById('tab-btn-prods');
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const prodsCont = document.getElementById('content-products');
+      const arrowThumbs = document.getElementById('arrow-thumbs');
+      const arrowProds = document.getElementById('arrow-prods');
+
+      if (activeTab === tab) {
+        activeTab = null;
+        thumbsCont.classList.add('hidden');
+        prodsCont.classList.add('hidden');
+        thumbsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
+        prodsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
+        if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
+        if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
+        return;
+      }
+
+      activeTab = tab;
+      if (tab === 'thumbnails') {
+        thumbsBtn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
+        prodsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
+        thumbsCont.classList.remove('hidden');
+        prodsCont.classList.add('hidden');
+        if (arrowThumbs) arrowThumbs.style.transform = "rotate(180deg)";
+        if (arrowProds) arrowProds.style.transform = "rotate(0deg)";
+      } else {
+        prodsBtn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
+        thumbsBtn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
+        prodsCont.classList.remove('hidden');
+        thumbsCont.classList.add('hidden');
+        if (arrowProds) arrowProds.style.transform = "rotate(180deg)";
+        if (arrowThumbs) arrowThumbs.style.transform = "rotate(0deg)";
+      }
+    }
+
+    let isEnArOpen = false;
+    function toggleEnArThumbs() {
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const arrow = document.getElementById('arrow-more-thumbs');
+      const btn = document.getElementById('btn-more-thumbs');
+      isEnArOpen = !isEnArOpen;
+
+      if (isEnArOpen) {
+        thumbsCont.classList.remove('hidden');
+        btn.classList.add('bg-white/15', 'border-white/60', 'glow-box-white');
+        if (arrow) arrow.style.transform = "rotate(180deg)";
+      } else {
+        thumbsCont.classList.add('hidden');
+        btn.classList.remove('bg-white/15', 'border-white/60', 'glow-box-white');
+        if (arrow) arrow.style.transform = "rotate(0deg)";
+      }
+    }
+
+    function toggleFaq(index) {
+      const allAnswers = document.querySelectorAll('.faq-answer');
+      const targetAns = document.getElementById(`faq-ans-${index}`);
+      const targetIcon = document.getElementById(`faq-icon-${index}`);
+      const isAlreadyOpen = !targetAns.classList.contains('hidden');
+
+      allAnswers.forEach((ans, i) => {
+        ans.classList.add('hidden');
+        const icon = document.getElementById(`faq-icon-${i + 1}`);
+        if (icon) icon.style.transform = "rotate(0deg)";
+      });
+
+      if (!isAlreadyOpen) {
+        targetAns.classList.remove('hidden');
+        if (targetIcon) targetIcon.style.transform = "rotate(45deg)";
+      }
+    }
+
+    // ================= اطلاعات پاپ‌آپ محصولات (کامپکت تک‌صفحه‌ای + نقاط درخشان سفید) =================
+    const productsData = {
+      course: {
+        title: 'دوره جامع طراحی تامنیل با موبایل',
+        shortTitle: 'دوره طراحی تامنیل با موبایل',
+        img: 'course.jpg',
+        price: '۱,۴۴۷,۰۰۰ تومان',
+        tgMsg: 'سلام ایلیا جان، فیش واریزی برای دوره طراحی تامنیل با موبایل رو ارسال می‌کنم:',
+        body: `
+          <p class="font-bold text-white mb-2 text-center text-xs">طراحی حرفه‌ای تامنیل و ورود به بازار کار دلاری و ریالی با موبایل!</p>
+          <div class="space-y-1 text-xs text-neutral-200 py-1">
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۱:</strong> تسلط کامل به محیط پیکس‌آرت (PicsArt)</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۲:</strong> روانشناسی رنگ و اصول جذب کلیک</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۳:</strong> طراحی گام‌به‌گام تامنیل‌های ترند</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span><strong>فصل ۴:</strong> نقشه راه کسب درآمد و جذب کارفرما</p>
+          </div>
+          <div class="pt-2 text-[11px] text-neutral-300 text-center border-t border-white/10 mt-1">
+            ✔ دسترسی دائمی در تلگرام + پشتیبانی مستقیم نامحدود
+          </div>
+        `
+      },
+      tools: {
+        title: 'پکیج Magic Tools (جعبه ابزار)',
+        shortTitle: 'پکیج Magic Tools',
+        img: 'tools.jpg',
+        price: '۸۴۸,۰۰۰ تومان',
+        tgMsg: 'سلام ایلیا جان، فیش واریزی برای پکیج ابزار Magic Tools رو ارسال می‌کنم:',
+        body: `
+          <p class="font-bold text-white mb-2 text-center text-xs">کامل‌ترین بانک منابع گرافیکی با +۵۰,۰۰۰ فایل و ۵۰ گیگابایت محتوا!</p>
+          <div class="space-y-1 text-xs text-neutral-200 py-1">
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۱۰,۰۰۰ بک‌گراند در تمامی سبک‌های محبوب</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۳,۰۰۰ سوژه باکیفیت از یوتیوبرهای معروف</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲۰,۰۰۰ عنصر، افکت و ترنزیشن کاربردی</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>+۲,۰۰۰ استایل متنی سه‌بعدی روسی و ترند</p>
+            <p class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#fff] inline-block ml-2 flex-shrink-0"></span>معروف‌ترین فونت‌های پولی + نسخه مود برنامه‌ها</p>
+          </div>
+          <div class="pt-2 text-[11px] text-neutral-300 text-center border-t border-white/10 mt-1">
+            ✔ یک بار هزینه کن، دسترسی دائمی با آپدیت مادام‌العمر در تلگرام
+          </div>
+        `
+      }
+    };
+
+    function openProductModal(key) {
+      activeProductKey = key;
+      const p = productsData[key];
+      document.getElementById('modal-img').src = p.img;
+      document.getElementById('modal-title').innerText = p.title;
+      document.getElementById('modal-body').innerHTML = p.body;
+      document.getElementById('modal-price').innerText = p.price;
+      document.getElementById('product-modal').classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    function goToPaymentStep() {
+      const p = productsData[activeProductKey];
+      document.getElementById('pay-product-name').innerText = p.shortTitle || p.title;
+      document.getElementById('pay-product-price').innerText = p.price;
+      document.getElementById('pay-telegram-btn').href = 'https://t.me/ilia_ltf?text=' + encodeURIComponent(p.tgMsg);
+      
+      document.getElementById('product-modal').classList.add('hidden');
+      document.getElementById('payment-modal').classList.remove('hidden');
+    }
+
+    function closePaymentModal() {
+      document.getElementById('payment-modal').classList.add('hidden');
+    }
+
+    function copyCardNumber() {
+      const cardNum = '6104338702037264';
+      const btn = document.getElementById('copy-card-btn');
+      const origText = 'کپی شماره کارت';
+
+      function showSuccess() {
+        btn.innerText = 'کپی شد! ✓';
+        btn.classList.add('bg-white', 'text-black');
+        setTimeout(() => {
+          btn.innerText = origText;
+          btn.classList.remove('bg-white', 'text-black');
+        }, 2000);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(cardNum).then(showSuccess).catch(() => {
+          fallbackCopyText(cardNum, showSuccess);
         });
+      } else {
+        fallbackCopyText(cardNum, showSuccess);
+      }
+    }
 
-        function openPaymentModal(serviceName, price) {
-            document.getElementById('modal-service-name').innerText = serviceName;
-            document.getElementById('modal-service-price').innerText = price;
-            openModalSafe('paymentModal');
+    function fallbackCopyText(text, callback) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        callback();
+      } catch (err) {
+        prompt('شماره کارت جهت کپی:', text);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    const translations = {
+      fa: {
+        dir: 'rtl',
+        badge: 'بازدید هاتو منفجر کن !',
+        title: 'نمونه کارها',
+        trusted: '+۱۰۰ همکاری با یوتیوبرها',
+        statNum1: '+۵M',
+        statNum2: '+۱۴٪',
+        statNum3: '+۳۵۰',
+        statNum4: '۲۴h',
+        stat1: 'بازدید ثبت شده',
+        stat2: 'میانگین افزایش CTR',
+        stat3: 'تامنیل طراحی شده',
+        stat4: 'تحویل سریع سفارش',
+        vlog: 'ولاگ',
+        gameplay: 'گیم‌پلی',
+        challenge: 'چالش',
+        other: 'سایر',
+        moreThumbs: 'تامنیل‌های بیشتر',
+        aboutTitle: 'من؟',
+        aboutName: 'من ایلیا هستم، ۲۰ سالمه',
+        aboutDesc1: 'با بیش از ۴ سال سابقه در طراحی تامنیل ، چنل آرت ، پروفایل ، کاور و...',
+        aboutLine1: 'ما اینجا تامنیل طراحی نمیکنیم!',
+        aboutLine2: 'اثر هنری خلق میکنیم!',
+        faqBadge: 'FAQ',
+        faqTitle: 'پاسخ به سوالات شما',
+        faqSubtitle: 'سوالاتی که معمولاً قبل از شروع همکاری پیش میاد',
+        faqQ1: 'چطوری سفارشمو ثبت کنم؟',
+        faqA1Text: 'برای شروع فقط لازمه داخل تلگرام یا اینستاگرام جهت همکاری به من پیام بدید.',
+        faqBtnTg: 'پیام در تلگرام',
+        faqBtnIg: 'پیام در اینستاگرام',
+        faqQ2: 'چه سبک هایی از تامنیل رو طراحی میکنید؟',
+        faqA2: 'من مسلط به طراحی اکثر سبک های تامنیل از جمله ولاگ ، گیمینگ ، آموزشی ، روسی ، فوتومونتاژ و ... هستم.',
+        faqQ3: 'سفارش طراحی تامنیل چقدر طول میکشه؟',
+        faqA3: 'معمولاً ظرف ۲۴ ساعت، اما بسته به حجم کار تحویل تو ۱۲ ساعت هم امکان پذیره.',
+        faqQ4: 'تامنیل ها اصلاحیه داره؟',
+        faqA4: 'بله من تا زمانی که از طرح نهایی ۱۰۰ درصد راضی باشید اصلاحات نامحدودی براتون انجام میدم.',
+        faqQ5: 'شرایط و قیمت طراحی به چه صورت هستش؟',
+        faqA5: 'قیمت گذاری بر اساس نوع سبک ، پیچیدگی، و نوع همکاری شما بستگی داره و همچنین مشاوره رایگان برای پیدا کردن بهترین سبک و ایده برای گرفتن بهترین نتیجه برای کانالتون به همراه هستش.',
+        footerTitle: 'آماده‌ای برای ویدیو بعدی بازدیدهات رو بترکونیم؟! ',
+        footerDesc: 'همکاری 👇🏻',
+        btnTg: 'ارتباط سریع (تلگرام)',
+        btnIg: 'اینستاگرام',
+        copyright: '© 2026 Magic Designer | تمامی حقوق محفوظ است.'
+      },
+      en: {
+        dir: 'ltr',
+        badge: 'Blow up your views!',
+        title: 'Thumbnail Designs',
+        trusted: 'Trusted by 100+ creators',
+        statNum1: '+5M',
+        statNum2: '+14%',
+        statNum3: '+350',
+        statNum4: '24h',
+        stat1: 'Total Views Hit',
+        stat2: 'Avg. CTR Boost',
+        stat3: 'Thumbnails Designed',
+        stat4: 'Fast Delivery',
+        vlog: 'Vlog',
+        gameplay: 'Gameplay',
+        challenge: 'Challenge',
+        other: 'Other',
+        moreThumbs: 'More Thumbnails',
+        aboutTitle: 'Me?',
+        aboutName: "I'm Ilia, 20 Years Old",
+        aboutDesc1: 'Over 4 years of experience designing thumbnails, channel art, profile pics, covers and more.',
+        aboutLine1: "We don't just design thumbnails!",
+        aboutLine2: 'We create a masterpiece!',
+        faqBadge: 'FAQ',
+        faqTitle: "Let's Clear Things Up",
+        faqSubtitle: 'Common questions creators ask before getting started.',
+        faqQ1: 'How can i order?',
+        faqA1Text: 'Super simple! Just shoot me a message on Telegram or Instagram with your video concept and we’ll get straight to work.',
+        faqBtnTg: 'Message on Telegram',
+        faqBtnIg: 'Message on Instagram',
+        faqQ2: 'What niches and thumbnail styles do you specialize in?',
+        faqA2: 'I cover pretty much all top-performing YouTube niches: gaming, vlogs, high-stakes challenges, documentaries, high-contrast Russian typography, and full cinematic photomanipulation.',
+        faqQ3: "What's your typical turnaround time?",
+        faqA3: "Standard delivery is within 24 hours. If you're on a tight upload schedule, rush delivery within 12 hours is always on the table.",
+        faqQ4: 'Do you offer revisions if I need changes?',
+        faqA4: "100%. We tweak until you’re thrilled. I offer unlimited revisions to make sure the final thumbnail crushes your CTR targets.",
+        faqQ5: 'How does your pricing structure work?',
+        faqA5: 'Pricing scales based on visual complexity, niche, and whether you need single thumbnails or monthly channel packages. Plus, every project includes free ideation & CTR strategy consultation.',
+        footerTitle: 'Ready to blow up the views on your next video?! ',
+        footerDesc: 'Collaborate 👇🏻',
+        btnTg: 'Quick Chat (Telegram)',
+        btnIg: 'Instagram',
+        copyright: '© 2026 Magic Designer | All rights reserved.'
+      }
+    };
+
+    function changeLanguage(lang, saveToStorage = true) {
+      const t = translations[lang];
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', t.dir);
+
+      if (saveToStorage) {
+        localStorage.setItem('magic_user_lang', lang);
+      }
+
+      document.getElementById('txt-badge').innerText = t.badge;
+      document.getElementById('txt-title').innerText = t.title;
+      document.getElementById('txt-trusted').innerText = t.trusted;
+
+      document.getElementById('stat-num-1').innerText = t.statNum1;
+      document.getElementById('stat-num-2').innerText = t.statNum2;
+      document.getElementById('stat-num-3').innerText = t.statNum3;
+      document.getElementById('stat-num-4').innerText = t.statNum4;
+
+      document.getElementById('stat-1').innerText = t.stat1;
+      document.getElementById('stat-2').innerText = t.stat2;
+      document.getElementById('stat-3').innerText = t.stat3;
+      document.getElementById('stat-4').innerText = t.stat4;
+
+      document.getElementById('lbl-vlog').innerText = t.vlog;
+      document.getElementById('lbl-gameplay').innerText = t.gameplay;
+      document.getElementById('lbl-challenge').innerText = t.challenge;
+      document.getElementById('lbl-other').innerText = t.other;
+      document.getElementById('txt-more-thumbs').innerText = t.moreThumbs;
+
+      const mainTabBar = document.getElementById('main-tab-bar');
+      const enArTabBar = document.getElementById('en-ar-tab-bar');
+      const thumbsCont = document.getElementById('content-thumbnails');
+      const prodsCont = document.getElementById('content-products');
+
+      if (lang === 'fa') {
+        mainTabBar.classList.remove('hidden');
+        mainTabBar.classList.add('flex');
+        enArTabBar.classList.add('hidden');
+        enArTabBar.classList.remove('flex');
+        
+        if (activeTab === 'products') {
+          prodsCont.classList.remove('hidden');
+          thumbsCont.classList.add('hidden');
+        } else if (activeTab === 'thumbnails') {
+          thumbsCont.classList.remove('hidden');
+          prodsCont.classList.add('hidden');
+        } else {
+          thumbsCont.classList.add('hidden');
+          prodsCont.classList.add('hidden');
         }
+      } else {
+        mainTabBar.classList.add('hidden');
+        mainTabBar.classList.remove('flex');
+        prodsCont.classList.add('hidden');
+        enArTabBar.classList.remove('hidden');
+        enArTabBar.classList.add('flex');
+        
+        if (isEnArOpen) {
+          thumbsCont.classList.remove('hidden');
+        } else {
+          thumbsCont.classList.add('hidden');
+        }
+      }
 
-        // سیستم کپی ۱۰۰٪ تضمینی با قابلیت فال‌بک
-        function copyCardNumber() {
-            const rawCard = '6104338702037264';
-            const btn = document.getElementById('copyBtn');
+      document.getElementById('about-title').innerText = t.aboutTitle;
+      document.getElementById('about-name').innerText = t.aboutName;
+      document.getElementById('about-desc-1').innerText = t.aboutDesc1;
+      document.getElementById('about-line-1').innerText = t.aboutLine1;
+      document.getElementById('about-line-2').innerText = t.aboutLine2;
 
-            function showCopySuccess() {
-                btn.innerText = 'کپی شد! ✔';
-                btn.style.background = '#ffd700';
-                btn.style.color = '#000';
-                setTimeout(() => {
-                    btn.innerText = 'کپی شماره کارت';
-                    btn.style.background = 'rgba(255, 215, 0, 0.15)';
-                    btn.style.color = '#ffd700';
-                }, 2000);
-            }
+      document.getElementById('faq-badge').innerText = t.faqBadge;
+      document.getElementById('faq-title').innerText = t.faqTitle;
+      document.getElementById('faq-subtitle').innerText = t.faqSubtitle;
+      document.getElementById('faq-q1').innerText = t.faqQ1;
+      document.getElementById('faq-a1-text').innerText = t.faqA1Text;
+      document.getElementById('faq-btn-tg').innerText = t.faqBtnTg;
+      document.getElementById('faq-btn-ig').innerText = t.faqBtnIg;
+      document.getElementById('faq-q2').innerText = t.faqQ2;
+      document.getElementById('faq-a2').innerText = t.faqA2;
+      document.getElementById('faq-q3').innerText = t.faqQ3;
+      document.getElementById('faq-a3').innerText = t.faqA3;
+      document.getElementById('faq-q4').innerText = t.faqQ4;
+      document.getElementById('faq-a4').innerText = t.faqA4;
+      document.getElementById('faq-q5').innerText = t.faqQ5;
+      document.getElementById('faq-a5').innerText = t.faqA5;
 
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(rawCard)
-                    .then(showCopySuccess)
-                    .catch(() => fallbackCopy(rawCard, showCopySuccess));
+      document.getElementById('footer-title').innerText = t.footerTitle;
+      document.getElementById('footer-desc').innerText = t.footerDesc;
+      document.getElementById('btn-tg').innerText = t.btnTg;
+      document.getElementById('btn-ig').innerText = t.btnIg;
+      document.getElementById('txt-copyright').innerText = t.copyright;
+
+      ['fa', 'en'].forEach(l => {
+        const btn = document.getElementById('btn-' + l);
+        if (btn) {
+          if (l === lang) {
+            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 bg-white text-black shadow-md";
+          } else {
+            btn.className = "px-3 py-1 rounded-full font-bold transition duration-300 text-neutral-300 hover:text-white";
+          }
+        }
+      });
+    }
+
+    async function detectUserLanguage() {
+      const savedLang = localStorage.getItem('magic_user_lang');
+      if (savedLang && ['fa', 'en'].includes(savedLang)) {
+        changeLanguage(savedLang, false);
+        return;
+      }
+
+      const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+
+      try {
+        const res = await fetch('https://api.country.is', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.country) {
+            if (data.country !== 'IR') {
+              changeLanguage('en', false);
+              return;
             } else {
-                fallbackCopy(rawCard, showCopySuccess);
+              changeLanguage('fa', false);
+              return;
             }
+          }
         }
+      } catch (err) {}
 
-        function fallbackCopy(text, callback) {
-            try {
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                textArea.style.position = "fixed";
-                textArea.style.left = "-999999px";
-                textArea.style.top = "-999999px";
-                textArea.setAttribute("readonly", "");
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                
-                const successful = document.execCommand('copy');
-                document.body.removeChild(textArea);
-                if (successful) {
-                    callback();
-                } else {
-                    prompt("شماره کارت جهت کپی دستی:", text);
-                }
-            } catch (err) {
-                prompt("شماره کارت جهت کپی دستی:", text);
-            }
-        }
-
-        // لود تنبل عکس‌های رضایت
-        let reviewsLoaded = false;
-        function loadReviewsLazy() {
-            if (reviewsLoaded) return;
-            reviewsLoaded = true;
-            const grid = document.getElementById('reviews-grid');
-            for (let i = 1; i <= 20; i++) {
-                const card = document.createElement('div');
-                card.className = 'review-card';
-                const img = document.createElement('img');
-                img.loading = 'lazy';
-                img.alt = `رضایت ${i}`;
-                img.src = `rezayat (${i}).jpg`;
-                
-                img.onerror = function() {
-                    if (!this.dataset.retry) {
-                        this.dataset.retry = '1';
-                        this.src = `rezayat(${i}).jpg`;
-                    } else {
-                        this.onerror = null;
-                        this.style.display = 'none';
-                        card.innerHTML = `
-                            <div class="review-placeholder">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                </svg>
-                                <span>رضایت مشتری ${i}</span>
-                            </div>
-                        `;
-                    }
-                };
-
-                card.onclick = () => {
-                    if (img.style.display !== 'none' && img.src) {
-                        document.getElementById('modalImg').src = img.src;
-                        openModalSafe('imageModal');
-                    }
-                };
-
-                card.appendChild(img);
-                grid.appendChild(card);
-            }
-        }
-
-        function showServices() {
-            document.getElementById('services-section').style.display = 'block';
-            document.getElementById('reviews-section').style.display = 'none';
-            document.getElementById('btn-services').classList.add('active');
-            document.getElementById('btn-reviews').classList.remove('active');
-        }
-
-        function showReviews() {
-            document.getElementById('services-section').style.display = 'none';
-            document.getElementById('reviews-section').style.display = 'block';
-            document.getElementById('btn-reviews').classList.add('active');
-            document.getElementById('btn-services').classList.remove('active');
-            loadReviewsLazy();
-        }
-
-        function switchSubTab(service, type) {
-            const btnFake = document.getElementById(`btn-tab-${service}-fake`);
-            const btnReal = document.getElementById(`btn-tab-${service}-real`);
-            const panelFake = document.getElementById(`panel-${service}-fake`);
-            const panelReal = document.getElementById(`panel-${service}-real`);
-
-            if (type === 'fake') {
-                btnFake.classList.add('active');
-                btnReal.classList.remove('active');
-                panelFake.classList.add('show');
-                panelReal.classList.remove('show');
-            } else {
-                btnReal.classList.add('active');
-                btnFake.classList.remove('active');
-                panelReal.classList.add('show');
-                panelFake.classList.remove('show');
-            }
-        }
-
-        function toggleAccordion(element) {
-            const isOpen = element.classList.contains('open');
-            document.querySelectorAll('.accordion-item').forEach(item => item.classList.remove('open'));
-            if (!isOpen) {
-                element.classList.add('open');
-            }
-        }
-
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'u' || e.key === 's')) {
-                e.preventDefault();
-            }
-        });
-    </script>
+      if (!navLang.startsWith('fa')) {
+        changeLanguage('en', false);
+      }
+    }
+  </script>
 </body>
 </html>
